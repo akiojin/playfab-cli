@@ -181,13 +181,14 @@ fn execute_tool_command(_cli: &Cli, args: &RawArgs) -> Result<Value> {
         json!({})
     };
 
-    let config = PlayFabConfig::from_env()?;
-    let client = PlayFabClient::new();
-    let auth = AuthManager::new(config.clone());
     let tools = catalog::all_tools();
 
     let tool = catalog::find_tool(&tools, &args.tool_name)
         .ok_or_else(|| anyhow!("Unknown tool: {}", args.tool_name))?;
+
+    let config = PlayFabConfig::from_env()?;
+    let client = PlayFabClient::new();
+    let auth = AuthManager::new(config.clone());
 
     tool_executor::execute_tool(tool, params, &config, &client, &auth)
 }
