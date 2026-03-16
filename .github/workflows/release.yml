@@ -2,19 +2,71 @@ name: Release
 
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
+  create-tag:
+    name: Create Tag
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+      created: ${{ steps.tag.outputs.created }}
+      release_notes: ${{ steps.notes.outputs.release_notes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract version from Cargo.toml
+        id: version
+        run: |
+          VERSION=$(grep '^version' Cargo.toml | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected version: $VERSION"
+      - name: Check if tag exists
+        id: tag
+        run: |
+          if git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "Tag v${{ steps.version.outputs.version }} already exists"
+            echo "created=false" >> "$GITHUB_OUTPUT"
+          else
+            git tag "v${{ steps.version.outputs.version }}"
+            git push origin "v${{ steps.version.outputs.version }}"
+            echo "created=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Generate release notes
+        id: notes
+        if: steps.tag.outputs.created == 'true'
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -n "$PREV_TAG" ]; then
+            NOTES=$(git log --pretty=format:"- %s" "$PREV_TAG"..HEAD)
+          else
+            NOTES=$(git log --pretty=format:"- %s" HEAD~10..HEAD)
+          fi
+          {
+            echo "release_notes<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
   build:
+    needs: create-tag
+    if: needs.create-tag.outputs.created == 'true'
     strategy:
       matrix:
         include:
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
             rid: linux-x64
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            rid: linux-arm64
           - target: x86_64-pc-windows-msvc
             os: windows-latest
             rid: win-x64
@@ -27,10 +79,20 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.create-tag.outputs.tag }}
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
+      - name: Install cross-compilation tools
+        if: matrix.rid == 'linux-arm64'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+          echo "CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc" >> "$GITHUB_ENV"
       - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.rid }}
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
       - name: Package (Unix)
@@ -50,8 +112,9 @@ jobs:
           name: binary-${{ matrix.rid }}
           path: playfab-cli-${{ matrix.rid }}*
 
-  release:
-    needs: build
+  upload-release:
+    name: Upload Release
+    needs: [create-tag, build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,33 +123,52 @@ jobs:
           merge-multiple: true
       - name: Generate manifest
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          cat > playfab-cli-manifest.json << EOF
+          VERSION="${{ needs.create-tag.outputs.version }}"
+          TAG="${{ needs.create-tag.outputs.tag }}"
+          REPO="${{ github.repository }}"
+
+          generate_asset() {
+            local rid=$1 ext=$2 sha_file=$3
+            local sha
+            sha=$(cat "$sha_file" | awk '{print $1}' | tr -d '[:space:]')
+            echo "\"$rid\": { \"url\": \"https://github.com/$REPO/releases/download/$TAG/playfab-cli-${rid}${ext}\", \"sha256\": \"$sha\" }"
+          }
+
+          LINUX_X64=$(generate_asset "linux-x64" "" "playfab-cli-linux-x64.sha256")
+          LINUX_ARM64=$(generate_asset "linux-arm64" "" "playfab-cli-linux-arm64.sha256")
+          WIN_X64=$(generate_asset "win-x64" ".exe" "playfab-cli-win-x64.exe.sha256")
+          OSX_X64=$(generate_asset "osx-x64" "" "playfab-cli-osx-x64.sha256")
+          OSX_ARM64=$(generate_asset "osx-arm64" "" "playfab-cli-osx-arm64.sha256")
+
+          cat > playfab-cli-manifest.json << MANIFEST
           {
             "version": "$VERSION",
             "assets": {
-              "linux-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-linux-x64", "sha256": "$(cat playfab-cli-linux-x64.sha256 | cut -d' ' -f1)" },
-              "win-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-win-x64.exe", "sha256": "$(cat playfab-cli-win-x64.exe.sha256 | tr -d '[:space:]')" },
-              "osx-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-osx-x64", "sha256": "$(cat playfab-cli-osx-x64.sha256 | cut -d' ' -f1)" },
-              "osx-arm64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-osx-arm64", "sha256": "$(cat playfab-cli-osx-arm64.sha256 | cut -d' ' -f1)" }
+              $LINUX_X64,
+              $LINUX_ARM64,
+              $WIN_X64,
+              $OSX_X64,
+              $OSX_ARM64
             }
           }
-          EOF
+          MANIFEST
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          tag_name: ${{ needs.create-tag.outputs.tag }}
+          body: ${{ needs.create-tag.outputs.release_notes }}
           files: |
             playfab-cli-*
             playfab-cli-manifest.json
 
-  publish:
-    needs: release
+  publish-crate:
+    name: Publish to crates.io
+    needs: upload-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: Publish to crates.io
-        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
+        run: cargo publish
         env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
