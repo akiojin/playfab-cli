@@ -243,9 +243,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 10. post_function_result_for_entity_triggered_action
         super::ToolSpec {
             name: "post_function_result_for_entity_triggered_action".to_string(),
-            description:
-                "Post the result of an entity-triggered CloudScript function execution"
-                    .to_string(),
+            description: "Post the result of an entity-triggered CloudScript function execution"
+                .to_string(),
             api_group: "CloudScript".to_string(),
             api_method: "PostFunctionResultForEntityTriggeredAction".to_string(),
             category: super::ToolCategory::CloudScript,
@@ -260,9 +259,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "functionResult",
-                        any_object_prop(
-                            "Result of the CloudScript function execution",
-                        ),
+                        any_object_prop("Result of the CloudScript function execution"),
                     ),
                     (
                         "customTags",
@@ -275,8 +272,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 11. post_function_result_for_function_execution
         super::ToolSpec {
             name: "post_function_result_for_function_execution".to_string(),
-            description:
-                "Post the result of a CloudScript function execution".to_string(),
+            description: "Post the result of a CloudScript function execution".to_string(),
             api_group: "CloudScript".to_string(),
             api_method: "PostFunctionResultForFunctionExecution".to_string(),
             category: super::ToolCategory::CloudScript,
@@ -291,9 +287,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "functionResult",
-                        any_object_prop(
-                            "Result of the CloudScript function execution",
-                        ),
+                        any_object_prop("Result of the CloudScript function execution"),
                     ),
                     (
                         "customTags",
@@ -306,9 +300,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 12. post_function_result_for_player_triggered_action
         super::ToolSpec {
             name: "post_function_result_for_player_triggered_action".to_string(),
-            description:
-                "Post the result of a player-triggered CloudScript function execution"
-                    .to_string(),
+            description: "Post the result of a player-triggered CloudScript function execution"
+                .to_string(),
             api_group: "CloudScript".to_string(),
             api_method: "PostFunctionResultForPlayerTriggeredAction".to_string(),
             category: super::ToolCategory::CloudScript,
@@ -323,9 +316,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "functionResult",
-                        any_object_prop(
-                            "Result of the CloudScript function execution",
-                        ),
+                        any_object_prop("Result of the CloudScript function execution"),
                     ),
                     (
                         "customTags",
@@ -338,9 +329,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 13. post_function_result_for_scheduled_task
         super::ToolSpec {
             name: "post_function_result_for_scheduled_task".to_string(),
-            description:
-                "Post the result of a scheduled-task CloudScript function execution"
-                    .to_string(),
+            description: "Post the result of a scheduled-task CloudScript function execution"
+                .to_string(),
             api_group: "CloudScript".to_string(),
             api_method: "PostFunctionResultForScheduledTask".to_string(),
             category: super::ToolCategory::CloudScript,
@@ -355,9 +345,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "functionResult",
-                        any_object_prop(
-                            "Result of the CloudScript function execution",
-                        ),
+                        any_object_prop("Result of the CloudScript function execution"),
                     ),
                     (
                         "customTags",

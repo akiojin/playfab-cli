@@ -41,7 +41,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                     ),
                                     (
                                         "isControl",
-                                        optional(boolean_prop("Whether this is the control variant")),
+                                        optional(boolean_prop(
+                                            "Whether this is the control variant",
+                                        )),
                                     ),
                                 ],
                                 vec!["name", "trafficPercentage"],
@@ -127,12 +129,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetExperiments parameters",
-                vec![
-                    (
-                        "customTags",
-                        optional(any_object_prop("Custom tags for the request")),
-                    ),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -281,7 +281,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                     ),
                                     (
                                         "isControl",
-                                        optional(boolean_prop("Whether this is the control variant")),
+                                        optional(boolean_prop(
+                                            "Whether this is the control variant",
+                                        )),
                                     ),
                                 ],
                                 vec!["name", "trafficPercentage"],
@@ -341,10 +343,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CreateExclusionGroup parameters",
                 vec![
-                    (
-                        "name",
-                        string_prop("The name of the exclusion group"),
-                    ),
+                    ("name", string_prop("The name of the exclusion group")),
                     (
                         "description",
                         optional(string_prop("Description of the exclusion group")),
@@ -392,12 +391,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetExclusionGroups parameters",
-                vec![
-                    (
-                        "customTags",
-                        optional(any_object_prop("Custom tags for the request")),
-                    ),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },

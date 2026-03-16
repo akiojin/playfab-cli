@@ -66,9 +66,7 @@ pub enum ToolCommand {
     /// List all available tools
     List,
     /// Show JSON schema for a tool
-    Schema {
-        tool_name: Option<String>,
-    },
+    Schema { tool_name: Option<String> },
     /// Call a tool with parameters
     Call(RawArgs),
     #[command(external_subcommand)]
@@ -97,10 +95,7 @@ pub enum ConfigCommand {
     /// Show current configuration
     Show,
     /// Set a configuration value
-    Set {
-        key: String,
-        value: String,
-    },
+    Set { key: String, value: String },
 }
 
 #[derive(Debug, Subcommand)]

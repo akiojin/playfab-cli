@@ -17,7 +17,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "AuthenticateSessionTicket parameters",
-                vec![("SessionTicket", string_prop("The client session ticket to authenticate"))],
+                vec![(
+                    "SessionTicket",
+                    string_prop("The client session ticket to authenticate"),
+                )],
                 vec!["SessionTicket"],
             ),
         },
@@ -38,7 +41,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "CreateAccount",
-                        optional(boolean_prop("Whether to create an account if one does not exist")),
+                        optional(boolean_prop(
+                            "Whether to create an account if one does not exist",
+                        )),
                     ),
                     (
                         "InfoRequestParameters",
@@ -63,10 +68,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "LoginWithXbox parameters",
                 vec![
-                    ("XboxToken", string_prop("Xbox Live token for authentication")),
+                    (
+                        "XboxToken",
+                        string_prop("Xbox Live token for authentication"),
+                    ),
                     (
                         "CreateAccount",
-                        optional(boolean_prop("Whether to create an account if one does not exist")),
+                        optional(boolean_prop(
+                            "Whether to create an account if one does not exist",
+                        )),
                     ),
                     (
                         "InfoRequestParameters",
@@ -95,7 +105,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("Sandbox", string_prop("Xbox Live sandbox name")),
                     (
                         "CreateAccount",
-                        optional(boolean_prop("Whether to create an account if one does not exist")),
+                        optional(boolean_prop(
+                            "Whether to create an account if one does not exist",
+                        )),
                     ),
                     (
                         "InfoRequestParameters",
@@ -120,10 +132,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SetPlayerSecret parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "PlayerSecret",
-                        optional(string_prop("Player secret to set (leave empty to generate)")),
+                        optional(string_prop(
+                            "Player secret to set (leave empty to generate)",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -153,12 +170,11 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                 ("Reason", optional(string_prop("Reason for the ban"))),
                                 (
                                     "DurationInHours",
-                                    optional(integer_prop("Duration of the ban in hours (omit for permanent)")),
+                                    optional(integer_prop(
+                                        "Duration of the ban in hours (omit for permanent)",
+                                    )),
                                 ),
-                                (
-                                    "IPAddress",
-                                    optional(string_prop("IP address to ban")),
-                                ),
+                                ("IPAddress", optional(string_prop("IP address to ban"))),
                             ],
                             vec!["PlayFabId"],
                         ),
@@ -178,10 +194,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetPlayerProfile parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "ProfileConstraints",
-                        optional(any_object_prop("Profile constraints to limit the fields returned")),
+                        optional(any_object_prop(
+                            "Profile constraints to limit the fields returned",
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -201,7 +222,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetUserAccountInfo parameters",
-                vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
+                vec![(
+                    "PlayFabId",
+                    string_prop("PlayFab unique identifier of the player"),
+                )],
                 vec!["PlayFabId"],
             ),
         },
@@ -291,10 +315,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                         "PSNAccountIDs",
                         string_array_prop("Array of PSN account IDs to look up"),
                     ),
-                    (
-                        "IssuerId",
-                        optional(integer_prop("Issuer ID for PSN")),
-                    ),
+                    ("IssuerId", optional(integer_prop("Issuer ID for PSN"))),
                 ],
                 vec!["PSNAccountIDs"],
             ),
@@ -328,11 +349,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "SendPushNotification parameters",
                 vec![
                     ("Recipient", string_prop("PlayFab ID of the recipient")),
-                    ("Message", optional(string_prop("Text of the notification message"))),
-                    ("Subject", optional(string_prop("Subject of the push notification"))),
+                    (
+                        "Message",
+                        optional(string_prop("Text of the notification message")),
+                    ),
+                    (
+                        "Subject",
+                        optional(string_prop("Subject of the push notification")),
+                    ),
                     (
                         "Package",
-                        optional(any_object_prop("Push notification package with platform-specific payloads")),
+                        optional(any_object_prop(
+                            "Push notification package with platform-specific payloads",
+                        )),
                     ),
                     (
                         "AdvancedPlatformDelivery",
@@ -367,11 +396,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -388,15 +425,24 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Data", optional(any_object_prop("Key-value pairs to set as user data"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Data",
+                        optional(any_object_prop("Key-value pairs to set as user data")),
+                    ),
                     (
                         "KeysToRemove",
                         optional(string_array_prop("Keys to remove from user data")),
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -417,11 +463,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -438,8 +492,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Data", optional(any_object_prop("Key-value pairs to set as internal data"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Data",
+                        optional(any_object_prop("Key-value pairs to set as internal data")),
+                    ),
                     (
                         "KeysToRemove",
                         optional(string_array_prop("Keys to remove from internal data")),
@@ -463,11 +523,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -475,7 +543,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         },
         super::ToolSpec {
             name: "server_update_user_read_only_data".to_string(),
-            description: "Update read-only user data (visible to client but not writable)".to_string(),
+            description: "Update read-only user data (visible to client but not writable)"
+                .to_string(),
             api_group: "Server".to_string(),
             api_method: "UpdateUserReadOnlyData".to_string(),
             category: super::ToolCategory::Server,
@@ -484,15 +553,24 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Data", optional(any_object_prop("Key-value pairs to set as read-only data"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Data",
+                        optional(any_object_prop("Key-value pairs to set as read-only data")),
+                    ),
                     (
                         "KeysToRemove",
                         optional(string_array_prop("Keys to remove from read-only data")),
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -513,11 +591,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserPublisherData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -534,15 +620,24 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserPublisherData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Data", optional(any_object_prop("Key-value pairs to set as publisher data"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Data",
+                        optional(any_object_prop("Key-value pairs to set as publisher data")),
+                    ),
                     (
                         "KeysToRemove",
                         optional(string_array_prop("Keys to remove from publisher data")),
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -563,11 +658,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserPublisherInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -584,7 +687,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserPublisherInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("Data", optional(any_object_prop("Key-value pairs to set"))),
                     (
                         "KeysToRemove",
@@ -609,11 +715,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserPublisherReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId"],
@@ -630,7 +744,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserPublisherReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("Data", optional(any_object_prop("Key-value pairs to set"))),
                     (
                         "KeysToRemove",
@@ -638,7 +755,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -659,7 +779,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetPlayerCombinedInfo parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "InfoRequestParameters",
                         any_object_prop("Flags indicating which data to return"),
@@ -683,7 +806,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetPlayerStatistics parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "StatisticNames",
                         optional(string_array_prop("Statistic names to retrieve")),
@@ -721,7 +847,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdatePlayerStatistics parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "Statistics",
                         object_array_prop(
@@ -731,7 +860,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                 vec![
                                     ("StatisticName", string_prop("Name of the statistic")),
                                     ("Value", integer_prop("New value for the statistic")),
-                                    ("Version", optional(integer_prop("Version of the statistic for concurrency"))),
+                                    (
+                                        "Version",
+                                        optional(integer_prop(
+                                            "Version of the statistic for concurrency",
+                                        )),
+                                    ),
                                 ],
                                 vec!["StatisticName", "Value"],
                             ),
@@ -786,7 +920,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetTitleData parameters",
                 vec![
-                    ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific keys to retrieve")),
+                    ),
                     (
                         "OverrideLabel",
                         optional(string_prop("Override label for title data")),
@@ -807,7 +944,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "SetTitleData parameters",
                 vec![
                     ("Key", string_prop("Key of the title data to set")),
-                    ("Value", optional(string_prop("Value to set (null to delete)"))),
+                    (
+                        "Value",
+                        optional(string_prop("Value to set (null to delete)")),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -827,7 +967,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetTitleInternalData parameters",
                 vec![
-                    ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific keys to retrieve")),
+                    ),
                     (
                         "OverrideLabel",
                         optional(string_prop("Override label for title data")),
@@ -848,7 +991,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "SetTitleInternalData parameters",
                 vec![
                     ("Key", string_prop("Key of the internal data to set")),
-                    ("Value", optional(string_prop("Value to set (null to delete)"))),
+                    (
+                        "Value",
+                        optional(string_prop("Value to set (null to delete)")),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -869,14 +1015,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetTitleNews parameters",
                 vec![(
                     "Count",
-                    optional(integer_range_prop("Number of news items to return", Some(1), Some(100))),
+                    optional(integer_range_prop(
+                        "Number of news items to return",
+                        Some(1),
+                        Some(100),
+                    )),
                 )],
                 vec![],
             ),
         },
         super::ToolSpec {
             name: "server_get_catalog_items".to_string(),
-            description: "Retrieve the specified version of the title's catalog (legacy v1)".to_string(),
+            description: "Retrieve the specified version of the title's catalog (legacy v1)"
+                .to_string(),
             api_group: "Server".to_string(),
             api_method: "GetCatalogItems".to_string(),
             category: super::ToolCategory::Server,
@@ -943,7 +1094,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserInventory parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "CatalogVersion",
                         optional(string_prop("Catalog version for the inventory items")),
@@ -967,7 +1121,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GrantItemsToUser parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "ItemIds",
                         string_array_prop("Array of catalog item IDs to grant"),
@@ -1008,17 +1165,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                 vec![
                                     ("PlayFabId", string_prop("PlayFab ID of the player")),
                                     ("ItemId", string_prop("Catalog item ID to grant")),
-                                    (
-                                        "CatalogVersion",
-                                        optional(string_prop("Catalog version")),
-                                    ),
+                                    ("CatalogVersion", optional(string_prop("Catalog version"))),
                                     (
                                         "Annotation",
                                         optional(string_prop("Annotation for the grant")),
                                     ),
                                     (
                                         "Data",
-                                        optional(any_object_prop("Custom data for the item instance")),
+                                        optional(any_object_prop(
+                                            "Custom data for the item instance",
+                                        )),
                                     ),
                                 ],
                                 vec!["PlayFabId", "ItemId"],
@@ -1039,7 +1195,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         },
         super::ToolSpec {
             name: "server_modify_item_uses".to_string(),
-            description: "Modify the number of remaining uses for a player's inventory item".to_string(),
+            description: "Modify the number of remaining uses for a player's inventory item"
+                .to_string(),
             api_group: "Server".to_string(),
             api_method: "ModifyItemUses".to_string(),
             category: super::ToolCategory::Server,
@@ -1048,9 +1205,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ModifyItemUses parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("ItemInstanceId", string_prop("Instance ID of the item to modify")),
-                    ("UsesToAdd", integer_prop("Number of uses to add (can be negative)")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "ItemInstanceId",
+                        string_prop("Instance ID of the item to modify"),
+                    ),
+                    (
+                        "UsesToAdd",
+                        integer_prop("Number of uses to add (can be negative)"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1070,9 +1236,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "MoveItemToCharacterFromUser parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID to move item to")),
-                    ("ItemInstanceId", string_prop("Instance ID of the item to move")),
+                    (
+                        "ItemInstanceId",
+                        string_prop("Instance ID of the item to move"),
+                    ),
                 ],
                 vec!["PlayFabId", "CharacterId", "ItemInstanceId"],
             ),
@@ -1088,9 +1260,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "MoveItemToUserFromCharacter parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID to move item from")),
-                    ("ItemInstanceId", string_prop("Instance ID of the item to move")),
+                    (
+                        "ItemInstanceId",
+                        string_prop("Instance ID of the item to move"),
+                    ),
                 ],
                 vec!["PlayFabId", "CharacterId", "ItemInstanceId"],
             ),
@@ -1106,9 +1284,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ConsumeItem parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("ItemInstanceId", string_prop("Instance ID of the item to consume")),
-                    ("ConsumeCount", integer_range_prop("Number of uses to consume", Some(1), None)),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "ItemInstanceId",
+                        string_prop("Instance ID of the item to consume"),
+                    ),
+                    (
+                        "ConsumeCount",
+                        integer_range_prop("Number of uses to consume", Some(1), None),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1128,7 +1315,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UnlockContainerInstance parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "ContainerItemInstanceId",
                         string_prop("Instance ID of the container to unlock"),
@@ -1137,10 +1327,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                         "KeyItemInstanceId",
                         optional(string_prop("Instance ID of the key item (if required)")),
                     ),
-                    (
-                        "CatalogVersion",
-                        optional(string_prop("Catalog version")),
-                    ),
+                    ("CatalogVersion", optional(string_prop("Catalog version"))),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1160,12 +1347,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UnlockContainerItem parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("ContainerItemId", string_prop("Catalog item ID of the container")),
                     (
-                        "CatalogVersion",
-                        optional(string_prop("Catalog version")),
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
                     ),
+                    (
+                        "ContainerItemId",
+                        string_prop("Catalog item ID of the container"),
+                    ),
+                    ("CatalogVersion", optional(string_prop("Catalog version"))),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1185,12 +1375,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RedeemCoupon parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("CouponCode", string_prop("The coupon code to redeem")),
                     (
-                        "CatalogVersion",
-                        optional(string_prop("Catalog version")),
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
                     ),
+                    ("CouponCode", string_prop("The coupon code to redeem")),
+                    ("CatalogVersion", optional(string_prop("Catalog version"))),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1210,8 +1400,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RevokeInventoryItem parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("ItemInstanceId", string_prop("Instance ID of the item to revoke")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "ItemInstanceId",
+                        string_prop("Instance ID of the item to revoke"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1267,7 +1463,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetFriendsList parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "IncludeFacebookFriends",
                         optional(boolean_prop("Include Facebook friends")),
@@ -1278,7 +1477,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "ProfileConstraints",
-                        optional(any_object_prop("Profile constraints to limit fields returned")),
+                        optional(any_object_prop(
+                            "Profile constraints to limit fields returned",
+                        )),
                     ),
                     (
                         "XboxToken",
@@ -1303,7 +1504,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "AddFriend parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab ID of the player to add friend for")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab ID of the player to add friend for"),
+                    ),
                     (
                         "FriendPlayFabId",
                         optional(string_prop("PlayFab ID of the friend to add")),
@@ -1336,7 +1540,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "RemoveFriend parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab ID of the player")),
-                    ("FriendPlayFabId", string_prop("PlayFab ID of the friend to remove")),
+                    (
+                        "FriendPlayFabId",
+                        string_prop("PlayFab ID of the friend to remove"),
+                    ),
                 ],
                 vec!["PlayFabId", "FriendPlayFabId"],
             ),
@@ -1392,7 +1599,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetAllUsersCharacters parameters (ListUsersCharacters)",
-                vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
+                vec![(
+                    "PlayFabId",
+                    string_prop("PlayFab unique identifier of the player"),
+                )],
                 vec!["PlayFabId"],
             ),
         },
@@ -1407,12 +1617,23 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetCharacterData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("CharacterId", string_prop("Character ID to retrieve data for")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "CharacterId",
+                        string_prop("Character ID to retrieve data for"),
+                    ),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId", "CharacterId"],
@@ -1429,8 +1650,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateCharacterData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("CharacterId", string_prop("Character ID to update data for")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "CharacterId",
+                        string_prop("Character ID to update data for"),
+                    ),
                     ("Data", optional(any_object_prop("Key-value pairs to set"))),
                     (
                         "KeysToRemove",
@@ -1438,7 +1665,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -1459,12 +1689,20 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetCharacterInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId", "CharacterId"],
@@ -1481,7 +1719,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateCharacterInternalData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     ("Data", optional(any_object_prop("Key-value pairs to set"))),
                     (
@@ -1507,12 +1748,20 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetCharacterReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
-                    ("Keys", optional(string_array_prop("Specific data keys to retrieve"))),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific data keys to retrieve")),
+                    ),
                     (
                         "IfChangedFromDataVersion",
-                        optional(integer_prop("Return data only if changed from this version")),
+                        optional(integer_prop(
+                            "Return data only if changed from this version",
+                        )),
                     ),
                 ],
                 vec!["PlayFabId", "CharacterId"],
@@ -1529,7 +1778,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateCharacterReadOnlyData parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     ("Data", optional(any_object_prop("Key-value pairs to set"))),
                     (
@@ -1538,7 +1790,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -1559,7 +1814,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetCharacterStatistics parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                 ],
                 vec!["PlayFabId", "CharacterId"],
@@ -1576,7 +1834,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateCharacterStatistics parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     (
                         "CharacterStatistics",
@@ -1601,8 +1862,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GrantCharacterToUser parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("CharacterName", string_prop("Display name of the new character")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "CharacterName",
+                        string_prop("Display name of the new character"),
+                    ),
                     ("CharacterType", string_prop("Type of the character")),
                     (
                         "CustomTags",
@@ -1623,11 +1890,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "DeleteCharacterFromUser parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID to delete")),
                     (
                         "SaveCharacterInventory",
-                        optional(boolean_prop("Whether to save character inventory to the player")),
+                        optional(boolean_prop(
+                            "Whether to save character inventory to the player",
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -1648,11 +1920,21 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetCharacterLeaderboard parameters",
                 vec![
-                    ("StatisticName", string_prop("Name of the character statistic")),
-                    ("StartPosition", integer_range_prop("Starting position in the leaderboard", Some(0), None)),
+                    (
+                        "StatisticName",
+                        string_prop("Name of the character statistic"),
+                    ),
+                    (
+                        "StartPosition",
+                        integer_range_prop("Starting position in the leaderboard", Some(0), None),
+                    ),
                     (
                         "MaxResultsCount",
-                        optional(integer_range_prop("Maximum number of results", Some(1), Some(100))),
+                        optional(integer_range_prop(
+                            "Maximum number of results",
+                            Some(1),
+                            Some(100),
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -1676,8 +1958,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "AddUserVirtualCurrency parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("VirtualCurrency", string_prop("Virtual currency code (e.g., 'GC')")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "VirtualCurrency",
+                        string_prop("Virtual currency code (e.g., 'GC')"),
+                    ),
                     ("Amount", integer_range_prop("Amount to add", Some(0), None)),
                     (
                         "CustomTags",
@@ -1698,9 +1986,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SubtractUserVirtualCurrency parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("VirtualCurrency", string_prop("Virtual currency code (e.g., 'GC')")),
-                    ("Amount", integer_range_prop("Amount to subtract", Some(0), None)),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "VirtualCurrency",
+                        string_prop("Virtual currency code (e.g., 'GC')"),
+                    ),
+                    (
+                        "Amount",
+                        integer_range_prop("Amount to subtract", Some(0), None),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1721,7 +2018,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetUserInventory parameters (for virtual currency)",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1741,7 +2041,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "AddCharacterVirtualCurrency parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     ("VirtualCurrency", string_prop("Virtual currency code")),
                     ("Amount", integer_range_prop("Amount to add", Some(0), None)),
@@ -1764,10 +2067,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SubtractCharacterVirtualCurrency parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     ("VirtualCurrency", string_prop("Virtual currency code")),
-                    ("Amount", integer_range_prop("Amount to subtract", Some(0), None)),
+                    (
+                        "Amount",
+                        integer_range_prop("Amount to subtract", Some(0), None),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -1790,9 +2099,15 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "WritePlayerEvent parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("EventName", string_prop("Name of the custom event")),
-                    ("Body", optional(any_object_prop("Event body with custom properties"))),
+                    (
+                        "Body",
+                        optional(any_object_prop("Event body with custom properties")),
+                    ),
                     (
                         "Timestamp",
                         optional(string_prop("Timestamp of the event (ISO 8601)")),
@@ -1817,7 +2132,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "WriteTitleEvent parameters",
                 vec![
                     ("EventName", string_prop("Name of the custom event")),
-                    ("Body", optional(any_object_prop("Event body with custom properties"))),
+                    (
+                        "Body",
+                        optional(any_object_prop("Event body with custom properties")),
+                    ),
                     (
                         "Timestamp",
                         optional(string_prop("Timestamp of the event (ISO 8601)")),
@@ -1841,10 +2159,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "WriteCharacterEvent parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("CharacterId", string_prop("Character ID")),
                     ("EventName", string_prop("Name of the custom event")),
-                    ("Body", optional(any_object_prop("Event body with custom properties"))),
+                    (
+                        "Body",
+                        optional(any_object_prop("Event body with custom properties")),
+                    ),
                     (
                         "Timestamp",
                         optional(string_prop("Timestamp of the event (ISO 8601)")),
@@ -1872,7 +2196,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CreateSharedGroup parameters",
                 vec![(
                     "SharedGroupId",
-                    optional(string_prop("ID for the new shared group (auto-generated if omitted)")),
+                    optional(string_prop(
+                        "ID for the new shared group (auto-generated if omitted)",
+                    )),
                 )],
                 vec![],
             ),
@@ -1889,7 +2215,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetSharedGroupData parameters",
                 vec![
                     ("SharedGroupId", string_prop("ID of the shared group")),
-                    ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
+                    (
+                        "Keys",
+                        optional(string_array_prop("Specific keys to retrieve")),
+                    ),
                     (
                         "GetMembers",
                         optional(boolean_prop("Whether to include member list")),
@@ -1917,7 +2246,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "Permission",
-                        optional(string_enum_prop("Permission for the data", &["Private", "Public"])),
+                        optional(string_enum_prop(
+                            "Permission for the data",
+                            &["Private", "Public"],
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -1961,8 +2293,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ExecuteCloudScript parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("FunctionName", string_prop("Name of the CloudScript function")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "FunctionName",
+                        string_prop("Name of the CloudScript function"),
+                    ),
                     (
                         "FunctionParameter",
                         optional(any_object_prop("Parameters to pass to the function")),
@@ -2001,7 +2339,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ExecuteCloudScript (server) parameters",
                 vec![
-                    ("FunctionName", string_prop("Name of the CloudScript function")),
+                    (
+                        "FunctionName",
+                        string_prop("Name of the CloudScript function"),
+                    ),
                     (
                         "PlayFabId",
                         optional(string_prop("PlayFab ID of the player context")),
@@ -2052,10 +2393,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                         "HttpMethod",
                         optional(string_prop("HTTP method for the download URL")),
                     ),
-                    (
-                        "ThruCDN",
-                        optional(boolean_prop("Whether to use the CDN")),
-                    ),
+                    ("ThruCDN", optional(boolean_prop("Whether to use the CDN"))),
                 ],
                 vec!["Key"],
             ),
@@ -2068,11 +2406,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
             category: super::ToolCategory::Server,
             auth_mode: super::AuthMode::SecretKey,
             retry_mode: super::RetryMode::Standard,
-            input_schema: object_schema(
-                "GetTime parameters",
-                vec![],
-                vec![],
-            ),
+            input_schema: object_schema("GetTime parameters", vec![], vec![]),
         },
         // =====================================================================
         // Push Notifications (~2 additional tools beyond server_send_push_notification)
@@ -2111,12 +2445,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "DeletePushNotificationTemplate parameters",
-                vec![
-                    (
-                        "PushNotificationTemplateId",
-                        string_prop("ID of the push notification template to delete"),
-                    ),
-                ],
+                vec![(
+                    "PushNotificationTemplateId",
+                    string_prop("ID of the push notification template to delete"),
+                )],
                 vec!["PushNotificationTemplateId"],
             ),
         },
@@ -2134,7 +2466,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetPlayerTags parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("Namespace", optional(string_prop("Tag namespace filter"))),
                     (
                         "CustomTags",
@@ -2155,7 +2490,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "AddPlayerTag parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("TagName", string_prop("Tag to add")),
                     (
                         "CustomTags",
@@ -2176,7 +2514,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RemovePlayerTag parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("TagName", string_prop("Tag to remove")),
                     (
                         "CustomTags",
@@ -2194,11 +2535,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
             category: super::ToolCategory::Server,
             auth_mode: super::AuthMode::SecretKey,
             retry_mode: super::RetryMode::Standard,
-            input_schema: object_schema(
-                "GetAllSegments parameters",
-                vec![],
-                vec![],
-            ),
+            input_schema: object_schema("GetAllSegments parameters", vec![], vec![]),
         },
         super::ToolSpec {
             name: "server_get_players_in_segment".to_string(),
@@ -2214,7 +2551,11 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("SegmentId", string_prop("ID of the segment")),
                     (
                         "MaxBatchSize",
-                        optional(integer_range_prop("Max players per batch", Some(1), Some(10000))),
+                        optional(integer_range_prop(
+                            "Max players per batch",
+                            Some(1),
+                            Some(10000),
+                        )),
                     ),
                     (
                         "SecondsToLive",
@@ -2253,8 +2594,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             "AwardSteamAchievementItem",
                             vec![
                                 ("PlayFabId", string_prop("PlayFab ID of the player")),
-                                ("AchievementName", string_prop("Name of the Steam achievement")),
-                                ("Result", boolean_prop("Whether the achievement was successfully awarded")),
+                                (
+                                    "AchievementName",
+                                    string_prop("Name of the Steam achievement"),
+                                ),
+                                (
+                                    "Result",
+                                    boolean_prop(
+                                        "Whether the achievement was successfully awarded",
+                                    ),
+                                ),
                             ],
                             vec!["PlayFabId", "AchievementName", "Result"],
                         ),
@@ -2298,10 +2647,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "EvaluateRandomResultTable parameters",
                 vec![
                     ("TableId", string_prop("ID of the random result table")),
-                    (
-                        "CatalogVersion",
-                        optional(string_prop("Catalog version")),
-                    ),
+                    ("CatalogVersion", optional(string_prop("Catalog version"))),
                 ],
                 vec!["TableId"],
             ),
@@ -2317,11 +2663,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "LinkServerCustomId parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("ServerCustomId", string_prop("Server custom ID to link")),
                     (
                         "ForceLink",
-                        optional(boolean_prop("Force link even if already linked to another player")),
+                        optional(boolean_prop(
+                            "Force link even if already linked to another player",
+                        )),
                     ),
                     (
                         "CustomTags",
@@ -2342,7 +2693,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UnlinkServerCustomId parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("ServerCustomId", string_prop("Server custom ID to unlink")),
                     (
                         "CustomTags",
@@ -2363,7 +2717,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "LinkXboxAccount parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     ("XboxToken", string_prop("Xbox Live token")),
                     (
                         "ForceLink",
@@ -2388,7 +2745,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UnlinkXboxAccount parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -2410,7 +2770,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetUserBans parameters",
-                vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
+                vec![(
+                    "PlayFabId",
+                    string_prop("PlayFab unique identifier of the player"),
+                )],
                 vec!["PlayFabId"],
             ),
         },
@@ -2424,10 +2787,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "RevokeBans parameters",
-                vec![(
-                    "BanIds",
-                    string_array_prop("Array of ban IDs to revoke"),
-                )],
+                vec![("BanIds", string_array_prop("Array of ban IDs to revoke"))],
                 vec!["BanIds"],
             ),
         },
@@ -2450,9 +2810,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             vec![
                                 ("BanId", string_prop("ID of the ban to update")),
                                 ("Reason", optional(string_prop("Updated reason"))),
-                                ("Expires", optional(string_prop("New expiration date (ISO 8601)"))),
-                                ("Permanent", optional(boolean_prop("Whether the ban is permanent"))),
-                                ("Active", optional(boolean_prop("Whether the ban is active"))),
+                                (
+                                    "Expires",
+                                    optional(string_prop("New expiration date (ISO 8601)")),
+                                ),
+                                (
+                                    "Permanent",
+                                    optional(boolean_prop("Whether the ban is permanent")),
+                                ),
+                                (
+                                    "Active",
+                                    optional(boolean_prop("Whether the ban is active")),
+                                ),
                             ],
                             vec!["BanId"],
                         ),
@@ -2472,7 +2841,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "DeletePlayer parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player to delete")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player to delete"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -2492,8 +2864,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateUserTitleDisplayName parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
-                    ("DisplayName", string_prop("New display name for the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
+                    (
+                        "DisplayName",
+                        string_prop("New display name for the player"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -2513,7 +2891,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetPlayerSegments parameters",
                 vec![
-                    ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab unique identifier of the player"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -2567,15 +2948,26 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RegisterGame parameters",
                 vec![
-                    ("ServerIPV4Address", string_prop("IP address of the game server")),
+                    (
+                        "ServerIPV4Address",
+                        string_prop("IP address of the game server"),
+                    ),
                     ("ServerPort", string_prop("Port of the game server")),
                     ("Build", string_prop("Build version of the game server")),
                     (
                         "Region",
-                        string_enum_prop("Server region", &[
-                            "USCentral", "USEast", "EUWest", "Singapore", "Japan",
-                            "Brazil", "Australia",
-                        ]),
+                        string_enum_prop(
+                            "Server region",
+                            &[
+                                "USCentral",
+                                "USEast",
+                                "EUWest",
+                                "Singapore",
+                                "Japan",
+                                "Brazil",
+                                "Australia",
+                            ],
+                        ),
                     ),
                     ("GameMode", string_prop("Game mode identifier")),
                     (
@@ -2591,7 +2983,13 @@ pub fn tools() -> Vec<super::ToolSpec> {
                         optional(any_object_prop("Custom tags for the request")),
                     ),
                 ],
-                vec!["ServerIPV4Address", "ServerPort", "Build", "Region", "GameMode"],
+                vec![
+                    "ServerIPV4Address",
+                    "ServerPort",
+                    "Build",
+                    "Region",
+                    "GameMode",
+                ],
             ),
         },
         super::ToolSpec {
@@ -2641,7 +3039,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "NotifyMatchmakerPlayerLeft parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game")),
-                    ("PlayFabId", string_prop("PlayFab ID of the player who left")),
+                    (
+                        "PlayFabId",
+                        string_prop("PlayFab ID of the player who left"),
+                    ),
                     (
                         "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -2662,7 +3063,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "SetGameServerInstanceData parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game server")),
-                    ("GameServerData", string_prop("Custom data string for the instance")),
+                    (
+                        "GameServerData",
+                        string_prop("Custom data string for the instance"),
+                    ),
                 ],
                 vec!["LobbyId", "GameServerData"],
             ),

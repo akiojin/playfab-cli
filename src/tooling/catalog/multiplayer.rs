@@ -18,11 +18,33 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CreateMatchmakingTicket parameters",
                 vec![
-                    ("creator", any_object_prop("The creator entity and attributes for the ticket")),
-                    ("giveUpAfterSeconds", integer_range_prop("How long to attempt matching in seconds", Some(1), Some(600))),
-                    ("queueName", string_prop("The name of the matchmaking queue to join")),
-                    ("membersToMatchWith", optional(object_array_prop("Other members to match with", any_object_prop("Entity key and attributes")))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "creator",
+                        any_object_prop("The creator entity and attributes for the ticket"),
+                    ),
+                    (
+                        "giveUpAfterSeconds",
+                        integer_range_prop(
+                            "How long to attempt matching in seconds",
+                            Some(1),
+                            Some(600),
+                        ),
+                    ),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue to join"),
+                    ),
+                    (
+                        "membersToMatchWith",
+                        optional(object_array_prop(
+                            "Other members to match with",
+                            any_object_prop("Entity key and attributes"),
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["creator", "giveUpAfterSeconds", "queueName"],
             ),
@@ -40,9 +62,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetMatchmakingTicket parameters",
                 vec![
                     ("ticketId", string_prop("The ID of the matchmaking ticket")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("escapeObject", optional(boolean_prop("Escape the JSON object in the response"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "escapeObject",
+                        optional(boolean_prop("Escape the JSON object in the response")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["ticketId", "queueName"],
             ),
@@ -59,9 +90,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CancelMatchmakingTicket parameters",
                 vec![
-                    ("ticketId", string_prop("The ID of the matchmaking ticket to cancel")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "ticketId",
+                        string_prop("The ID of the matchmaking ticket to cancel"),
+                    ),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["ticketId", "queueName"],
             ),
@@ -78,9 +118,20 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CancelAllMatchmakingTicketsForPlayer parameters",
                 vec![
-                    ("queueName", optional(string_prop("The name of the queue to cancel tickets in (all queues if omitted)"))),
-                    ("entity", optional(any_object_prop("The entity key of the player"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        optional(string_prop(
+                            "The name of the queue to cancel tickets in (all queues if omitted)",
+                        )),
+                    ),
+                    (
+                        "entity",
+                        optional(any_object_prop("The entity key of the player")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -97,9 +148,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListMatchmakingTicketsForPlayer parameters",
                 vec![
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("entity", optional(any_object_prop("The entity key of the player"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "entity",
+                        optional(any_object_prop("The entity key of the player")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["queueName"],
             ),
@@ -117,10 +177,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetMatch parameters",
                 vec![
                     ("matchId", string_prop("The ID of the match")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("escapeObject", optional(boolean_prop("Escape the JSON object in the response"))),
-                    ("returnMemberAttributes", optional(boolean_prop("Whether to return member attributes"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "escapeObject",
+                        optional(boolean_prop("Escape the JSON object in the response")),
+                    ),
+                    (
+                        "returnMemberAttributes",
+                        optional(boolean_prop("Whether to return member attributes")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["matchId", "queueName"],
             ),
@@ -136,9 +208,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "ListMatchmakingQueuesForTitle parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -154,8 +227,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SetMatchmakingQueue parameters",
                 vec![
-                    ("matchmakingQueue", any_object_prop("The matchmaking queue configuration to set")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "matchmakingQueue",
+                        any_object_prop("The matchmaking queue configuration to set"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["matchmakingQueue"],
             ),
@@ -173,7 +252,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "RemoveMatchmakingQueue parameters",
                 vec![
                     ("queueName", string_prop("The name of the queue to remove")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["queueName"],
             ),
@@ -190,8 +272,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "GetQueueStatistics parameters",
                 vec![
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["queueName"],
             ),
@@ -211,9 +299,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListBuildSummariesV2 parameters",
                 vec![
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -231,7 +332,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetBuild parameters",
                 vec![
                     ("buildId", string_prop("The ID of the build")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId"],
             ),
@@ -239,7 +343,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 13. mp_create_build_with_managed_container
         super::ToolSpec {
             name: "mp_create_build_with_managed_container".to_string(),
-            description: "Create a multiplayer server build with a managed container image".to_string(),
+            description: "Create a multiplayer server build with a managed container image"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "CreateBuildWithManagedContainer".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -249,27 +354,133 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CreateBuildWithManagedContainer parameters",
                 vec![
                     ("buildName", string_prop("The name of the build")),
-                    ("containerFlavor", string_enum_prop("The container flavor", &["ManagedWindowsServerCore", "ManagedWindowsServerCorePreview", "CustomLinux", "Invalid"])),
-                    ("gameAssetReferences", object_array_prop("The game assets for the build", any_object_prop("Game asset reference with FileName and MountPath"))),
-                    ("gameCertificateReferences", optional(object_array_prop("Game certificate references", any_object_prop("Certificate reference")))),
-                    ("gameWorkingDirectory", optional(string_prop("The working directory for the game process"))),
-                    ("instrumentationConfiguration", optional(any_object_prop("Instrumentation configuration"))),
-                    ("metadata", optional(any_object_prop("Build metadata key-value pairs"))),
-                    ("multiplayerServerCountPerVm", integer_prop("Number of multiplayer servers per VM")),
-                    ("osPlatform", optional(string_prop("The OS platform (Linux or Windows)"))),
-                    ("ports", object_array_prop("The ports the build is mapped on", any_object_prop("Port with Name, Num, and Protocol"))),
-                    ("regionConfigurations", object_array_prop("Region configurations for the build", any_object_prop("Region config with Region, MaxServers, StandbyServers"))),
-                    ("startMultiplayerServerCommand", string_prop("The command to start the multiplayer server")),
-                    ("vmSize", optional(string_enum_prop("The VM size", &["Standard_A1", "Standard_A2", "Standard_A3", "Standard_A4", "Standard_A1_v2", "Standard_A2_v2", "Standard_A4_v2", "Standard_A8_v2", "Standard_D1_v2", "Standard_D2_v2", "Standard_D3_v2", "Standard_D4_v2", "Standard_D5_v2", "Standard_F1", "Standard_F2", "Standard_F4", "Standard_F8", "Standard_F16", "Standard_F2s_v2", "Standard_F4s_v2", "Standard_F8s_v2", "Standard_F16s_v2", "Standard_D2as_v4", "Standard_D4as_v4", "Standard_D8as_v4", "Standard_D16as_v4", "Standard_A8", "Standard_HB120_16rs_v3", "Standard_HB120_32rs_v3", "Standard_HB120_64rs_v3", "Standard_HB120_96rs_v3", "Standard_HB120rs_v3"]))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "containerFlavor",
+                        string_enum_prop(
+                            "The container flavor",
+                            &[
+                                "ManagedWindowsServerCore",
+                                "ManagedWindowsServerCorePreview",
+                                "CustomLinux",
+                                "Invalid",
+                            ],
+                        ),
+                    ),
+                    (
+                        "gameAssetReferences",
+                        object_array_prop(
+                            "The game assets for the build",
+                            any_object_prop("Game asset reference with FileName and MountPath"),
+                        ),
+                    ),
+                    (
+                        "gameCertificateReferences",
+                        optional(object_array_prop(
+                            "Game certificate references",
+                            any_object_prop("Certificate reference"),
+                        )),
+                    ),
+                    (
+                        "gameWorkingDirectory",
+                        optional(string_prop("The working directory for the game process")),
+                    ),
+                    (
+                        "instrumentationConfiguration",
+                        optional(any_object_prop("Instrumentation configuration")),
+                    ),
+                    (
+                        "metadata",
+                        optional(any_object_prop("Build metadata key-value pairs")),
+                    ),
+                    (
+                        "multiplayerServerCountPerVm",
+                        integer_prop("Number of multiplayer servers per VM"),
+                    ),
+                    (
+                        "osPlatform",
+                        optional(string_prop("The OS platform (Linux or Windows)")),
+                    ),
+                    (
+                        "ports",
+                        object_array_prop(
+                            "The ports the build is mapped on",
+                            any_object_prop("Port with Name, Num, and Protocol"),
+                        ),
+                    ),
+                    (
+                        "regionConfigurations",
+                        object_array_prop(
+                            "Region configurations for the build",
+                            any_object_prop(
+                                "Region config with Region, MaxServers, StandbyServers",
+                            ),
+                        ),
+                    ),
+                    (
+                        "startMultiplayerServerCommand",
+                        string_prop("The command to start the multiplayer server"),
+                    ),
+                    (
+                        "vmSize",
+                        optional(string_enum_prop(
+                            "The VM size",
+                            &[
+                                "Standard_A1",
+                                "Standard_A2",
+                                "Standard_A3",
+                                "Standard_A4",
+                                "Standard_A1_v2",
+                                "Standard_A2_v2",
+                                "Standard_A4_v2",
+                                "Standard_A8_v2",
+                                "Standard_D1_v2",
+                                "Standard_D2_v2",
+                                "Standard_D3_v2",
+                                "Standard_D4_v2",
+                                "Standard_D5_v2",
+                                "Standard_F1",
+                                "Standard_F2",
+                                "Standard_F4",
+                                "Standard_F8",
+                                "Standard_F16",
+                                "Standard_F2s_v2",
+                                "Standard_F4s_v2",
+                                "Standard_F8s_v2",
+                                "Standard_F16s_v2",
+                                "Standard_D2as_v4",
+                                "Standard_D4as_v4",
+                                "Standard_D8as_v4",
+                                "Standard_D16as_v4",
+                                "Standard_A8",
+                                "Standard_HB120_16rs_v3",
+                                "Standard_HB120_32rs_v3",
+                                "Standard_HB120_64rs_v3",
+                                "Standard_HB120_96rs_v3",
+                                "Standard_HB120rs_v3",
+                            ],
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
-                vec!["buildName", "containerFlavor", "gameAssetReferences", "multiplayerServerCountPerVm", "ports", "regionConfigurations", "startMultiplayerServerCommand"],
+                vec![
+                    "buildName",
+                    "containerFlavor",
+                    "gameAssetReferences",
+                    "multiplayerServerCountPerVm",
+                    "ports",
+                    "regionConfigurations",
+                    "startMultiplayerServerCommand",
+                ],
             ),
         },
         // 14. mp_create_build_with_custom_container
         super::ToolSpec {
             name: "mp_create_build_with_custom_container".to_string(),
-            description: "Create a multiplayer server build with a custom container image".to_string(),
+            description: "Create a multiplayer server build with a custom container image"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "CreateBuildWithCustomContainer".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -279,25 +490,77 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CreateBuildWithCustomContainer parameters",
                 vec![
                     ("buildName", string_prop("The name of the build")),
-                    ("containerImageReference", optional(any_object_prop("Container image reference with ImageName and Tag"))),
-                    ("containerRunCommand", optional(string_prop("The command to run when the container starts"))),
-                    ("gameAssetReferences", optional(object_array_prop("Game asset references", any_object_prop("Game asset reference")))),
-                    ("gameCertificateReferences", optional(object_array_prop("Game certificate references", any_object_prop("Certificate reference")))),
-                    ("linuxInstrumentationConfiguration", optional(any_object_prop("Linux instrumentation configuration"))),
-                    ("metadata", optional(any_object_prop("Build metadata key-value pairs"))),
-                    ("multiplayerServerCountPerVm", integer_prop("Number of multiplayer servers per VM")),
-                    ("ports", object_array_prop("The ports the build is mapped on", any_object_prop("Port with Name, Num, and Protocol"))),
-                    ("regionConfigurations", object_array_prop("Region configurations for the build", any_object_prop("Region config with Region, MaxServers, StandbyServers"))),
+                    (
+                        "containerImageReference",
+                        optional(any_object_prop(
+                            "Container image reference with ImageName and Tag",
+                        )),
+                    ),
+                    (
+                        "containerRunCommand",
+                        optional(string_prop("The command to run when the container starts")),
+                    ),
+                    (
+                        "gameAssetReferences",
+                        optional(object_array_prop(
+                            "Game asset references",
+                            any_object_prop("Game asset reference"),
+                        )),
+                    ),
+                    (
+                        "gameCertificateReferences",
+                        optional(object_array_prop(
+                            "Game certificate references",
+                            any_object_prop("Certificate reference"),
+                        )),
+                    ),
+                    (
+                        "linuxInstrumentationConfiguration",
+                        optional(any_object_prop("Linux instrumentation configuration")),
+                    ),
+                    (
+                        "metadata",
+                        optional(any_object_prop("Build metadata key-value pairs")),
+                    ),
+                    (
+                        "multiplayerServerCountPerVm",
+                        integer_prop("Number of multiplayer servers per VM"),
+                    ),
+                    (
+                        "ports",
+                        object_array_prop(
+                            "The ports the build is mapped on",
+                            any_object_prop("Port with Name, Num, and Protocol"),
+                        ),
+                    ),
+                    (
+                        "regionConfigurations",
+                        object_array_prop(
+                            "Region configurations for the build",
+                            any_object_prop(
+                                "Region config with Region, MaxServers, StandbyServers",
+                            ),
+                        ),
+                    ),
                     ("vmSize", optional(string_prop("The VM size for the build"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
-                vec!["buildName", "multiplayerServerCountPerVm", "ports", "regionConfigurations"],
+                vec![
+                    "buildName",
+                    "multiplayerServerCountPerVm",
+                    "ports",
+                    "regionConfigurations",
+                ],
             ),
         },
         // 15. mp_create_build_with_process_based_server
         super::ToolSpec {
             name: "mp_create_build_with_process_based_server".to_string(),
-            description: "Create a multiplayer server build with a process-based server".to_string(),
+            description: "Create a multiplayer server build with a process-based server"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "CreateBuildWithProcessBasedServer".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -307,20 +570,74 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CreateBuildWithProcessBasedServer parameters",
                 vec![
                     ("buildName", string_prop("The name of the build")),
-                    ("gameAssetReferences", object_array_prop("Game asset references", any_object_prop("Game asset reference with FileName and MountPath"))),
-                    ("gameCertificateReferences", optional(object_array_prop("Game certificate references", any_object_prop("Certificate reference")))),
-                    ("gameWorkingDirectory", optional(string_prop("The working directory for the game process"))),
-                    ("instrumentationConfiguration", optional(any_object_prop("Instrumentation configuration"))),
-                    ("metadata", optional(any_object_prop("Build metadata key-value pairs"))),
-                    ("multiplayerServerCountPerVm", integer_prop("Number of multiplayer servers per VM")),
-                    ("osPlatform", optional(string_prop("The OS platform (Linux or Windows)"))),
-                    ("ports", object_array_prop("The ports the build is mapped on", any_object_prop("Port with Name, Num, and Protocol"))),
-                    ("regionConfigurations", object_array_prop("Region configurations for the build", any_object_prop("Region config with Region, MaxServers, StandbyServers"))),
-                    ("startMultiplayerServerCommand", string_prop("The command to start the multiplayer server")),
+                    (
+                        "gameAssetReferences",
+                        object_array_prop(
+                            "Game asset references",
+                            any_object_prop("Game asset reference with FileName and MountPath"),
+                        ),
+                    ),
+                    (
+                        "gameCertificateReferences",
+                        optional(object_array_prop(
+                            "Game certificate references",
+                            any_object_prop("Certificate reference"),
+                        )),
+                    ),
+                    (
+                        "gameWorkingDirectory",
+                        optional(string_prop("The working directory for the game process")),
+                    ),
+                    (
+                        "instrumentationConfiguration",
+                        optional(any_object_prop("Instrumentation configuration")),
+                    ),
+                    (
+                        "metadata",
+                        optional(any_object_prop("Build metadata key-value pairs")),
+                    ),
+                    (
+                        "multiplayerServerCountPerVm",
+                        integer_prop("Number of multiplayer servers per VM"),
+                    ),
+                    (
+                        "osPlatform",
+                        optional(string_prop("The OS platform (Linux or Windows)")),
+                    ),
+                    (
+                        "ports",
+                        object_array_prop(
+                            "The ports the build is mapped on",
+                            any_object_prop("Port with Name, Num, and Protocol"),
+                        ),
+                    ),
+                    (
+                        "regionConfigurations",
+                        object_array_prop(
+                            "Region configurations for the build",
+                            any_object_prop(
+                                "Region config with Region, MaxServers, StandbyServers",
+                            ),
+                        ),
+                    ),
+                    (
+                        "startMultiplayerServerCommand",
+                        string_prop("The command to start the multiplayer server"),
+                    ),
                     ("vmSize", optional(string_prop("The VM size for the build"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
-                vec!["buildName", "gameAssetReferences", "multiplayerServerCountPerVm", "ports", "regionConfigurations", "startMultiplayerServerCommand"],
+                vec![
+                    "buildName",
+                    "gameAssetReferences",
+                    "multiplayerServerCountPerVm",
+                    "ports",
+                    "regionConfigurations",
+                    "startMultiplayerServerCommand",
+                ],
             ),
         },
         // 16. mp_delete_build
@@ -336,7 +653,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "DeleteBuild parameters",
                 vec![
                     ("buildId", string_prop("The ID of the build to delete")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId"],
             ),
@@ -355,7 +675,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     ("buildId", string_prop("The ID of the build")),
                     ("buildName", string_prop("The new name for the build")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "buildName"],
             ),
@@ -373,8 +696,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "UpdateBuildRegion parameters",
                 vec![
                     ("buildId", string_prop("The ID of the build")),
-                    ("buildRegion", any_object_prop("The updated region configuration")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "buildRegion",
+                        any_object_prop("The updated region configuration"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "buildRegion"],
             ),
@@ -392,8 +721,17 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "UpdateBuildRegions parameters",
                 vec![
                     ("buildId", string_prop("The ID of the build")),
-                    ("buildRegions", object_array_prop("The updated region configurations", any_object_prop("Region configuration"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "buildRegions",
+                        object_array_prop(
+                            "The updated region configurations",
+                            any_object_prop("Region configuration"),
+                        ),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "buildRegions"],
             ),
@@ -410,9 +748,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListBuildAliases parameters",
                 vec![
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -430,8 +781,17 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CreateBuildAlias parameters",
                 vec![
                     ("aliasName", string_prop("The name of the alias")),
-                    ("buildSelectionCriteria", object_array_prop("Build selection criteria with weights", any_object_prop("Build selection criterion with BuildId and Weight"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "buildSelectionCriteria",
+                        object_array_prop(
+                            "Build selection criteria with weights",
+                            any_object_prop("Build selection criterion with BuildId and Weight"),
+                        ),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["aliasName", "buildSelectionCriteria"],
             ),
@@ -450,8 +810,17 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     ("aliasId", string_prop("The ID of the alias to update")),
                     ("aliasName", optional(string_prop("The updated alias name"))),
-                    ("buildSelectionCriteria", optional(object_array_prop("Updated build selection criteria", any_object_prop("Build selection criterion")))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "buildSelectionCriteria",
+                        optional(object_array_prop(
+                            "Updated build selection criteria",
+                            any_object_prop("Build selection criterion"),
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["aliasId"],
             ),
@@ -469,7 +838,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "DeleteBuildAlias parameters",
                 vec![
                     ("aliasId", string_prop("The ID of the alias to delete")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["aliasId"],
             ),
@@ -487,7 +859,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetBuildAlias parameters",
                 vec![
                     ("aliasId", string_prop("The ID of the alias")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["aliasId"],
             ),
@@ -503,9 +878,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "RolloverContainerRegistryCredentials parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -515,7 +891,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 26. mp_list_container_images
         super::ToolSpec {
             name: "mp_list_container_images".to_string(),
-            description: "List container images available for multiplayer server builds".to_string(),
+            description: "List container images available for multiplayer server builds"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "ListContainerImages".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -524,9 +901,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListContainerImages parameters",
                 vec![
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -544,7 +934,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "ListContainerImageTags parameters",
                 vec![
                     ("imageName", string_prop("The name of the container image")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["imageName"],
             ),
@@ -560,9 +953,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetContainerRegistryCredentials parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -578,9 +972,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UploadCertificate parameters",
                 vec![
-                    ("gameCertificate", any_object_prop("The game certificate to upload (Name, Base64EncodedValue, Password)")),
-                    ("forceUpdate", optional(boolean_prop("Whether to force update an existing certificate"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "gameCertificate",
+                        any_object_prop(
+                            "The game certificate to upload (Name, Base64EncodedValue, Password)",
+                        ),
+                    ),
+                    (
+                        "forceUpdate",
+                        optional(boolean_prop(
+                            "Whether to force update an existing certificate",
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["gameCertificate"],
             ),
@@ -598,7 +1005,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "DeleteCertificate parameters",
                 vec![
                     ("name", string_prop("The name of the certificate to delete")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["name"],
             ),
@@ -620,9 +1030,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     ("buildId", string_prop("The ID of the build")),
                     ("region", string_prop("The region to list servers for")),
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region"],
             ),
@@ -639,13 +1062,35 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RequestMultiplayerServer parameters",
                 vec![
-                    ("buildId", string_prop("The ID of the build to request a server from")),
-                    ("preferredRegions", string_array_prop("Preferred regions in order of priority")),
+                    (
+                        "buildId",
+                        string_prop("The ID of the build to request a server from"),
+                    ),
+                    (
+                        "preferredRegions",
+                        string_array_prop("Preferred regions in order of priority"),
+                    ),
                     ("sessionId", string_prop("A unique ID for the game session")),
-                    ("buildAliasParams", optional(any_object_prop("Build alias parameters to use instead of buildId"))),
-                    ("initialPlayers", optional(string_array_prop("List of player IDs to initialize the server with"))),
-                    ("sessionCookie", optional(string_prop("An opaque string passed to the game server"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "buildAliasParams",
+                        optional(any_object_prop(
+                            "Build alias parameters to use instead of buildId",
+                        )),
+                    ),
+                    (
+                        "initialPlayers",
+                        optional(string_array_prop(
+                            "List of player IDs to initialize the server with",
+                        )),
+                    ),
+                    (
+                        "sessionCookie",
+                        optional(string_prop("An opaque string passed to the game server")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["preferredRegions", "sessionId"],
             ),
@@ -665,7 +1110,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("buildId", string_prop("The ID of the build")),
                     ("region", string_prop("The region the server is in")),
                     ("sessionId", string_prop("The session ID of the server")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region", "sessionId"],
             ),
@@ -684,8 +1132,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     ("buildId", string_prop("The ID of the build")),
                     ("region", string_prop("The region the server is in")),
-                    ("sessionId", string_prop("The session ID of the server to shut down")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "sessionId",
+                        string_prop("The session ID of the server to shut down"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region", "sessionId"],
             ),
@@ -704,9 +1158,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     ("buildId", string_prop("The ID of the build")),
                     ("region", string_prop("The region to list VMs for")),
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region"],
             ),
@@ -714,7 +1181,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 36. mp_get_remote_login_endpoint
         super::ToolSpec {
             name: "mp_get_remote_login_endpoint".to_string(),
-            description: "Get the remote login endpoint for a VM in a multiplayer server build".to_string(),
+            description: "Get the remote login endpoint for a VM in a multiplayer server build"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "GetRemoteLoginEndpoint".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -726,7 +1194,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("buildId", string_prop("The ID of the build")),
                     ("region", string_prop("The region of the VM")),
                     ("vmId", string_prop("The ID of the virtual machine")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region", "vmId"],
             ),
@@ -747,8 +1218,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("region", string_prop("The region of the VM")),
                     ("username", string_prop("The username for the remote user")),
                     ("vmId", string_prop("The ID of the virtual machine")),
-                    ("expirationTime", optional(string_prop("Expiration time for the user (ISO 8601)"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "expirationTime",
+                        optional(string_prop("Expiration time for the user (ISO 8601)")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region", "username", "vmId"],
             ),
@@ -769,7 +1246,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ("region", string_prop("The region of the VM")),
                     ("username", string_prop("The username to delete")),
                     ("vmId", string_prop("The ID of the virtual machine")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region", "username", "vmId"],
             ),
@@ -785,9 +1265,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "ListPartyQosServers parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -803,9 +1284,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "RequestPartyService parameters",
                 vec![
-                    ("networkConfiguration", any_object_prop("The network configuration for the party")),
-                    ("preferredRegions", optional(string_array_prop("Preferred regions in order of priority"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "networkConfiguration",
+                        any_object_prop("The network configuration for the party"),
+                    ),
+                    (
+                        "preferredRegions",
+                        optional(string_array_prop("Preferred regions in order of priority")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["networkConfiguration"],
             ),
@@ -824,9 +1314,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetTitleEnabledForMultiplayerServersStatus parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -841,9 +1332,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "EnableMultiplayerServersForTitle parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -859,9 +1351,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListAssetsSummaries parameters",
                 vec![
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -879,7 +1384,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetAssetUploadUrl parameters",
                 vec![
                     ("fileName", string_prop("The name of the asset file")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["fileName"],
             ),
@@ -896,8 +1404,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "DeleteAsset parameters",
                 vec![
-                    ("fileName", string_prop("The name of the asset file to delete")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "fileName",
+                        string_prop("The name of the asset file to delete"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["fileName"],
             ),
@@ -917,16 +1431,63 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CreateLobby parameters",
                 vec![
-                    ("owner", any_object_prop("The entity key of the lobby owner")),
-                    ("maxPlayers", integer_range_prop("Maximum number of players in the lobby", Some(1), Some(128))),
-                    ("accessPolicy", optional(string_enum_prop("The access policy for the lobby", &["Public", "Friends", "Private"]))),
-                    ("lobbyData", optional(any_object_prop("Key-value pairs of lobby data"))),
-                    ("memberData", optional(any_object_prop("Key-value pairs of member data for the creator"))),
-                    ("members", optional(object_array_prop("Initial members to add to the lobby", any_object_prop("Member entity and data")))),
-                    ("ownerMigrationPolicy", optional(string_enum_prop("Policy for owner migration", &["None", "Automatic", "Manual", "Server"]))),
-                    ("searchData", optional(any_object_prop("Search data for lobby discovery"))),
-                    ("useConnections", optional(boolean_prop("Whether to use real-time connections for the lobby"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "owner",
+                        any_object_prop("The entity key of the lobby owner"),
+                    ),
+                    (
+                        "maxPlayers",
+                        integer_range_prop(
+                            "Maximum number of players in the lobby",
+                            Some(1),
+                            Some(128),
+                        ),
+                    ),
+                    (
+                        "accessPolicy",
+                        optional(string_enum_prop(
+                            "The access policy for the lobby",
+                            &["Public", "Friends", "Private"],
+                        )),
+                    ),
+                    (
+                        "lobbyData",
+                        optional(any_object_prop("Key-value pairs of lobby data")),
+                    ),
+                    (
+                        "memberData",
+                        optional(any_object_prop(
+                            "Key-value pairs of member data for the creator",
+                        )),
+                    ),
+                    (
+                        "members",
+                        optional(object_array_prop(
+                            "Initial members to add to the lobby",
+                            any_object_prop("Member entity and data"),
+                        )),
+                    ),
+                    (
+                        "ownerMigrationPolicy",
+                        optional(string_enum_prop(
+                            "Policy for owner migration",
+                            &["None", "Automatic", "Manual", "Server"],
+                        )),
+                    ),
+                    (
+                        "searchData",
+                        optional(any_object_prop("Search data for lobby discovery")),
+                    ),
+                    (
+                        "useConnections",
+                        optional(boolean_prop(
+                            "Whether to use real-time connections for the lobby",
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["owner", "maxPlayers"],
             ),
@@ -944,7 +1505,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "DeleteLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby to delete")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId"],
             ),
@@ -961,10 +1525,21 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "FindLobbies parameters",
                 vec![
-                    ("filter", optional(string_prop("OData filter expression for lobby search"))),
+                    (
+                        "filter",
+                        optional(string_prop("OData filter expression for lobby search")),
+                    ),
                     ("orderBy", optional(string_prop("OData orderBy expression"))),
-                    ("pagination", optional(any_object_prop("Pagination options (PageSizeRequested, ContinuationToken)"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pagination",
+                        optional(any_object_prop(
+                            "Pagination options (PageSizeRequested, ContinuationToken)",
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -982,7 +1557,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId"],
             ),
@@ -1000,8 +1578,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "InviteToLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby")),
-                    ("inviteeEntity", any_object_prop("The entity key of the player to invite")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "inviteeEntity",
+                        any_object_prop("The entity key of the player to invite"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId", "inviteeEntity"],
             ),
@@ -1019,10 +1603,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "JoinLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby to join")),
-                    ("memberEntity", any_object_prop("The entity key of the player joining")),
-                    ("connectionString", optional(string_prop("A connection string for the lobby"))),
-                    ("memberData", optional(any_object_prop("Key-value pairs of member data"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "memberEntity",
+                        any_object_prop("The entity key of the player joining"),
+                    ),
+                    (
+                        "connectionString",
+                        optional(string_prop("A connection string for the lobby")),
+                    ),
+                    (
+                        "memberData",
+                        optional(any_object_prop("Key-value pairs of member data")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId", "memberEntity"],
             ),
@@ -1040,8 +1636,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "LeaveLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby to leave")),
-                    ("memberEntity", any_object_prop("The entity key of the player leaving")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "memberEntity",
+                        any_object_prop("The entity key of the player leaving"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId", "memberEntity"],
             ),
@@ -1059,17 +1661,59 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "UpdateLobby parameters",
                 vec![
                     ("lobbyId", string_prop("The ID of the lobby to update")),
-                    ("accessPolicy", optional(string_enum_prop("Updated access policy", &["Public", "Friends", "Private"]))),
-                    ("lobbyData", optional(any_object_prop("Updated lobby data key-value pairs"))),
-                    ("lobbyDataToDelete", optional(string_array_prop("Keys to delete from lobby data"))),
-                    ("maxPlayers", optional(integer_range_prop("Updated max player count", Some(1), Some(128)))),
-                    ("memberData", optional(any_object_prop("Updated member data for the caller"))),
-                    ("memberDataToDelete", optional(string_array_prop("Keys to delete from member data"))),
-                    ("memberEntity", optional(any_object_prop("The entity key of the member making the update"))),
-                    ("owner", optional(any_object_prop("New owner entity key (for owner transfer)"))),
-                    ("searchData", optional(any_object_prop("Updated search data"))),
-                    ("searchDataToDelete", optional(string_array_prop("Keys to delete from search data"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "accessPolicy",
+                        optional(string_enum_prop(
+                            "Updated access policy",
+                            &["Public", "Friends", "Private"],
+                        )),
+                    ),
+                    (
+                        "lobbyData",
+                        optional(any_object_prop("Updated lobby data key-value pairs")),
+                    ),
+                    (
+                        "lobbyDataToDelete",
+                        optional(string_array_prop("Keys to delete from lobby data")),
+                    ),
+                    (
+                        "maxPlayers",
+                        optional(integer_range_prop(
+                            "Updated max player count",
+                            Some(1),
+                            Some(128),
+                        )),
+                    ),
+                    (
+                        "memberData",
+                        optional(any_object_prop("Updated member data for the caller")),
+                    ),
+                    (
+                        "memberDataToDelete",
+                        optional(string_array_prop("Keys to delete from member data")),
+                    ),
+                    (
+                        "memberEntity",
+                        optional(any_object_prop(
+                            "The entity key of the member making the update",
+                        )),
+                    ),
+                    (
+                        "owner",
+                        optional(any_object_prop("New owner entity key (for owner transfer)")),
+                    ),
+                    (
+                        "searchData",
+                        optional(any_object_prop("Updated search data")),
+                    ),
+                    (
+                        "searchDataToDelete",
+                        optional(string_array_prop("Keys to delete from search data")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["lobbyId"],
             ),
@@ -1086,14 +1730,32 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SubscribeToLobbyResource parameters",
                 vec![
-                    ("entityKey", any_object_prop("The entity key subscribing to the resource")),
-                    ("pubSubConnectionHandle", string_prop("The PubSub connection handle")),
+                    (
+                        "entityKey",
+                        any_object_prop("The entity key subscribing to the resource"),
+                    ),
+                    (
+                        "pubSubConnectionHandle",
+                        string_prop("The PubSub connection handle"),
+                    ),
                     ("resourceId", string_prop("The resource ID to subscribe to")),
-                    ("subscriptionVersion", integer_prop("The subscription version number")),
+                    (
+                        "subscriptionVersion",
+                        integer_prop("The subscription version number"),
+                    ),
                     ("type", string_prop("The type of resource subscription")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
-                vec!["entityKey", "pubSubConnectionHandle", "resourceId", "subscriptionVersion", "type"],
+                vec![
+                    "entityKey",
+                    "pubSubConnectionHandle",
+                    "resourceId",
+                    "subscriptionVersion",
+                    "type",
+                ],
             ),
         },
         // 55. mp_unsubscribe_from_lobby_resource
@@ -1109,13 +1771,31 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "UnsubscribeFromLobbyResource parameters",
                 vec![
                     ("entityKey", any_object_prop("The entity key unsubscribing")),
-                    ("pubSubConnectionHandle", string_prop("The PubSub connection handle")),
-                    ("resourceId", string_prop("The resource ID to unsubscribe from")),
-                    ("subscriptionVersion", integer_prop("The subscription version number")),
+                    (
+                        "pubSubConnectionHandle",
+                        string_prop("The PubSub connection handle"),
+                    ),
+                    (
+                        "resourceId",
+                        string_prop("The resource ID to unsubscribe from"),
+                    ),
+                    (
+                        "subscriptionVersion",
+                        integer_prop("The subscription version number"),
+                    ),
                     ("type", string_prop("The type of resource subscription")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
-                vec!["entityKey", "pubSubConnectionHandle", "resourceId", "subscriptionVersion", "type"],
+                vec![
+                    "entityKey",
+                    "pubSubConnectionHandle",
+                    "resourceId",
+                    "subscriptionVersion",
+                    "type",
+                ],
             ),
         },
         // =====================================================================
@@ -1133,9 +1813,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CreateParty parameters",
                 vec![
-                    ("networkConfiguration", any_object_prop("The network configuration for the party")),
-                    ("partyId", optional(string_prop("Custom Party ID (auto-generated if omitted)"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "networkConfiguration",
+                        any_object_prop("The network configuration for the party"),
+                    ),
+                    (
+                        "partyId",
+                        optional(string_prop("Custom Party ID (auto-generated if omitted)")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["networkConfiguration"],
             ),
@@ -1153,7 +1842,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetParty parameters",
                 vec![
                     ("partyId", string_prop("The ID of the party")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["partyId"],
             ),
@@ -1171,8 +1863,16 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "JoinParty parameters",
                 vec![
                     ("partyId", string_prop("The ID of the party to join")),
-                    ("networkConfiguration", optional(any_object_prop("Network configuration for the joining member"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "networkConfiguration",
+                        optional(any_object_prop(
+                            "Network configuration for the joining member",
+                        )),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["partyId"],
             ),
@@ -1190,7 +1890,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "LeaveParty parameters",
                 vec![
                     ("partyId", string_prop("The ID of the party to leave")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["partyId"],
             ),
@@ -1211,8 +1914,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "ListServerBackfillTicketsForPlayer parameters",
                 vec![
                     ("entity", any_object_prop("The entity key of the player")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["entity", "queueName"],
             ),
@@ -1220,7 +1929,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 61. mp_create_server_backfill_ticket
         super::ToolSpec {
             name: "mp_create_server_backfill_ticket".to_string(),
-            description: "Create a server backfill ticket to find additional players for a match".to_string(),
+            description: "Create a server backfill ticket to find additional players for a match"
+                .to_string(),
             api_group: "Multiplayer".to_string(),
             api_method: "CreateServerBackfillTicket".to_string(),
             category: super::ToolCategory::Multiplayer,
@@ -1229,11 +1939,33 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CreateServerBackfillTicket parameters",
                 vec![
-                    ("giveUpAfterSeconds", integer_range_prop("How long to attempt backfill in seconds", Some(1), Some(600))),
-                    ("members", object_array_prop("Current members in the match", any_object_prop("Member with Entity and Team"))),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("serverDetails", optional(any_object_prop("Server details including IP and ports"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "giveUpAfterSeconds",
+                        integer_range_prop(
+                            "How long to attempt backfill in seconds",
+                            Some(1),
+                            Some(600),
+                        ),
+                    ),
+                    (
+                        "members",
+                        object_array_prop(
+                            "Current members in the match",
+                            any_object_prop("Member with Entity and Team"),
+                        ),
+                    ),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "serverDetails",
+                        optional(any_object_prop("Server details including IP and ports")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["giveUpAfterSeconds", "members", "queueName"],
             ),
@@ -1251,9 +1983,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetServerBackfillTicket parameters",
                 vec![
                     ("ticketId", string_prop("The ID of the backfill ticket")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("escapeObject", optional(boolean_prop("Escape the JSON object in the response"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "escapeObject",
+                        optional(boolean_prop("Escape the JSON object in the response")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["ticketId", "queueName"],
             ),
@@ -1270,9 +2011,18 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "CancelServerBackfillTicket parameters",
                 vec![
-                    ("ticketId", string_prop("The ID of the backfill ticket to cancel")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "ticketId",
+                        string_prop("The ID of the backfill ticket to cancel"),
+                    ),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["ticketId", "queueName"],
             ),
@@ -1290,8 +2040,14 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "CancelAllServerBackfillTicketsForPlayer parameters",
                 vec![
                     ("entity", any_object_prop("The entity key of the player")),
-                    ("queueName", string_prop("The name of the matchmaking queue")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "queueName",
+                        string_prop("The name of the matchmaking queue"),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["entity", "queueName"],
             ),
@@ -1309,10 +2065,26 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "ListArchivedMultiplayerServers parameters",
                 vec![
                     ("buildId", string_prop("The ID of the build")),
-                    ("region", string_prop("The region to list archived servers for")),
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "region",
+                        string_prop("The region to list archived servers for"),
+                    ),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["buildId", "region"],
             ),
@@ -1330,7 +2102,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "GetMultiplayerServerLogs parameters",
                 vec![
                     ("serverId", string_prop("The ID of the multiplayer server")),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec!["serverId"],
             ),
@@ -1347,9 +2122,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ListBuildSummariesV2 parameters",
                 vec![
-                    ("pageSize", optional(integer_range_prop("Number of results per page", Some(1), Some(100)))),
-                    ("skipToken", optional(string_prop("Skip token for pagination"))),
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
+                    (
+                        "pageSize",
+                        optional(integer_range_prop(
+                            "Number of results per page",
+                            Some(1),
+                            Some(100),
+                        )),
+                    ),
+                    (
+                        "skipToken",
+                        optional(string_prop("Skip token for pagination")),
+                    ),
+                    (
+                        "customTags",
+                        optional(any_object_prop("Custom tags for the request")),
+                    ),
                 ],
                 vec![],
             ),
@@ -1365,9 +2153,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetTitleMultiplayerServersQuotas parameters",
-                vec![
-                    ("customTags", optional(any_object_prop("Custom tags for the request"))),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },

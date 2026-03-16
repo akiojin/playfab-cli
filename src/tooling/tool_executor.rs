@@ -128,9 +128,7 @@ pub fn execute_tool(
             let token = auth.get_entity_token()?;
             client.call_raw(&url, &params, ("X-EntityToken", &token), tier)
         }
-        AuthMode::None => {
-            client.call_raw(&url, &params, ("X-Placeholder", ""), tier)
-        }
+        AuthMode::None => client.call_raw(&url, &params, ("X-Placeholder", ""), tier),
     }
 }
 
@@ -222,8 +220,7 @@ mod tests {
 
     #[test]
     fn build_auth_header_entity_token() {
-        let (name, value) =
-            build_auth_header(AuthMode::EntityToken, "", Some("tok123")).unwrap();
+        let (name, value) = build_auth_header(AuthMode::EntityToken, "", Some("tok123")).unwrap();
         assert_eq!(name, "X-EntityToken");
         assert_eq!(value, "tok123");
     }

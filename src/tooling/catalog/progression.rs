@@ -7,7 +7,10 @@ fn entity_key_prop(description: &str) -> serde_json::Value {
         description,
         vec![
             ("Id", string_prop("Entity ID")),
-            ("Type", string_prop("Entity type (e.g. title_player_account)")),
+            (
+                "Type",
+                string_prop("Entity type (e.g. title_player_account)"),
+            ),
         ],
         vec!["Id", "Type"],
     )
@@ -67,7 +70,10 @@ fn leaderboard_entry_update_schema() -> serde_json::Value {
     object_schema(
         "Leaderboard entry to update",
         vec![
-            ("entityId", string_prop("Entity ID for the leaderboard entry")),
+            (
+                "entityId",
+                string_prop("Entity ID for the leaderboard entry"),
+            ),
             (
                 "scores",
                 string_array_prop("Array of score values as strings"),

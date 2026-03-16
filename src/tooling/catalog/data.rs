@@ -6,7 +6,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 1. SetObjects
         super::ToolSpec {
             name: "set_objects".to_string(),
-            description: "Set objects on an entity profile. Objects are key-value data attached to entities.".to_string(),
+            description:
+                "Set objects on an entity profile. Objects are key-value data attached to entities."
+                    .to_string(),
             api_group: "Data".to_string(),
             api_method: "SetObjects".to_string(),
             category: super::ToolCategory::Data,
@@ -34,9 +36,22 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                 "Object to set",
                                 vec![
                                     ("objectName", string_prop("The name of the object")),
-                                    ("dataObject", any_object_prop("The data to store in the object")),
-                                    ("deleteObject", optional(boolean_prop("If true, delete this object instead of setting it"))),
-                                    ("escapedDataObject", optional(string_prop("JSON-escaped string of the data object"))),
+                                    (
+                                        "dataObject",
+                                        any_object_prop("The data to store in the object"),
+                                    ),
+                                    (
+                                        "deleteObject",
+                                        optional(boolean_prop(
+                                            "If true, delete this object instead of setting it",
+                                        )),
+                                    ),
+                                    (
+                                        "escapedDataObject",
+                                        optional(string_prop(
+                                            "JSON-escaped string of the data object",
+                                        )),
+                                    ),
                                 ],
                                 vec!["objectName"],
                             ),
@@ -44,7 +59,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "expectedProfileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -79,7 +96,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "escapedDataObject",
-                        optional(boolean_prop("Whether to return data objects as escaped JSON strings")),
+                        optional(boolean_prop(
+                            "Whether to return data objects as escaped JSON strings",
+                        )),
                     ),
                     (
                         "customTags",
@@ -92,7 +111,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 3. InitiateFileUploads
         super::ToolSpec {
             name: "initiate_file_uploads".to_string(),
-            description: "Initiate file uploads for an entity. Returns upload URLs for the specified files.".to_string(),
+            description:
+                "Initiate file uploads for an entity. Returns upload URLs for the specified files."
+                    .to_string(),
             api_group: "Data".to_string(),
             api_method: "InitiateFileUploads".to_string(),
             category: super::ToolCategory::Data,
@@ -118,7 +139,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "profileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -157,7 +180,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "profileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -170,7 +195,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 5. FinalizeFileUploads
         super::ToolSpec {
             name: "finalize_file_uploads".to_string(),
-            description: "Finalize file uploads for an entity after uploading content to the provided URLs".to_string(),
+            description:
+                "Finalize file uploads for an entity after uploading content to the provided URLs"
+                    .to_string(),
             api_group: "Data".to_string(),
             api_method: "FinalizeFileUploads".to_string(),
             category: super::ToolCategory::Data,
@@ -209,7 +236,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 6. GetFiles
         super::ToolSpec {
             name: "get_files".to_string(),
-            description: "Get metadata and download URLs for files attached to an entity".to_string(),
+            description: "Get metadata and download URLs for files attached to an entity"
+                .to_string(),
             api_group: "Data".to_string(),
             api_method: "GetFiles".to_string(),
             category: super::ToolCategory::Data,
@@ -266,7 +294,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "profileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",

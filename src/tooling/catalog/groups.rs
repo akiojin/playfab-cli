@@ -7,7 +7,10 @@ fn entity_key_prop(description: &str) -> serde_json::Value {
         description,
         vec![
             ("Id", string_prop("Entity ID")),
-            ("Type", string_prop("Entity type (e.g. title_player_account, master_player_account)")),
+            (
+                "Type",
+                string_prop("Entity type (e.g. title_player_account, master_player_account)"),
+            ),
         ],
         vec!["Id", "Type"],
     )
@@ -65,7 +68,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "DeleteGroup parameters",
                 vec![
-                    ("group", group_key_prop("The identifier of the group to delete")),
+                    (
+                        "group",
+                        group_key_prop("The identifier of the group to delete"),
+                    ),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -114,14 +120,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "UpdateGroup parameters",
                 vec![
-                    ("group", group_key_prop("The identifier of the group to update")),
+                    (
+                        "group",
+                        group_key_prop("The identifier of the group to update"),
+                    ),
                     (
                         "groupName",
                         optional(string_prop("The new name for the group")),
                     ),
                     (
                         "expectedProfileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -218,8 +229,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 9. list_membership_opportunities
         super::ToolSpec {
             name: "list_membership_opportunities".to_string(),
-            description: "List all groups and roles that an entity has been invited to or applied to"
-                .to_string(),
+            description:
+                "List all groups and roles that an entity has been invited to or applied to"
+                    .to_string(),
             api_group: "Group".to_string(),
             api_method: "ListMembershipOpportunities".to_string(),
             category: super::ToolCategory::Groups,
@@ -230,7 +242,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec![
                     (
                         "entity",
-                        optional(entity_key_prop("The entity to check membership opportunities for")),
+                        optional(entity_key_prop(
+                            "The entity to check membership opportunities for",
+                        )),
                     ),
                     (
                         "customTags",
@@ -252,14 +266,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "ApplyToGroup parameters",
                 vec![
-                    ("group", group_key_prop("The identifier of the group to apply to")),
+                    (
+                        "group",
+                        group_key_prop("The identifier of the group to apply to"),
+                    ),
                     (
                         "entity",
                         optional(entity_key_prop("The entity applying to join")),
                     ),
                     (
                         "autoAcceptOutstandingInvitation",
-                        optional(boolean_prop("Automatically accept an outstanding invitation if one exists")),
+                        optional(boolean_prop(
+                            "Automatically accept an outstanding invitation if one exists",
+                        )),
                     ),
                     (
                         "customTags",
@@ -282,7 +301,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "AcceptGroupApplication parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
-                    ("entity", entity_key_prop("The entity whose application to accept")),
+                    (
+                        "entity",
+                        entity_key_prop("The entity whose application to accept"),
+                    ),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -329,14 +351,19 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "InviteToGroup parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
-                    ("entity", entity_key_prop("The entity to invite to the group")),
+                    (
+                        "entity",
+                        entity_key_prop("The entity to invite to the group"),
+                    ),
                     (
                         "roleId",
                         optional(string_prop("The role to assign the entity upon joining")),
                     ),
                     (
                         "autoAcceptOutstandingApplication",
-                        optional(boolean_prop("Automatically accept an outstanding application if one exists")),
+                        optional(boolean_prop(
+                            "Automatically accept an outstanding application if one exists",
+                        )),
                     ),
                     (
                         "customTags",
@@ -359,7 +386,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "RemoveGroupApplication parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
-                    ("entity", entity_key_prop("The entity whose application to remove")),
+                    (
+                        "entity",
+                        entity_key_prop("The entity whose application to remove"),
+                    ),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -381,7 +411,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "RemoveGroupInvitation parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
-                    ("entity", entity_key_prop("The entity whose invitation to remove")),
+                    (
+                        "entity",
+                        entity_key_prop("The entity whose invitation to remove"),
+                    ),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -515,7 +548,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 "IsMember parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
-                    ("entity", entity_key_prop("The entity to check membership for")),
+                    (
+                        "entity",
+                        entity_key_prop("The entity to check membership for"),
+                    ),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),
@@ -613,7 +649,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "expectedProfileVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",

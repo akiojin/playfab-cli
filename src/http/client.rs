@@ -56,12 +56,8 @@ impl PlayFabClient {
                 }
                 Err(ureq::Error::Status(status, response)) => {
                     let body = response.into_string().unwrap_or_default();
-                    let error = anyhow!(
-                        "PlayFab API error: HTTP {} for {} - {}",
-                        status,
-                        url,
-                        body
-                    );
+                    let error =
+                        anyhow!("PlayFab API error: HTTP {} for {} - {}", status, url, body);
                     if attempt < tier.max_attempts() && is_retryable_status(status) {
                         tracing::warn!(
                             "Retryable error (attempt {}/{}): {}",

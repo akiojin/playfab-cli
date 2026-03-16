@@ -27,10 +27,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                         "eventNamespace",
                                         string_prop("Namespace of the event (e.g. custom.*)"),
                                     ),
-                                    (
-                                        "payload",
-                                        any_object_prop("Event-specific payload data"),
-                                    ),
+                                    ("payload", any_object_prop("Event-specific payload data")),
                                     (
                                         "entity",
                                         optional(any_object_prop(
@@ -65,8 +62,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 2. write_telemetry_events
         super::ToolSpec {
             name: "write_telemetry_events".to_string(),
-            description: "Write one or more telemetry events to the telemetry pipeline"
-                .to_string(),
+            description: "Write one or more telemetry events to the telemetry pipeline".to_string(),
             api_group: "Events".to_string(),
             api_method: "WriteTelemetryEvents".to_string(),
             category: super::ToolCategory::Events,
@@ -83,14 +79,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
                                 "Telemetry event entry",
                                 vec![
                                     ("name", string_prop("Name of the telemetry event")),
-                                    (
-                                        "eventNamespace",
-                                        string_prop("Namespace of the event"),
-                                    ),
-                                    (
-                                        "payload",
-                                        any_object_prop("Event-specific payload data"),
-                                    ),
+                                    ("eventNamespace", string_prop("Namespace of the event")),
+                                    ("payload", any_object_prop("Event-specific payload data")),
                                     (
                                         "entity",
                                         optional(any_object_prop(
@@ -224,10 +214,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
             input_schema: object_schema(
                 "SetTelemetryKeyActive parameters",
                 vec![
-                    (
-                        "keyName",
-                        string_prop("Name of the telemetry key"),
-                    ),
+                    ("keyName", string_prop("Name of the telemetry key")),
                     (
                         "active",
                         boolean_prop("Whether the telemetry key should be active"),

@@ -28,7 +28,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "dataAsObject",
-                        optional(boolean_prop("Whether to return profile data as a JSON object")),
+                        optional(boolean_prop(
+                            "Whether to return profile data as a JSON object",
+                        )),
                     ),
                     (
                         "customTags",
@@ -66,7 +68,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "dataAsObject",
-                        optional(boolean_prop("Whether to return profile data as a JSON object")),
+                        optional(boolean_prop(
+                            "Whether to return profile data as a JSON object",
+                        )),
                     ),
                     (
                         "customTags",
@@ -105,7 +109,9 @@ pub fn tools() -> Vec<super::ToolSpec> {
                     ),
                     (
                         "expectedVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -145,12 +151,33 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             object_schema(
                                 "Policy statement",
                                 vec![
-                                    ("action", string_prop("The action this statement applies to")),
-                                    ("effect", string_enum_prop("The effect of this statement", &["Allow", "Deny"])),
-                                    ("resource", string_prop("The resource this statement applies to")),
-                                    ("principal", string_prop("The principal this statement applies to")),
-                                    ("comment", optional(string_prop("A comment about this statement"))),
-                                    ("condition", optional(any_object_prop("Conditions for this statement"))),
+                                    (
+                                        "action",
+                                        string_prop("The action this statement applies to"),
+                                    ),
+                                    (
+                                        "effect",
+                                        string_enum_prop(
+                                            "The effect of this statement",
+                                            &["Allow", "Deny"],
+                                        ),
+                                    ),
+                                    (
+                                        "resource",
+                                        string_prop("The resource this statement applies to"),
+                                    ),
+                                    (
+                                        "principal",
+                                        string_prop("The principal this statement applies to"),
+                                    ),
+                                    (
+                                        "comment",
+                                        optional(string_prop("A comment about this statement")),
+                                    ),
+                                    (
+                                        "condition",
+                                        optional(any_object_prop("Conditions for this statement")),
+                                    ),
                                 ],
                                 vec!["action", "effect", "resource", "principal"],
                             ),
@@ -167,7 +194,8 @@ pub fn tools() -> Vec<super::ToolSpec> {
         // 5. GetTitlePlayersAccount
         super::ToolSpec {
             name: "get_title_players_account".to_string(),
-            description: "Get the title player account entity for a given title player ID".to_string(),
+            description: "Get the title player account entity for a given title player ID"
+                .to_string(),
             api_group: "Profile".to_string(),
             api_method: "GetTitlePlayersAccount".to_string(),
             category: super::ToolCategory::Profiles,
@@ -211,13 +239,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             vec!["Id", "Type"],
                         ),
                     ),
-                    (
-                        "displayName",
-                        string_prop("The display name to set"),
-                    ),
+                    ("displayName", string_prop("The display name to set")),
                     (
                         "expectedVersion",
-                        optional(integer_prop("Expected profile version for concurrency control")),
+                        optional(integer_prop(
+                            "Expected profile version for concurrency control",
+                        )),
                     ),
                     (
                         "customTags",
@@ -246,12 +273,33 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             object_schema(
                                 "Permission statement",
                                 vec![
-                                    ("action", string_prop("The action this permission applies to")),
-                                    ("effect", string_enum_prop("The effect of this permission", &["Allow", "Deny"])),
-                                    ("resource", string_prop("The resource this permission applies to")),
-                                    ("principal", string_prop("The principal this permission applies to")),
-                                    ("comment", optional(string_prop("A comment about this permission"))),
-                                    ("condition", optional(any_object_prop("Conditions for this permission"))),
+                                    (
+                                        "action",
+                                        string_prop("The action this permission applies to"),
+                                    ),
+                                    (
+                                        "effect",
+                                        string_enum_prop(
+                                            "The effect of this permission",
+                                            &["Allow", "Deny"],
+                                        ),
+                                    ),
+                                    (
+                                        "resource",
+                                        string_prop("The resource this permission applies to"),
+                                    ),
+                                    (
+                                        "principal",
+                                        string_prop("The principal this permission applies to"),
+                                    ),
+                                    (
+                                        "comment",
+                                        optional(string_prop("A comment about this permission")),
+                                    ),
+                                    (
+                                        "condition",
+                                        optional(any_object_prop("Conditions for this permission")),
+                                    ),
                                 ],
                                 vec!["action", "effect", "resource", "principal"],
                             ),
@@ -276,12 +324,10 @@ pub fn tools() -> Vec<super::ToolSpec> {
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
                 "GetGlobalPolicy parameters",
-                vec![
-                    (
-                        "customTags",
-                        optional(any_object_prop("Custom tags for the request")),
-                    ),
-                ],
+                vec![(
+                    "customTags",
+                    optional(any_object_prop("Custom tags for the request")),
+                )],
                 vec![],
             ),
         },
@@ -308,10 +354,7 @@ pub fn tools() -> Vec<super::ToolSpec> {
                             vec!["Id", "Type"],
                         ),
                     ),
-                    (
-                        "imageUrl",
-                        string_prop("The URL of the avatar image"),
-                    ),
+                    ("imageUrl", string_prop("The URL of the avatar image")),
                     (
                         "customTags",
                         optional(any_object_prop("Custom tags for the request")),

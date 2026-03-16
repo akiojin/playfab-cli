@@ -130,7 +130,11 @@ mod tests {
     #[test]
     fn from_env_fails_when_title_id_missing() {
         without_env_vars(
-            &["PLAYFAB_TITLE_ID", "PLAYFAB_DEV_SECRET_KEY", "PLAYFAB_API_ENDPOINT"],
+            &[
+                "PLAYFAB_TITLE_ID",
+                "PLAYFAB_DEV_SECRET_KEY",
+                "PLAYFAB_API_ENDPOINT",
+            ],
             || {
                 env::set_var("PLAYFAB_DEV_SECRET_KEY", "secret123");
                 let err = PlayFabConfig::from_env().expect_err("should fail");
@@ -143,7 +147,11 @@ mod tests {
     #[test]
     fn from_env_fails_when_secret_key_missing() {
         without_env_vars(
-            &["PLAYFAB_TITLE_ID", "PLAYFAB_DEV_SECRET_KEY", "PLAYFAB_API_ENDPOINT"],
+            &[
+                "PLAYFAB_TITLE_ID",
+                "PLAYFAB_DEV_SECRET_KEY",
+                "PLAYFAB_API_ENDPOINT",
+            ],
             || {
                 env::set_var("PLAYFAB_TITLE_ID", "ABCDE");
                 let err = PlayFabConfig::from_env().expect_err("should fail");
