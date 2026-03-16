@@ -17,6 +17,10 @@ PlayFab MCP サーバー（TypeScript、31ツール）を置き換える Rust CL
 | `d8dfc4d` | chore: スケルトン構造の初回コミット |
 | `e3531f9` | feat(cli): PlayFab CLI v0.1.0 全実装 |
 | `e36dd6b` | feat(skills): スキルをディレクトリ形式に変換し、Admin/Server/Experimentation スキルを新規追加 |
+| `8b68c2c` | docs(plans): 作業履歴と今後のタスクを .agent/PLANS.md に記録 |
+| `e5299d9` | feat(tooling): ツール実行エンジンの完成と clippy 修正 |
+| `f6a917a` | chore(config): プロジェクト設定ファイルとドキュメントを追加 |
+| `e8bde2b` | chore(claude): Claude Code 設定、エージェント、コマンドを追加 |
 
 ## 完了タスク
 
@@ -69,25 +73,15 @@ PlayFab MCP サーバー（TypeScript、31ツール）を置き換える Rust CL
 
 （なし）
 
-## 未コミットの変更
+### v0.1.1 — ツール実行エンジン完成＆プロジェクト設定
 
-以下のファイルに v0.1.0 開発時の未コミット変更あり:
-
-- `Cargo.toml`
-- `src/app/runner.rs`
-- `src/core/config.rs`
-- `src/http/auth.rs`, `src/http/client.rs`
-- `src/tooling/catalog/` 配下の全13ファイル
-- `src/tooling/tool_executor.rs`
-
-以下の未トラックファイルが存在:
-
-- `.claude/agents/`, `.claude/commands/`, `.claude/settings.json`
-- `.commitlintrc.cjs`, `.dockerignore`, `.editorconfig`, `.gitattributes`
-- `.github/dependabot.yml`, `.markdownlint.json`, `.markdownlintignore`
-- `AGENTS.md`, `CONTRIBUTING.md`, `SECURITY.md`
-- `Dockerfile`, `docker-compose.yml`, `cliff.toml`
-- `scripts/`
+- [x] tool_executor の execute_tool 実装（スタブからAPI呼び出しに置換）
+- [x] catalog/mod.rs の重複 ToolSpec 定義を削除し tool_executor から re-export
+- [x] clippy 警告の修正（range contains, iterator enumerate, is_multiple_of 等）
+- [x] 全13カテゴリのツール定義に api_group/api_method/auth_mode/retry_mode を追加
+- [x] プロジェクト設定ファイル追加（.editorconfig, Dockerfile, CI設定, cliff.toml 等）
+- [x] CONTRIBUTING.md, SECURITY.md, AGENTS.md 追加
+- [x] Claude Code 設定・エージェント・コマンド追加
 
 ## 今後のタスク
 
