@@ -10,7 +10,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "server_authenticate_session_ticket".to_string(),
             description: "Validates a user's session ticket and returns the user's PlayFab ID"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AuthenticateSessionTicket".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AuthenticateSessionTicket parameters",
                 vec![("SessionTicket", string_prop("The client session ticket to authenticate"))],
                 vec!["SessionTicket"],
@@ -19,7 +24,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_login_with_server_custom_id".to_string(),
             description: "Log in a player using a server-assigned custom identifier".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "LoginWithServerCustomId".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LoginWithServerCustomId parameters",
                 vec![
                     (
@@ -45,7 +55,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_login_with_xbox".to_string(),
             description: "Log in a player using an Xbox Live token".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "LoginWithXbox".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LoginWithXbox parameters",
                 vec![
                     ("XboxToken", string_prop("Xbox Live token for authentication")),
@@ -68,7 +83,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_login_with_xbox_id".to_string(),
             description: "Log in a player using an Xbox ID and Sandbox".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "LoginWithXboxId".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LoginWithXboxId parameters",
                 vec![
                     ("XboxId", string_prop("Xbox user ID")),
@@ -92,7 +112,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_player_secret".to_string(),
             description: "Set the player secret used for sign-in with server custom ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetPlayerSecret".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetPlayerSecret parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -110,7 +135,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_ban_users".to_string(),
             description: "Ban one or more players from the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "BanUsers".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "BanUsers parameters",
                 vec![(
                     "Bans",
@@ -140,7 +170,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_profile".to_string(),
             description: "Retrieve a player's profile information".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerProfile".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerProfile parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -159,7 +194,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_account_info".to_string(),
             description: "Retrieve the user's full account information by PlayFab ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserAccountInfo".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserAccountInfo parameters",
                 vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
                 vec!["PlayFabId"],
@@ -168,7 +208,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_facebook_id".to_string(),
             description: "Retrieve PlayFab ID from a Facebook ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromFacebookIDs".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromFacebookIDs parameters",
                 vec![(
                     "FacebookIDs",
@@ -180,7 +225,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_steam_id".to_string(),
             description: "Retrieve PlayFab ID from a Steam ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromSteamIDs".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromSteamIDs parameters",
                 vec![(
                     "SteamStringIDs",
@@ -192,7 +242,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_xbox_live_id".to_string(),
             description: "Retrieve PlayFab ID from an Xbox Live ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromXboxLiveIDs".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromXboxLiveIDs parameters",
                 vec![
                     (
@@ -207,7 +262,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_nintendo_service_account_id".to_string(),
             description: "Retrieve PlayFab ID from a Nintendo Service Account ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromNintendoServiceAccountIds".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromNintendoServiceAccountIds parameters",
                 vec![(
                     "NintendoAccountIds",
@@ -219,7 +279,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_psn_account_id".to_string(),
             description: "Retrieve PlayFab ID from a PSN Account ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromPSNAccountIDs".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromPSNAccountIDs parameters",
                 vec![
                     (
@@ -237,7 +302,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_play_fab_id_from_google_id".to_string(),
             description: "Retrieve PlayFab ID from a Google account ID".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayFabIDsFromGoogleIDs".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayFabIDsFromGoogleIDs parameters",
                 vec![(
                     "GoogleIDs",
@@ -249,7 +319,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_send_push_notification".to_string(),
             description: "Send a push notification to a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SendPushNotification".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SendPushNotification parameters",
                 vec![
                     ("Recipient", string_prop("PlayFab ID of the recipient")),
@@ -284,7 +359,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_data".to_string(),
             description: "Retrieve user-specific custom data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -300,7 +380,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_data".to_string(),
             description: "Update user-specific custom data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -324,7 +409,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_internal_data".to_string(),
             description: "Retrieve internal user data (not visible to client)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -340,7 +430,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_internal_data".to_string(),
             description: "Update internal user data (not visible to client)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -360,7 +455,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_read_only_data".to_string(),
             description: "Retrieve read-only user data visible to the client".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -376,7 +476,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_read_only_data".to_string(),
             description: "Update read-only user data (visible to client but not writable)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -400,7 +505,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_publisher_data".to_string(),
             description: "Retrieve publisher-specific custom data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserPublisherData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserPublisherData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -416,7 +526,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_publisher_data".to_string(),
             description: "Update publisher-specific custom data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserPublisherData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserPublisherData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -440,7 +555,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_publisher_internal_data".to_string(),
             description: "Retrieve publisher-specific internal data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserPublisherInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserPublisherInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -456,7 +576,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_publisher_internal_data".to_string(),
             description: "Update publisher-specific internal data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserPublisherInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserPublisherInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -476,7 +601,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_publisher_read_only_data".to_string(),
             description: "Retrieve publisher-specific read-only data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserPublisherReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserPublisherReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -492,7 +622,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_publisher_read_only_data".to_string(),
             description: "Update publisher-specific read-only data for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserPublisherReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserPublisherReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -516,7 +651,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_combined_info".to_string(),
             description: "Retrieve all requested data for a player in a single call".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerCombinedInfo".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerCombinedInfo parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -535,7 +675,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_statistics".to_string(),
             description: "Retrieve player statistics for a specific player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerStatistics".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerStatistics parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -568,7 +713,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_player_statistics".to_string(),
             description: "Update player statistics for a specific player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdatePlayerStatistics".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdatePlayerStatistics parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -602,7 +752,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_statistic_versions".to_string(),
             description: "Retrieve version information for all player statistics".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerStatisticVersions".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerStatisticVersions parameters",
                 vec![
                     (
@@ -623,7 +778,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_title_data".to_string(),
             description: "Retrieve key-value data for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetTitleData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTitleData parameters",
                 vec![
                     ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
@@ -638,7 +798,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_title_data".to_string(),
             description: "Set key-value data for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetTitleData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetTitleData parameters",
                 vec![
                     ("Key", string_prop("Key of the title data to set")),
@@ -654,7 +819,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_title_internal_data".to_string(),
             description: "Retrieve internal title data (not visible to clients)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetTitleInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTitleInternalData parameters",
                 vec![
                     ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
@@ -669,7 +839,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_title_internal_data".to_string(),
             description: "Set internal title data (not visible to clients)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetTitleInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetTitleInternalData parameters",
                 vec![
                     ("Key", string_prop("Key of the internal data to set")),
@@ -685,7 +860,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_title_news".to_string(),
             description: "Retrieve title news items for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetTitleNews".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTitleNews parameters",
                 vec![(
                     "Count",
@@ -697,7 +877,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_catalog_items".to_string(),
             description: "Retrieve the specified version of the title's catalog (legacy v1)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCatalogItems".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCatalogItems parameters",
                 vec![(
                     "CatalogVersion",
@@ -709,7 +894,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_store_items".to_string(),
             description: "Retrieve store items from a specified store (legacy v1)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetStoreItems".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetStoreItems parameters",
                 vec![
                     ("StoreId", string_prop("ID of the store to retrieve")),
@@ -728,7 +918,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_publisher_data".to_string(),
             description: "Retrieve publisher-specific key-value data".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPublisherData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPublisherData parameters",
                 vec![("Keys", string_array_prop("Specific keys to retrieve"))],
                 vec!["Keys"],
@@ -740,7 +935,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_inventory".to_string(),
             description: "Retrieve a player's inventory (legacy v1)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserInventory".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserInventory parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -759,7 +959,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_grant_items_to_user".to_string(),
             description: "Grant items to a player's inventory".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GrantItemsToUser".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GrantItemsToUser parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -786,7 +991,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_grant_items_to_users".to_string(),
             description: "Grant items to multiple players simultaneously".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GrantItemsToUsers".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GrantItemsToUsers parameters",
                 vec![
                     (
@@ -830,7 +1040,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_modify_item_uses".to_string(),
             description: "Modify the number of remaining uses for a player's inventory item".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "ModifyItemUses".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ModifyItemUses parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -847,7 +1062,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_move_item_to_character_from_user".to_string(),
             description: "Move an item from a player's inventory to a character".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "MoveItemToCharacterFromUser".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "MoveItemToCharacterFromUser parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -860,7 +1080,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_move_item_to_user_from_character".to_string(),
             description: "Move an item from a character's inventory to the player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "MoveItemToUserFromCharacter".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "MoveItemToUserFromCharacter parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -873,7 +1098,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_consume_item".to_string(),
             description: "Consume a use of an item in a player's inventory".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "ConsumeItem".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ConsumeItem parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -890,7 +1120,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_unlock_container_instance".to_string(),
             description: "Unlock a container item instance in a player's inventory".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UnlockContainerInstance".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnlockContainerInstance parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -917,7 +1152,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_unlock_container_item".to_string(),
             description: "Open a container item by catalog item ID for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UnlockContainerItem".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnlockContainerItem parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -937,7 +1177,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_redeem_coupon".to_string(),
             description: "Redeem a coupon code for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RedeemCoupon".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemCoupon parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -957,7 +1202,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_revoke_inventory_item".to_string(),
             description: "Revoke a single item instance from a player's inventory".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RevokeInventoryItem".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RevokeInventoryItem parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -973,7 +1223,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_revoke_inventory_items".to_string(),
             description: "Revoke multiple inventory item instances across players".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RevokeInventoryItems".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RevokeInventoryItems parameters",
                 vec![
                     (
@@ -1004,7 +1259,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_friends_list".to_string(),
             description: "Retrieve the friends list for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetFriendsList".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetFriendsList parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1035,7 +1295,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_add_friend".to_string(),
             description: "Add a friend for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AddFriend".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddFriend parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab ID of the player to add friend for")),
@@ -1062,7 +1327,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_remove_friend".to_string(),
             description: "Remove a friend from a player's friend list".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RemoveFriend".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemoveFriend parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab ID of the player")),
@@ -1074,7 +1344,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_friend_tags".to_string(),
             description: "Set tags on a friend in the player's friend list".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetFriendTags".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetFriendTags parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab ID of the player")),
@@ -1087,7 +1362,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_add_shared_group_members".to_string(),
             description: "Add members to a shared group".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AddSharedGroupMembers".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddSharedGroupMembers parameters",
                 vec![
                     ("SharedGroupId", string_prop("ID of the shared group")),
@@ -1105,7 +1385,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_all_users_characters".to_string(),
             description: "Retrieve all characters for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetAllUsersCharacters".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetAllUsersCharacters parameters (ListUsersCharacters)",
                 vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
                 vec!["PlayFabId"],
@@ -1114,7 +1399,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_character_data".to_string(),
             description: "Retrieve character-specific custom data".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCharacterData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCharacterData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1131,7 +1421,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_character_data".to_string(),
             description: "Update character-specific custom data".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateCharacterData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateCharacterData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1156,7 +1451,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_character_internal_data".to_string(),
             description: "Retrieve internal character data (not visible to client)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCharacterInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCharacterInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1173,7 +1473,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_character_internal_data".to_string(),
             description: "Update internal character data (not visible to client)".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateCharacterInternalData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateCharacterInternalData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1194,7 +1499,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_character_read_only_data".to_string(),
             description: "Retrieve read-only character data visible to the client".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCharacterReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCharacterReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1211,7 +1521,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_character_read_only_data".to_string(),
             description: "Update read-only character data".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateCharacterReadOnlyData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateCharacterReadOnlyData parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1236,7 +1551,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_character_statistics".to_string(),
             description: "Retrieve statistics for a character".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCharacterStatistics".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCharacterStatistics parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1248,7 +1568,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_character_statistics".to_string(),
             description: "Update statistics for a character".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateCharacterStatistics".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateCharacterStatistics parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1268,7 +1593,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_grant_character_to_user".to_string(),
             description: "Create a new character for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GrantCharacterToUser".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GrantCharacterToUser parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1285,7 +1615,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_delete_character_from_user".to_string(),
             description: "Delete a character from a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "DeleteCharacterFromUser".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteCharacterFromUser parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1305,7 +1640,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_character_leaderboard".to_string(),
             description: "Retrieve a leaderboard for a character statistic".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetCharacterLeaderboard".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCharacterLeaderboard parameters",
                 vec![
                     ("StatisticName", string_prop("Name of the character statistic")),
@@ -1328,7 +1668,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_add_user_virtual_currency".to_string(),
             description: "Add virtual currency to a player's balance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AddUserVirtualCurrency".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddUserVirtualCurrency parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1345,7 +1690,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_subtract_user_virtual_currency".to_string(),
             description: "Subtract virtual currency from a player's balance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SubtractUserVirtualCurrency".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SubtractUserVirtualCurrency parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1363,7 +1713,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "server_get_user_virtual_currency".to_string(),
             description: "Retrieve a player's virtual currency balances (via GetUserInventory)"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserVirtualCurrency".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserInventory parameters (for virtual currency)",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1378,7 +1733,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_add_character_virtual_currency".to_string(),
             description: "Add virtual currency to a character's balance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AddCharacterVirtualCurrency".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddCharacterVirtualCurrency parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1396,7 +1756,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_subtract_character_virtual_currency".to_string(),
             description: "Subtract virtual currency from a character's balance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SubtractCharacterVirtualCurrency".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SubtractCharacterVirtualCurrency parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1417,7 +1782,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_write_player_event".to_string(),
             description: "Write a custom PlayStream event for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "WritePlayerEvent".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "WritePlayerEvent parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1438,7 +1808,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_write_title_event".to_string(),
             description: "Write a custom PlayStream event for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "WriteTitleEvent".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "WriteTitleEvent parameters",
                 vec![
                     ("EventName", string_prop("Name of the custom event")),
@@ -1458,7 +1833,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_write_character_event".to_string(),
             description: "Write a custom PlayStream event for a character".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "WriteCharacterEvent".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "WriteCharacterEvent parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1483,7 +1863,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_create_shared_group".to_string(),
             description: "Create a new shared group".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "CreateSharedGroup".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateSharedGroup parameters",
                 vec![(
                     "SharedGroupId",
@@ -1495,7 +1880,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_shared_group_data".to_string(),
             description: "Retrieve data from a shared group".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetSharedGroupData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetSharedGroupData parameters",
                 vec![
                     ("SharedGroupId", string_prop("ID of the shared group")),
@@ -1511,7 +1901,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_shared_group_data".to_string(),
             description: "Update data in a shared group".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateSharedGroupData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateSharedGroupData parameters",
                 vec![
                     ("SharedGroupId", string_prop("ID of the shared group")),
@@ -1535,7 +1930,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_remove_shared_group_members".to_string(),
             description: "Remove members from a shared group".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RemoveSharedGroupMembers".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemoveSharedGroupMembers parameters",
                 vec![
                     ("SharedGroupId", string_prop("ID of the shared group")),
@@ -1553,7 +1953,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_execute_cloud_script".to_string(),
             description: "Execute a CloudScript function on behalf of a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "ExecuteCloudScript".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteCloudScript parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1588,7 +1993,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_execute_cloud_script_server".to_string(),
             description: "Execute a CloudScript function with server-level permissions".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "ExecuteCloudScriptServer".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteCloudScript (server) parameters",
                 vec![
                     ("FunctionName", string_prop("Name of the CloudScript function")),
@@ -1629,7 +2039,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_content_download_url".to_string(),
             description: "Get a URL for downloading content from the CDN".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetContentDownloadUrl".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetContentDownloadUrl parameters",
                 vec![
                     ("Key", string_prop("Content key / path to retrieve")),
@@ -1648,7 +2063,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_time".to_string(),
             description: "Retrieve the current server time".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetTime".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTime parameters",
                 vec![],
                 vec![],
@@ -1660,7 +2080,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_send_push_notification_from_template".to_string(),
             description: "Send a push notification using a predefined template".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SendPushNotificationFromTemplate".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SendPushNotificationFromTemplate parameters",
                 vec![
                     ("Recipient", string_prop("PlayFab ID of the recipient")),
@@ -1679,7 +2104,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_delete_push_notification_template".to_string(),
             description: "Delete a push notification template".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "DeletePushNotificationTemplate".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeletePushNotificationTemplate parameters",
                 vec![
                     (
@@ -1696,7 +2126,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_tags".to_string(),
             description: "Retrieve tags for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerTags".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerTags parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1712,7 +2147,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_add_player_tag".to_string(),
             description: "Add a tag to a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AddPlayerTag".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddPlayerTag parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1728,7 +2168,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_remove_player_tag".to_string(),
             description: "Remove a tag from a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RemovePlayerTag".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemovePlayerTag parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1744,7 +2189,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_all_segments".to_string(),
             description: "Retrieve all player segments defined for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetAllSegments".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetAllSegments parameters",
                 vec![],
                 vec![],
@@ -1753,7 +2203,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_players_in_segment".to_string(),
             description: "Retrieve players in a specific segment".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayersInSegment".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayersInSegment parameters",
                 vec![
                     ("SegmentId", string_prop("ID of the segment")),
@@ -1783,7 +2238,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_award_steam_achievement".to_string(),
             description: "Award a Steam achievement to a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "AwardSteamAchievement".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AwardSteamAchievement parameters",
                 vec![(
                     "Achievements",
@@ -1806,7 +2266,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_random_result_tables".to_string(),
             description: "Retrieve random result tables for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetRandomResultTables".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetRandomResultTables parameters",
                 vec![
                     (
@@ -1824,7 +2289,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_evaluate_random_result_table".to_string(),
             description: "Evaluate a random result table and return one result".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "EvaluateRandomResultTable".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "EvaluateRandomResultTable parameters",
                 vec![
                     ("TableId", string_prop("ID of the random result table")),
@@ -1839,7 +2309,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_link_server_custom_id".to_string(),
             description: "Link a server custom ID to a player's account".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "LinkServerCustomId".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LinkServerCustomId parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1859,7 +2334,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_unlink_server_custom_id".to_string(),
             description: "Unlink a server custom ID from a player's account".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UnlinkServerCustomId".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnlinkServerCustomId parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1875,7 +2355,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_link_xbox_account".to_string(),
             description: "Link an Xbox Live account to a player's PlayFab account".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "LinkXboxAccount".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LinkXboxAccount parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1895,7 +2380,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_unlink_xbox_account".to_string(),
             description: "Unlink an Xbox Live account from a player's PlayFab account".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UnlinkXboxAccount".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnlinkXboxAccount parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1913,7 +2403,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_user_bans".to_string(),
             description: "Retrieve all bans for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetUserBans".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetUserBans parameters",
                 vec![("PlayFabId", string_prop("PlayFab unique identifier of the player"))],
                 vec!["PlayFabId"],
@@ -1922,7 +2417,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_revoke_bans".to_string(),
             description: "Revoke one or more bans for players".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RevokeBans".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RevokeBans parameters",
                 vec![(
                     "BanIds",
@@ -1934,7 +2434,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_bans".to_string(),
             description: "Update one or more existing player bans".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateBans".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateBans parameters",
                 vec![(
                     "Bans",
@@ -1959,7 +2464,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_delete_player".to_string(),
             description: "Permanently delete a player account and all associated data".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "DeletePlayer".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeletePlayer parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player to delete")),
@@ -1974,7 +2484,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_update_user_title_display_name".to_string(),
             description: "Update the display name for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "UpdateUserTitleDisplayName".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateUserTitleDisplayName parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -1990,7 +2505,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_player_segment_membership".to_string(),
             description: "Retrieve segment memberships for a player".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetPlayerSegmentMembership".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetPlayerSegments parameters",
                 vec![
                     ("PlayFabId", string_prop("PlayFab unique identifier of the player")),
@@ -2005,7 +2525,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_get_matchmaker_game_info".to_string(),
             description: "Retrieve information about a matchmaker game instance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "GetMatchmakerGameInfo".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetMatchmakerGameInfo parameters",
                 vec![("LobbyId", string_prop("Lobby ID of the game instance"))],
                 vec!["LobbyId"],
@@ -2014,7 +2539,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_deregister_game".to_string(),
             description: "Deregister a game server instance from the matchmaker".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "DeregisterGame".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeregisterGame parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game to deregister")),
@@ -2029,7 +2559,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_register_game".to_string(),
             description: "Register a new game server instance with the matchmaker".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RegisterGame".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RegisterGame parameters",
                 vec![
                     ("ServerIPV4Address", string_prop("IP address of the game server")),
@@ -2062,7 +2597,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_refresh_game_server_instance_heartbeat".to_string(),
             description: "Refresh the heartbeat for a game server instance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RefreshGameServerInstanceHeartbeat".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RefreshGameServerInstanceHeartbeat parameters",
                 vec![("LobbyId", string_prop("Lobby ID of the game server"))],
                 vec!["LobbyId"],
@@ -2071,7 +2611,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_redeem_matchmaker_ticket".to_string(),
             description: "Validate a matchmaker ticket and return player info".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "RedeemMatchmakerTicket".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemMatchmakerTicket parameters",
                 vec![
                     ("Ticket", string_prop("Matchmaker ticket to redeem")),
@@ -2087,7 +2632,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_notify_matchmaker_player_left".to_string(),
             description: "Notify the matchmaker that a player has left the game".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "NotifyMatchmakerPlayerLeft".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "NotifyMatchmakerPlayerLeft parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game")),
@@ -2103,7 +2653,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_game_server_instance_data".to_string(),
             description: "Set custom data for a game server instance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetGameServerInstanceData".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetGameServerInstanceData parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game server")),
@@ -2115,7 +2670,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_game_server_instance_state".to_string(),
             description: "Set the state of a game server instance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetGameServerInstanceState".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetGameServerInstanceState parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game server")),
@@ -2130,7 +2690,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "server_set_game_server_instance_tags".to_string(),
             description: "Set tags for a game server instance".to_string(),
-            parameters: object_schema(
+            api_group: "Server".to_string(),
+            api_method: "SetGameServerInstanceTags".to_string(),
+            category: super::ToolCategory::Server,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetGameServerInstanceTags parameters",
                 vec![
                     ("LobbyId", string_prop("Lobby ID of the game server")),

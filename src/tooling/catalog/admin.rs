@@ -1,5 +1,6 @@
 use crate::tooling::schema_builder::*;
 
+#[allow(clippy::vec_init_then_push)]
 pub fn tools() -> Vec<super::ToolSpec> {
     let mut t = Vec::new();
 
@@ -10,7 +11,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_ban_users".into(),
         description: "Bans users by PlayFab ID with optional IP/MAC address bans".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "BanUsers".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Ban users parameters",
             vec![
                 ("Bans", object_array_prop(
@@ -35,7 +41,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_revoke_bans".into(),
         description: "Revokes one or more bans by ban ID".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RevokeBans".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Revoke bans parameters",
             vec![
                 ("BanIds", string_array_prop("List of ban IDs to revoke")),
@@ -47,7 +58,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_bans".into(),
         description: "Gets all bans for a user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserBans".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user bans parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -59,7 +75,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_bans".into(),
         description: "Updates information of a list of existing bans".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateBans".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update bans parameters",
             vec![
                 ("Bans", object_array_prop(
@@ -84,7 +105,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_account_info".into(),
         description: "Retrieves the user's PlayFab account details".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserAccountInfo".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user account info parameters",
             vec![
                 ("PlayFabId", optional(string_prop("PlayFab ID of the user"))),
@@ -99,7 +125,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_delete_player".into(),
         description: "Removes a user's player account from the title, deleting all associated data".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeletePlayer".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Delete player parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user to delete")),
@@ -111,7 +142,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_player_profile".into(),
         description: "Retrieves the player's profile".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayerProfile".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get player profile parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -124,7 +160,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_lookup_user_account_info".into(),
         description: "Retrieves the relevant details for a specified user, using a lookup by various identifiers".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "LookupUserAccountInfo".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Lookup user account info parameters",
             vec![
                 ("PlayFabId", optional(string_prop("PlayFab ID"))),
@@ -139,7 +180,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_send_account_recovery_email".into(),
         description: "Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SendAccountRecoveryEmail".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Send account recovery email parameters",
             vec![
                 ("Email", string_prop("User email address")),
@@ -152,7 +198,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_reset_password".into(),
         description: "Reset a player's password for a given title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "ResetPassword".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Reset password parameters",
             vec![
                 ("Token", string_prop("Reset token previously received from the send account recovery email API")),
@@ -165,7 +216,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_title_display_name".into(),
         description: "Updates the title-specific display name for a user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserTitleDisplayName".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update display name parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -178,7 +234,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_players_in_segment".into(),
         description: "Retrieves the list of players in a given segment".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayersInSegment".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get players in segment parameters",
             vec![
                 ("SegmentId", string_prop("Segment ID")),
@@ -193,7 +254,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_all_segments".into(),
         description: "Retrieves an array of player segment definitions".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetAllSegments".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get all segments parameters",
             vec![],
             vec![],
@@ -203,7 +269,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_delete_master_player_account".into(),
         description: "Removes a master player account entirely from all titles and deletes all associated data".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeleteMasterPlayerAccount".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Delete master player account parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the master player account")),
@@ -215,7 +286,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_export_master_player_data".into(),
         description: "Exports all associated data of a master player account".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "ExportMasterPlayerData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Export master player data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the master player account")),
@@ -231,7 +307,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_data".into(),
         description: "Retrieves the title-specific custom data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -245,7 +326,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_data".into(),
         description: "Updates the title-specific custom data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -260,7 +346,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_internal_data".into(),
         description: "Retrieves the title-specific custom internal data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user internal data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -274,7 +365,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_internal_data".into(),
         description: "Updates the title-specific custom internal data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user internal data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -288,7 +384,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_read_only_data".into(),
         description: "Retrieves the title-specific custom read-only data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserReadOnlyData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user read only data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -302,7 +403,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_read_only_data".into(),
         description: "Updates the title-specific custom read-only data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserReadOnlyData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user read only data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -317,7 +423,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_publisher_data".into(),
         description: "Retrieves the publisher-specific custom data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserPublisherData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user publisher data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -331,7 +442,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_publisher_data".into(),
         description: "Updates the publisher-specific custom data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserPublisherData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user publisher data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -346,7 +462,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_publisher_internal_data".into(),
         description: "Retrieves the publisher-specific custom internal data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserPublisherInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user publisher internal data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -360,7 +481,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_publisher_internal_data".into(),
         description: "Updates the publisher-specific custom internal data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserPublisherInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user publisher internal data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -374,7 +500,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_publisher_read_only_data".into(),
         description: "Retrieves the publisher-specific custom read-only data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserPublisherReadOnlyData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user publisher read only data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -388,7 +519,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_user_publisher_read_only_data".into(),
         description: "Updates the publisher-specific custom read-only data for the user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateUserPublisherReadOnlyData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update user publisher read only data parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -407,7 +543,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_title_data".into(),
         description: "Retrieves the key-value store of custom title settings".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetTitleData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get title data parameters",
             vec![
                 ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
@@ -420,7 +561,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_title_data".into(),
         description: "Updates the key-value store of custom title settings".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetTitleData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set title data parameters",
             vec![
                 ("Key", string_prop("Key of the data to set")),
@@ -434,7 +580,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_title_internal_data".into(),
         description: "Retrieves the key-value store of custom internal title settings".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetTitleInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get title internal data parameters",
             vec![
                 ("Keys", optional(string_array_prop("Specific keys to retrieve"))),
@@ -447,7 +598,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_title_internal_data".into(),
         description: "Updates the key-value store of custom internal title settings".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetTitleInternalData".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set title internal data parameters",
             vec![
                 ("Key", string_prop("Key of the data to set")),
@@ -461,7 +617,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_policy".into(),
         description: "Gets the requested policy".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPolicy".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get policy parameters",
             vec![
                 ("PolicyName", optional(string_prop("The name of the policy to read (only 'ApiPolicy' is supported)"))),
@@ -473,7 +634,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_policy".into(),
         description: "Changes a policy for a title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdatePolicy".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update policy parameters",
             vec![
                 ("PolicyName", string_prop("The name of the policy being updated (only 'ApiPolicy' is supported)")),
@@ -502,7 +668,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_catalog_items".into(),
         description: "Retrieves the specified version of the title's catalog of virtual goods (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetCatalogItems".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get catalog items parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version; uses default if not specified"))),
@@ -514,7 +685,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_catalog_items".into(),
         description: "Creates or updates the catalog configuration for virtual goods in the specified catalog version (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetCatalogItems".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set catalog items parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version"))),
@@ -531,7 +707,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_store_items".into(),
         description: "Retrieves the set of items defined for the specified store (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetStoreItems".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get store items parameters",
             vec![
                 ("StoreId", string_prop("Store ID to retrieve")),
@@ -544,7 +725,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_store_items".into(),
         description: "Sets all items in one virtual store (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetStoreItems".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set store items parameters",
             vec![
                 ("StoreId", string_prop("Store ID")),
@@ -566,7 +752,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_add_virtual_currency_types".into(),
         description: "Adds one or more virtual currencies to the set defined for the title (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "AddVirtualCurrencyTypes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Add virtual currency types parameters",
             vec![
                 ("VirtualCurrencies", object_array_prop(
@@ -591,7 +782,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_list_virtual_currency_types".into(),
         description: "Retrieves the list of virtual currencies defined for the title (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "ListVirtualCurrencyTypes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "List virtual currency types parameters",
             vec![],
             vec![],
@@ -601,7 +797,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_remove_virtual_currency_types".into(),
         description: "Removes one or more virtual currencies from the set defined for the title (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RemoveVirtualCurrencyTypes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Remove virtual currency types parameters",
             vec![
                 ("VirtualCurrencies", object_array_prop(
@@ -622,7 +823,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_add_user_virtual_currency".into(),
         description: "Increments the specified virtual currency by the stated amount (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "AddUserVirtualCurrency".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Add user virtual currency parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -636,7 +842,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_subtract_user_virtual_currency".into(),
         description: "Decrements the specified virtual currency by the stated amount (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SubtractUserVirtualCurrency".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Subtract user virtual currency parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -650,7 +861,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_user_inventory".into(),
         description: "Retrieves the specified user's current inventory of virtual goods (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetUserInventory".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get user inventory parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -666,7 +882,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_cloud_script".into(),
         description: "Creates a new CloudScript revision and uploads source code".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateCloudScript".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update cloud script parameters",
             vec![
                 ("Files", object_array_prop(
@@ -690,7 +911,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_cloud_script_versions".into(),
         description: "Retrieves a list of all CloudScript versions".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetCloudScriptVersions".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get cloud script versions parameters",
             vec![],
             vec![],
@@ -700,7 +926,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_cloud_script_revision".into(),
         description: "Gets a specific CloudScript revision".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetCloudScriptRevision".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get cloud script revision parameters",
             vec![
                 ("Version", optional(integer_prop("Version number"))),
@@ -713,7 +944,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_published_revision".into(),
         description: "Sets the currently published revision of a CloudScript".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetPublishedRevision".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set published revision parameters",
             vec![
                 ("Version", integer_prop("Version number")),
@@ -730,7 +966,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_content_list".into(),
         description: "Retrieves the pre-authorized URL for uploading or downloading content".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetContentList".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get content list parameters",
             vec![
                 ("Prefix", optional(string_prop("Prefix filter for content keys"))),
@@ -742,7 +983,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_content_upload_url".into(),
         description: "Retrieves a pre-authorized URL for uploading content".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetContentUploadUrl".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get content upload URL parameters",
             vec![
                 ("Key", string_prop("Content key")),
@@ -755,7 +1001,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_delete_content".into(),
         description: "Deletes a content file from the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeleteContent".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Delete content parameters",
             vec![
                 ("Key", string_prop("Content key to delete")),
@@ -771,7 +1022,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_create_actions_on_players_in_segment_task".into(),
         description: "Creates a task that performs actions on players within a segment".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "CreateActionsOnPlayersInSegmentTask".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Create actions on players in segment task parameters",
             vec![
                 ("Name", string_prop("Name of the task")),
@@ -794,7 +1050,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_actions_on_players_in_segment_task_instance".into(),
         description: "Retrieves information about a specific task instance".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetActionsOnPlayersInSegmentTaskInstance".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get task instance parameters",
             vec![
                 ("TaskInstanceId", string_prop("ID of the task instance")),
@@ -806,7 +1067,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_tasks".into(),
         description: "Gets the list of all configured tasks, or a specific task by identifier".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetTasks".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get tasks parameters",
             vec![
                 ("Identifier", optional(object_schema(
@@ -825,7 +1091,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_run_task".into(),
         description: "Runs a task immediately".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RunTask".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Run task parameters",
             vec![
                 ("Identifier", object_schema(
@@ -844,7 +1115,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_abort_task_instance".into(),
         description: "Aborts a running task instance".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "AbortTaskInstance".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Abort task instance parameters",
             vec![
                 ("TaskInstanceId", string_prop("ID of the task instance to abort")),
@@ -856,7 +1132,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_task".into(),
         description: "Updates an existing task".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateTask".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update task parameters",
             vec![
                 ("Identifier", optional(object_schema(
@@ -885,7 +1166,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_random_result_tables".into(),
         description: "Retrieves the random drop table configuration for the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetRandomResultTables".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get random result tables parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version"))),
@@ -897,7 +1183,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_random_result_tables".into(),
         description: "Updates the random drop table configuration for the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdateRandomResultTables".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update random result tables parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version"))),
@@ -931,7 +1222,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_data_report".into(),
         description: "Retrieves a download URL for the requested report".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetDataReport".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get data report parameters",
             vec![
                 ("ReportName", string_prop("Name of the report")),
@@ -946,7 +1242,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_player_statistics_definitions".into(),
         description: "Retrieves the configuration information for all player statistics defined in the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayerStatisticsDefinitions".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get player statistics definitions parameters",
             vec![],
             vec![],
@@ -956,7 +1257,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_create_player_statistic_definition".into(),
         description: "Adds a new player statistic configuration to the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "CreatePlayerStatisticDefinition".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Create player statistic definition parameters",
             vec![
                 ("StatisticName", string_prop("Name of the statistic")),
@@ -970,7 +1276,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_update_player_statistic_definition".into(),
         description: "Updates an existing player statistic definition".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "UpdatePlayerStatisticDefinition".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Update player statistic definition parameters",
             vec![
                 ("StatisticName", string_prop("Name of the statistic")),
@@ -984,7 +1295,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_increment_player_statistic_version".into(),
         description: "Resets the indicated statistic, removing all player entries for it and backing up the old values".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "IncrementPlayerStatisticVersion".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Increment player statistic version parameters",
             vec![
                 ("StatisticName", string_prop("Name of the statistic")),
@@ -996,7 +1312,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_player_statistic_versions".into(),
         description: "Retrieves the information on the available versions of the specified statistic".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayerStatisticVersions".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get player statistic versions parameters",
             vec![
                 ("StatisticName", string_prop("Name of the statistic")),
@@ -1012,7 +1333,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_send_push_notification".into(),
         description: "Sends a push notification to a specific user".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SendPushNotification".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Send push notification parameters",
             vec![
                 ("Recipient", string_prop("PlayFab ID of the recipient")),
@@ -1028,7 +1354,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_send_push_notification_from_template".into(),
         description: "Sends a push notification to a specific user using a push notification template".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SendPushNotificationFromTemplate".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Send push notification from template parameters",
             vec![
                 ("Recipient", string_prop("PlayFab ID of the recipient")),
@@ -1041,7 +1372,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_push_notification".into(),
         description: "Sets the title push notification settings (for a title)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetPushNotification".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set push notification parameters",
             vec![
                 ("Name", string_prop("Name of the notification")),
@@ -1061,7 +1397,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_grant_items_to_users".into(),
         description: "Adds the specified items to the specified user inventories (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GrantItemsToUsers".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Grant items to users parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version from which items are to be granted"))),
@@ -1088,7 +1429,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_revoke_inventory_item".into(),
         description: "Revokes access to an item in a user's inventory (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RevokeInventoryItem".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Revoke inventory item parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -1102,7 +1448,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_revoke_inventory_items".into(),
         description: "Revokes access to a list of item instances across multiple users (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RevokeInventoryItems".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Revoke inventory items parameters",
             vec![
                 ("Items", object_array_prop(
@@ -1125,7 +1476,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_modify_item_uses".into(),
         description: "Modifies the number of remaining uses of a player's inventory item (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "ModifyItemUses".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Modify item uses parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the user")),
@@ -1139,7 +1495,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_check_limited_edition_item_availability".into(),
         description: "Checks the global count for the limited edition item (legacy v1)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "CheckLimitedEditionItemAvailability".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Check limited edition item availability parameters",
             vec![
                 ("CatalogVersion", optional(string_prop("Catalog version"))),
@@ -1156,7 +1517,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_create_player_shared_secret".into(),
         description: "Creates a new player shared secret key for the title".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "CreatePlayerSharedSecret".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Create player shared secret parameters",
             vec![
                 ("FriendlyName", optional(string_prop("Friendly name for the shared secret"))),
@@ -1168,7 +1534,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_delete_player_shared_secret".into(),
         description: "Deletes an existing player shared secret key".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeletePlayerSharedSecret".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Delete player shared secret parameters",
             vec![
                 ("SecretKey", string_prop("The shared secret key to delete")),
@@ -1180,7 +1551,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_player_shared_secrets".into(),
         description: "Gets all player shared secret keys including disabled".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayerSharedSecrets".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get player shared secrets parameters",
             vec![],
             vec![],
@@ -1190,7 +1566,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_player_secret".into(),
         description: "Sets or resets the player's secret. Player secrets are used to sign API requests".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetPlayerSecret".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set player secret parameters",
             vec![
                 ("PlayFabId", string_prop("PlayFab ID of the player")),
@@ -1203,7 +1584,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_play_fab_id_from_facebook_instant_games_id".into(),
         description: "Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetPlayFabIDFromFacebookInstantGamesId".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get PlayFab ID from Facebook Instant Games ID parameters",
             vec![
                 ("FacebookInstantGamesIds", string_array_prop("Array of Facebook Instant Games IDs")),
@@ -1219,7 +1605,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_matchmaker_game_info".into(),
         description: "Retrieves the details for a specific completed session (legacy matchmaking)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetMatchmakerGameInfo".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get matchmaker game info parameters",
             vec![
                 ("LobbyId", string_prop("Lobby/game ID")),
@@ -1231,7 +1622,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_get_matchmaker_game_modes".into(),
         description: "Retrieves the details of defined game modes for the specified game server executable (legacy matchmaking)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "GetMatchmakerGameModes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Get matchmaker game modes parameters",
             vec![
                 ("BuildVersion", string_prop("Build version to query game modes for")),
@@ -1243,7 +1639,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_modify_matchmaker_game_modes".into(),
         description: "Updates the game server mode details for the specified game server executable (legacy matchmaking)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "ModifyMatchmakerGameModes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Modify matchmaker game modes parameters",
             vec![
                 ("BuildVersion", string_prop("Build version to update")),
@@ -1268,7 +1669,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_delete_matchmaker_game_modes".into(),
         description: "Removes the game server executable specified from the title (legacy matchmaking)".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeleteMatchmakerGameModes".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Delete matchmaker game modes parameters",
             vec![
                 ("BuildVersion", string_prop("Build version to delete")),
@@ -1284,7 +1690,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_register_game".into(),
         description: "Registers a new game server with PlayFab".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "RegisterGame".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Register game parameters",
             vec![
                 ("Build", string_prop("Unique identifier of the build")),
@@ -1306,7 +1717,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_deregister_game".into(),
         description: "Deregisters a game server that was previously registered".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "DeregisterGame".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Deregister game parameters",
             vec![
                 ("LobbyId", string_prop("Lobby ID of the game to deregister")),
@@ -1318,7 +1734,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
     t.push(super::ToolSpec {
         name: "admin_set_game_server_mode".into(),
         description: "Sets the mode for a game server, controlling whether it is active or inactive".into(),
-        parameters: object_schema(
+        api_group: "Admin".into(),
+        api_method: "SetGameServerMode".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
             "Set game server mode parameters",
             vec![
                 ("LobbyId", string_prop("Lobby ID")),

@@ -108,8 +108,7 @@ mod tests {
         for key in keys {
             env::remove_var(key);
         }
-        let result = f();
-        result
+        f()
     }
 
     #[test]

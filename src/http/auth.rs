@@ -184,7 +184,7 @@ fn parse_iso8601_to_duration_from_now(iso: &str) -> Option<Duration> {
 
 /// Convert a UTC date-time to an approximate Unix epoch (seconds).
 fn simple_utc_to_epoch(year: u64, month: u64, day: u64, h: u64, m: u64, s: u64) -> Option<u64> {
-    if year < 1970 || month < 1 || month > 12 || day < 1 || day > 31 {
+    if year < 1970 || !(1..=12).contains(&month) || !(1..=31).contains(&day) {
         return None;
     }
 
@@ -195,8 +195,8 @@ fn simple_utc_to_epoch(year: u64, month: u64, day: u64, h: u64, m: u64, s: u64) 
     }
 
     let month_days: [u64; 12] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    for mi in 0..(month - 1) as usize {
-        days += month_days[mi];
+    for (mi, &md) in month_days.iter().enumerate().take((month - 1) as usize) {
+        days += md;
         if mi == 1 && is_leap(year) {
             days += 1;
         }
@@ -208,7 +208,7 @@ fn simple_utc_to_epoch(year: u64, month: u64, day: u64, h: u64, m: u64, s: u64) 
 }
 
 fn is_leap(y: u64) -> bool {
-    y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)
+    y.is_multiple_of(4) && (!y.is_multiple_of(100) || y.is_multiple_of(400))
 }
 
 // ---------------------------------------------------------------------------

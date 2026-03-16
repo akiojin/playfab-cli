@@ -7,7 +7,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_entity_token".to_string(),
             description: "Get an entity token for authentication. Can optionally specify an entity key to get a token for a specific entity.".to_string(),
-            parameters: object_schema(
+            api_group: "Authentication".to_string(),
+            api_method: "GetEntityToken".to_string(),
+            category: super::ToolCategory::Authentication,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetEntityToken parameters",
                 vec![
                     (
@@ -33,7 +38,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "validate_entity_token".to_string(),
             description: "Validate an entity token and return information about the entity it represents".to_string(),
-            parameters: object_schema(
+            api_group: "Authentication".to_string(),
+            api_method: "ValidateEntityToken".to_string(),
+            category: super::ToolCategory::Authentication,
+            auth_mode: super::AuthMode::SecretKey,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ValidateEntityToken parameters",
                 vec![
                     (

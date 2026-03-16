@@ -8,7 +8,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "execute_function".to_string(),
             description: "Execute a CloudScript function by name (Azure Functions integration)"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "ExecuteFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteFunction parameters",
                 vec![
                     (
@@ -45,7 +50,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_functions".to_string(),
             description: "List all registered CloudScript Azure Functions".to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "ListFunctions".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListFunctions parameters",
                 vec![(
                     "customTags",
@@ -58,7 +68,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "register_function".to_string(),
             description: "Register a CloudScript Azure Function".to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "RegisterFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RegisterFunction parameters",
                 vec![
                     (
@@ -82,7 +97,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "list_http_functions".to_string(),
             description: "List all registered CloudScript HTTP-triggered Azure Functions"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "ListHttpFunctions".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListHttpFunctions parameters",
                 vec![(
                     "customTags",
@@ -95,7 +115,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "register_http_function".to_string(),
             description: "Register an HTTP-triggered CloudScript Azure Function".to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "RegisterHttpFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RegisterHttpFunction parameters",
                 vec![
                     (
@@ -119,7 +144,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "unregister_function".to_string(),
             description: "Unregister a previously registered CloudScript Azure Function"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "UnregisterFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnregisterFunction parameters",
                 vec![
                     (
@@ -139,7 +169,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "list_queued_functions".to_string(),
             description: "List all registered CloudScript queue-triggered Azure Functions"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "ListQueuedFunctions".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListQueuedFunctions parameters",
                 vec![(
                     "customTags",
@@ -152,7 +187,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "register_queued_function".to_string(),
             description: "Register a queue-triggered CloudScript Azure Function".to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "RegisterQueuedFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RegisterQueuedFunction parameters",
                 vec![
                     (
@@ -180,7 +220,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "unregister_queued_function".to_string(),
             description: "Unregister a previously registered queue-triggered Azure Function"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "UnregisterQueuedFunction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnregisterQueuedFunction parameters",
                 vec![
                     (
@@ -201,7 +246,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             description:
                 "Post the result of an entity-triggered CloudScript function execution"
                     .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "PostFunctionResultForEntityTriggeredAction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PostFunctionResultForEntityTriggeredAction parameters",
                 vec![
                     (
@@ -227,7 +277,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "post_function_result_for_function_execution".to_string(),
             description:
                 "Post the result of a CloudScript function execution".to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "PostFunctionResultForFunctionExecution".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PostFunctionResultForFunctionExecution parameters",
                 vec![
                     (
@@ -254,7 +309,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             description:
                 "Post the result of a player-triggered CloudScript function execution"
                     .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "PostFunctionResultForPlayerTriggeredAction".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PostFunctionResultForPlayerTriggeredAction parameters",
                 vec![
                     (
@@ -281,7 +341,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             description:
                 "Post the result of a scheduled-task CloudScript function execution"
                     .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "PostFunctionResultForScheduledTask".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PostFunctionResultForScheduledTask parameters",
                 vec![
                     (
@@ -307,7 +372,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "execute_entity_cloud_script".to_string(),
             description: "Execute an entity CloudScript function (legacy revision-based)"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "CloudScript".to_string(),
+            api_method: "ExecuteEntityCloudScript".to_string(),
+            category: super::ToolCategory::CloudScript,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteEntityCloudScript parameters",
                 vec![
                     (

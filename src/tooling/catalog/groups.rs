@@ -31,7 +31,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_group".to_string(),
             description: "Create a new group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "CreateGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateGroup parameters",
                 vec![
                     ("groupName", string_prop("The name of the group to create")),
@@ -52,7 +57,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "delete_group".to_string(),
             description: "Delete a group and all roles, invitations, join requests, and blocks"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "DeleteGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteGroup parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group to delete")),
@@ -68,7 +78,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_group".to_string(),
             description: "Get information about a group by group key or group name".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "GetGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetGroup parameters",
                 vec![
                     (
@@ -91,7 +106,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_group".to_string(),
             description: "Update the group name and other properties".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "UpdateGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateGroup parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group to update")),
@@ -115,7 +135,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_group_members".to_string(),
             description: "List all members of a group across all roles".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListGroupMembers".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListGroupMembers parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -131,7 +156,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_group_applications".to_string(),
             description: "List all outstanding requests to join the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListGroupApplications".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListGroupApplications parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -147,7 +177,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_group_invitations".to_string(),
             description: "List all outstanding invitations for the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListGroupInvitations".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListGroupInvitations parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -163,7 +198,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_group_blocks".to_string(),
             description: "List all entities blocked from joining the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListGroupBlocks".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListGroupBlocks parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -180,7 +220,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "list_membership_opportunities".to_string(),
             description: "List all groups and roles that an entity has been invited to or applied to"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListMembershipOpportunities".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListMembershipOpportunities parameters",
                 vec![
                     (
@@ -199,7 +244,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "apply_to_group".to_string(),
             description: "Apply to join a group (creates a pending application)".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ApplyToGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ApplyToGroup parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group to apply to")),
@@ -223,7 +273,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "accept_group_application".to_string(),
             description: "Accept an outstanding application to join the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "AcceptGroupApplication".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AcceptGroupApplication parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -240,7 +295,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "accept_group_invitation".to_string(),
             description: "Accept an invitation to join a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "AcceptGroupInvitation".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AcceptGroupInvitation parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -260,7 +320,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "invite_to_group".to_string(),
             description: "Invite an entity to join the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "InviteToGroup".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "InviteToGroup parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -285,7 +350,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "remove_group_application".to_string(),
             description: "Remove an outstanding application to join the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "RemoveGroupApplication".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemoveGroupApplication parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -302,7 +372,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "remove_group_invitation".to_string(),
             description: "Remove an outstanding invitation to join the group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "RemoveGroupInvitation".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemoveGroupInvitation parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -319,7 +394,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "remove_members".to_string(),
             description: "Remove members from a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "RemoveMembers".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RemoveMembers parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -346,7 +426,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "block_entity".to_string(),
             description: "Block an entity from joining a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "BlockEntity".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "BlockEntity parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -363,7 +448,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "unblock_entity".to_string(),
             description: "Unblock an entity from joining a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "UnblockEntity".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnblockEntity parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -380,7 +470,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "change_member_role".to_string(),
             description: "Change the role of members within a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ChangeMemberRole".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ChangeMemberRole parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -411,7 +506,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "is_member".to_string(),
             description: "Check whether an entity is a member of a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "IsMember".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "IsMember parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -428,7 +528,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_membership".to_string(),
             description: "List all groups and roles that an entity is a member of".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListMembership".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListMembership parameters",
                 vec![
                     (
@@ -447,7 +552,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_role".to_string(),
             description: "Create a new role within a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "CreateRole".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateRole parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -465,7 +575,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_role".to_string(),
             description: "Delete a role from a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "DeleteRole".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteRole parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -482,7 +597,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_role".to_string(),
             description: "Update properties of a role within a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "UpdateRole".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateRole parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),
@@ -507,7 +627,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_group_roles".to_string(),
             description: "List all roles within a group".to_string(),
-            parameters: object_schema(
+            api_group: "Group".to_string(),
+            api_method: "ListGroupRoles".to_string(),
+            category: super::ToolCategory::Groups,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListGroupRoles parameters",
                 vec![
                     ("group", group_key_prop("The identifier of the group")),

@@ -7,7 +7,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_profile".to_string(),
             description: "Get the profile of a specific entity".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "GetProfile".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetProfile parameters",
                 vec![
                     (
@@ -37,7 +42,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_profiles".to_string(),
             description: "Get profiles for multiple entities in a single request".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "GetProfiles".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetProfiles parameters",
                 vec![
                     (
@@ -70,7 +80,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_profile_language".to_string(),
             description: "Set the preferred language for an entity profile".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "SetProfileLanguage".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetProfileLanguage parameters",
                 vec![
                     (
@@ -104,7 +119,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_profile_policy".to_string(),
             description: "Set the policy statements for an entity profile".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "SetProfilePolicy".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetProfilePolicy parameters",
                 vec![
                     (
@@ -148,7 +168,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_title_players_account".to_string(),
             description: "Get the title player account entity for a given title player ID".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "GetTitlePlayersAccount".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTitlePlayersAccount parameters",
                 vec![
                     (
@@ -167,7 +192,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_display_name".to_string(),
             description: "Set the display name for an entity profile".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "SetDisplayName".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetDisplayName parameters",
                 vec![
                     (
@@ -201,7 +231,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_global_policy".to_string(),
             description: "Set the global policy for all entities in the title".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "SetGlobalPolicy".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetGlobalPolicy parameters",
                 vec![
                     (
@@ -234,7 +269,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_global_policy".to_string(),
             description: "Get the global policy for all entities in the title".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "GetGlobalPolicy".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetGlobalPolicy parameters",
                 vec![
                     (
@@ -249,7 +289,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_avatar_url".to_string(),
             description: "Set the avatar URL for an entity profile".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "SetAvatarUrl".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetAvatarUrl parameters",
                 vec![
                     (
@@ -279,7 +324,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_entity_profile_policy".to_string(),
             description: "Get the profile policy statements for a specific entity".to_string(),
-            parameters: object_schema(
+            api_group: "Profile".to_string(),
+            api_method: "GetEntityProfilePolicy".to_string(),
+            category: super::ToolCategory::Profiles,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetEntityProfilePolicy parameters",
                 vec![
                     (

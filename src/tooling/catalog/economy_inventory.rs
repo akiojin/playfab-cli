@@ -52,7 +52,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "add_inventory_items".to_string(),
             description: "Add items to a player's inventory (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "AddInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AddInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to add items to")),
@@ -71,7 +76,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "subtract_inventory_items".to_string(),
             description: "Subtract items from a player's inventory (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "SubtractInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SubtractInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to subtract items from")),
@@ -90,7 +100,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_inventory_items".to_string(),
             description: "Delete items from a player's inventory (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "DeleteInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to delete items from")),
@@ -106,7 +121,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_inventory_items".to_string(),
             description: "Update inventory item properties (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "UpdateInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity whose item to update")),
@@ -131,7 +151,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_inventory_items".to_string(),
             description: "Get a player's inventory items (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GetInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity whose inventory to retrieve")),
@@ -148,7 +173,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_inventory_collection_ids".to_string(),
             description: "Get collection IDs for a player's inventory (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GetInventoryCollectionIds".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetInventoryCollectionIds parameters",
                 vec![
                     ("entity", entity_key_schema("Entity whose collection IDs to retrieve")),
@@ -163,7 +193,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "execute_inventory_operations".to_string(),
             description: "Execute multiple inventory operations atomically (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "ExecuteInventoryOperations".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteInventoryOperations parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to perform operations on")),
@@ -240,7 +275,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "purchase_inventory_items".to_string(),
             description: "Purchase an item from the catalog (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "PurchaseInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PurchaseInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity making the purchase")),
@@ -261,7 +301,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_apple_appstore_inventory_items".to_string(),
             description: "Redeem items from Apple App Store receipt (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemAppleAppstoreInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemAppleAppStoreInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -276,7 +321,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_google_play_inventory_items".to_string(),
             description: "Redeem items from Google Play purchase (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemGooglePlayInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemGooglePlayInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -291,7 +341,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_microsoft_store_inventory_items".to_string(),
             description: "Redeem items from Microsoft Store purchase (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemMicrosoftStoreInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemMicrosoftStoreInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -306,7 +361,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_nintendo_eshop_inventory_items".to_string(),
             description: "Redeem items from Nintendo eShop purchase (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemNintendoEshopInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemNintendoEShopInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -321,7 +381,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_playstation_store_inventory_items".to_string(),
             description: "Redeem items from PlayStation Store purchase (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemPlaystationStoreInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemPlayStationStoreInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -337,7 +402,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "redeem_steam_inventory_items".to_string(),
             description: "Redeem items from Steam purchase (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "RedeemSteamInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "RedeemSteamInventoryItems parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to redeem items for")),
@@ -351,7 +421,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "transfer_inventory_items".to_string(),
             description: "Transfer inventory items between entities (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "TransferInventoryItems".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "TransferInventoryItems parameters",
                 vec![
                     ("givingEntity", entity_key_schema("Entity giving the items")),
@@ -372,7 +447,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_transaction_history".to_string(),
             description: "Get transaction history for an entity (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GetTransactionHistory".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTransactionHistory parameters",
                 vec![
                     ("entity", entity_key_schema("Entity whose transaction history to retrieve")),
@@ -390,7 +470,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_inventory_operation_status".to_string(),
             description: "Get the status of an inventory operation (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GetInventoryOperationStatus".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetInventoryOperationStatus parameters",
                 vec![
                     ("entity", entity_key_schema("Entity that owns the operation")),
@@ -404,7 +489,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "execute_transfer_operations".to_string(),
             description: "Execute multiple transfer operations atomically (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "ExecuteTransferOperations".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ExecuteTransferOperations parameters",
                 vec![
                     ("givingEntity", entity_key_schema("Entity giving items")),
@@ -434,7 +524,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "grant_items_to_users".to_string(),
             description: "Grant items to multiple users in a batch (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GrantItemsToUsers".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GrantItemsToUsers parameters",
                 vec![
                     ("items", object_array_prop(
@@ -470,7 +565,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_microsoft_store_access_tokens".to_string(),
             description: "Get Microsoft Store access tokens for inventory operations (Economy v2)".to_string(),
-            parameters: object_schema(
+            api_group: "Inventory".to_string(),
+            api_method: "GetMicrosoftStoreAccessTokens".to_string(),
+            category: super::ToolCategory::EconomyInventory,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetMicrosoftStoreAccessTokens parameters",
                 vec![
                     ("entity", entity_key_schema("Entity to get tokens for")),

@@ -107,34 +107,32 @@ pub fn find_tool<'a>(tools: &'a [ToolSpec], name: &str) -> Option<&'a ToolSpec> 
 }
 
 // ---------------------------------------------------------------------------
-// execute_tool — requires PlayFabClient (Unit 2) and AuthManager (Unit 1).
-// The full implementation is provided below and will compile once those
-// modules expose their public types.
+// execute_tool — dispatches API calls via PlayFabClient with proper auth.
 // ---------------------------------------------------------------------------
 
-// pub fn execute_tool(
-//     tool: &ToolSpec,
-//     params: Value,
-//     config: &crate::core::config::PlayFabConfig,
-//     client: &crate::http::client::PlayFabClient,
-//     auth: &crate::http::auth::AuthManager,
-// ) -> Result<Value> {
-//     let url = config.api_url(&tool.api_group, &tool.api_method);
-//     let tier = tool.retry_mode.to_retry_tier();
-//
-//     match tool.auth_mode {
-//         AuthMode::SecretKey => {
-//             client.call_raw(&url, &params, ("X-SecretKey", &config.dev_secret_key), tier)
-//         }
-//         AuthMode::EntityToken => {
-//             let token = auth.get_entity_token()?;
-//             client.call_raw(&url, &params, ("X-EntityToken", &token), tier)
-//         }
-//         AuthMode::None => {
-//             client.call_raw(&url, &params, ("X-Placeholder", ""), tier)
-//         }
-//     }
-// }
+pub fn execute_tool(
+    tool: &ToolSpec,
+    params: Value,
+    config: &crate::core::config::PlayFabConfig,
+    client: &crate::http::client::PlayFabClient,
+    auth: &crate::http::auth::AuthManager,
+) -> Result<Value> {
+    let url = config.api_url(&tool.api_group, &tool.api_method);
+    let tier = tool.retry_mode.to_retry_tier();
+
+    match tool.auth_mode {
+        AuthMode::SecretKey => {
+            client.call_raw(&url, &params, ("X-SecretKey", &config.dev_secret_key), tier)
+        }
+        AuthMode::EntityToken => {
+            let token = auth.get_entity_token()?;
+            client.call_raw(&url, &params, ("X-EntityToken", &token), tier)
+        }
+        AuthMode::None => {
+            client.call_raw(&url, &params, ("X-Placeholder", ""), tier)
+        }
+    }
+}
 
 // ---------------------------------------------------------------------------
 // Tests

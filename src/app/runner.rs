@@ -11,6 +11,7 @@ use crate::core::config::PlayFabConfig;
 use crate::http::auth::AuthManager;
 use crate::http::client::PlayFabClient;
 use crate::tooling::catalog;
+use crate::tooling::tool_executor;
 
 pub async fn run() -> Result<()> {
     let cli = Cli::parse();
@@ -126,7 +127,7 @@ pub async fn run_with_cli(cli: Cli) -> Result<()> {
 
                 match catalog::find_tool(&tools, tool_name) {
                     Some(tool) => {
-                        match catalog::execute_tool(tool, params, &config, &client, &auth) {
+                        match tool_executor::execute_tool(tool, params, &config, &client, &auth) {
                             Ok(result) => results.push(json!({
                                 "tool": tool_name,
                                 "success": true,
@@ -188,7 +189,7 @@ fn execute_tool_command(_cli: &Cli, args: &RawArgs) -> Result<Value> {
     let tool = catalog::find_tool(&tools, &args.tool_name)
         .ok_or_else(|| anyhow!("Unknown tool: {}", args.tool_name))?;
 
-    catalog::execute_tool(tool, params, &config, &client, &auth)
+    tool_executor::execute_tool(tool, params, &config, &client, &auth)
 }
 
 fn print_value(value: &Value, format: OutputFormat) -> Result<()> {

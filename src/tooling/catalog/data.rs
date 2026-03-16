@@ -7,7 +7,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_objects".to_string(),
             description: "Set objects on an entity profile. Objects are key-value data attached to entities.".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "SetObjects".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetObjects parameters",
                 vec![
                     (
@@ -53,7 +58,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_objects".to_string(),
             description: "Get objects from an entity profile".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "GetObjects".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetObjects parameters",
                 vec![
                     (
@@ -83,7 +93,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "initiate_file_uploads".to_string(),
             description: "Initiate file uploads for an entity. Returns upload URLs for the specified files.".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "InitiateFileUploads".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "InitiateFileUploads parameters",
                 vec![
                     (
@@ -117,7 +132,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "abort_file_uploads".to_string(),
             description: "Abort pending file uploads for an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "AbortFileUploads".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "AbortFileUploads parameters",
                 vec![
                     (
@@ -151,7 +171,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "finalize_file_uploads".to_string(),
             description: "Finalize file uploads for an entity after uploading content to the provided URLs".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "FinalizeFileUploads".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "FinalizeFileUploads parameters",
                 vec![
                     (
@@ -185,7 +210,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_files".to_string(),
             description: "Get metadata and download URLs for files attached to an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "GetFiles".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetFiles parameters",
                 vec![
                     (
@@ -211,7 +241,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_files".to_string(),
             description: "Delete files attached to an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Data".to_string(),
+            api_method: "DeleteFiles".to_string(),
+            category: super::ToolCategory::Data,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteFiles parameters",
                 vec![
                     (

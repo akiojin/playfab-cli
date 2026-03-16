@@ -14,6 +14,12 @@ pub struct PlayFabClient {
     agent: Agent,
 }
 
+impl Default for PlayFabClient {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl PlayFabClient {
     pub fn new() -> Self {
         let agent = ureq::AgentBuilder::new()

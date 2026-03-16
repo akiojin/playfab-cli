@@ -87,7 +87,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_leaderboard_definition".to_string(),
             description: "Create a new leaderboard definition".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "CreateLeaderboardDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateLeaderboardDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the leaderboard")),
@@ -122,7 +127,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_leaderboard_definition".to_string(),
             description: "Delete a leaderboard definition".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "DeleteLeaderboardDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteLeaderboardDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the leaderboard to delete")),
@@ -138,7 +148,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_leaderboard_definition".to_string(),
             description: "Get the definition of a leaderboard".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetLeaderboardDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetLeaderboardDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the leaderboard")),
@@ -154,7 +169,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_statistics".to_string(),
             description: "Update statistics for an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "UpdateStatistics".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateStatistics parameters",
                 vec![
                     ("entity", entity_key_prop("The entity to update statistics for")),
@@ -177,7 +197,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_statistics".to_string(),
             description: "Get statistics for an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetStatistics".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetStatistics parameters",
                 vec![
                     ("entity", entity_key_prop("The entity to get statistics for")),
@@ -193,7 +218,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_statistics_for_entities".to_string(),
             description: "Get statistics for multiple entities".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetStatisticsForEntities".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetStatisticsForEntities parameters",
                 vec![
                     (
@@ -219,7 +249,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_statistics".to_string(),
             description: "Delete statistics for an entity".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "DeleteStatistics".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteStatistics parameters",
                 vec![
                     ("entity", entity_key_prop("The entity to delete statistics for")),
@@ -242,7 +277,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_statistic_definition".to_string(),
             description: "Create a new statistic definition".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "CreateStatisticDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateStatisticDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the statistic")),
@@ -273,7 +313,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_statistic_definition".to_string(),
             description: "Delete a statistic definition".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "DeleteStatisticDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteStatisticDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the statistic to delete")),
@@ -289,7 +334,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_statistic_definition".to_string(),
             description: "Get the definition of a statistic".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetStatisticDefinition".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetStatisticDefinition parameters",
                 vec![
                     ("name", string_prop("The name of the statistic")),
@@ -305,7 +355,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_leaderboard".to_string(),
             description: "Get a leaderboard with rankings".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetLeaderboard".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetLeaderboard parameters",
                 vec![
                     (
@@ -336,7 +391,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_leaderboard_for_entities".to_string(),
             description: "Get leaderboard entries for specific entities".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetLeaderboardForEntities".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetLeaderboardForEntities parameters",
                 vec![
                     (
@@ -363,7 +423,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_leaderboard_around_entity".to_string(),
             description: "Get leaderboard entries around a specific entity".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetLeaderboardAroundEntity".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetLeaderboardAroundEntity parameters",
                 vec![
                     (
@@ -394,7 +459,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "increment_leaderboard_version".to_string(),
             description: "Increment the version of a leaderboard, resetting all entries".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "IncrementLeaderboardVersion".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "IncrementLeaderboardVersion parameters",
                 vec![
                     ("name", string_prop("The name of the leaderboard")),
@@ -410,7 +480,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_statistic_definitions".to_string(),
             description: "List all statistic definitions for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "ListStatisticDefinitions".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListStatisticDefinitions parameters",
                 vec![
                     (
@@ -425,7 +500,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_leaderboard_definitions".to_string(),
             description: "List all leaderboard definitions for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "ListLeaderboardDefinitions".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListLeaderboardDefinitions parameters",
                 vec![
                     (
@@ -440,7 +520,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_leaderboard_entries".to_string(),
             description: "Update or insert entries in a leaderboard".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "UpdateLeaderboardEntries".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateLeaderboardEntries parameters",
                 vec![
                     (
@@ -466,7 +551,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_leaderboard_entries".to_string(),
             description: "Delete entries from a leaderboard".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "DeleteLeaderboardEntries".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteLeaderboardEntries parameters",
                 vec![
                     (
@@ -489,7 +579,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "unlink_leaderboard_from_statistic".to_string(),
             description: "Unlink a leaderboard from a statistic".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "UnlinkLeaderboardFromStatistic".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UnlinkLeaderboardFromStatistic parameters",
                 vec![
                     (
@@ -512,7 +607,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "link_leaderboard_to_statistic".to_string(),
             description: "Link a leaderboard to a statistic for automatic updates".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "LinkLeaderboardToStatistic".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "LinkLeaderboardToStatistic parameters",
                 vec![
                     (
@@ -535,7 +635,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_friend_leaderboard_for_entity".to_string(),
             description: "Get a leaderboard filtered to an entity's friends".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetFriendLeaderboardForEntity".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetFriendLeaderboardForEntity parameters",
                 vec![
                     (
@@ -566,7 +671,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_leaderboard_around_entity".to_string(),
             description: "List leaderboard entries around a specific entity (alias for get_leaderboard_around_entity)".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "ListLeaderboardAroundEntity".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListLeaderboardAroundEntity parameters",
                 vec![
                     (
@@ -597,7 +707,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_entity_statistics".to_string(),
             description: "Get statistics for an entity (alias for get_statistics)".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "GetEntityStatistics".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetEntityStatistics parameters",
                 vec![
                     ("entity", entity_key_prop("The entity to get statistics for")),
@@ -613,7 +728,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_entity_statistics".to_string(),
             description: "Update statistics for an entity (alias for update_statistics)".to_string(),
-            parameters: object_schema(
+            api_group: "Progression".to_string(),
+            api_method: "UpdateEntityStatistics".to_string(),
+            category: super::ToolCategory::Progression,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateEntityStatistics parameters",
                 vec![
                     ("entity", entity_key_prop("The entity to update statistics for")),

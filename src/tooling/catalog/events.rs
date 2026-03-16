@@ -7,7 +7,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "write_events".to_string(),
             description: "Write one or more PlayStream events".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "WriteEvents".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "WriteEvents parameters",
                 vec![
                     (
@@ -62,7 +67,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "write_telemetry_events".to_string(),
             description: "Write one or more telemetry events to the telemetry pipeline"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "WriteTelemetryEvents".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "WriteTelemetryEvents parameters",
                 vec![
                     (
@@ -116,7 +126,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_telemetry_key".to_string(),
             description: "Create a new telemetry key for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "CreateTelemetryKey".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateTelemetryKey parameters",
                 vec![
                     (
@@ -135,7 +150,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_telemetry_key".to_string(),
             description: "Delete an existing telemetry key".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "DeleteTelemetryKey".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteTelemetryKey parameters",
                 vec![
                     (
@@ -154,7 +174,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_telemetry_key".to_string(),
             description: "Get details of a specific telemetry key".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "GetTelemetryKey".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTelemetryKey parameters",
                 vec![
                     (
@@ -173,7 +198,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "list_telemetry_keys".to_string(),
             description: "List all telemetry keys for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "ListTelemetryKeys".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ListTelemetryKeys parameters",
                 vec![(
                     "customTags",
@@ -186,7 +216,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_telemetry_key_active".to_string(),
             description: "Activate or deactivate a telemetry key".to_string(),
-            parameters: object_schema(
+            api_group: "Events".to_string(),
+            api_method: "SetTelemetryKeyActive".to_string(),
+            category: super::ToolCategory::Events,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetTelemetryKeyActive parameters",
                 vec![
                     (

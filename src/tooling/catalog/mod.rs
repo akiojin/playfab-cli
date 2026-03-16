@@ -12,22 +12,10 @@ pub mod profiles;
 pub mod progression;
 pub mod server;
 
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
-
-/// Minimal ToolSpec definition used by the catalog and runner.
-/// Unit 4 will provide the full version in `tool_executor.rs`; once that
-/// lands the catalog modules will be updated to re-export from there.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ToolSpec {
-    pub name: String,
-    pub description: String,
-    #[serde(default)]
-    pub parameters: Value,
-}
+// Re-export the canonical ToolSpec and related types from tool_executor
+pub use super::tool_executor::{AuthMode, RetryMode, ToolCategory, ToolSpec};
 
 /// Returns all tool specs from every catalog module.
-/// Populated by Unit 13.
 pub fn all_tools() -> Vec<ToolSpec> {
     let mut tools = Vec::new();
     tools.extend(admin::tools());
@@ -49,21 +37,4 @@ pub fn all_tools() -> Vec<ToolSpec> {
 /// Find a tool by name in the given tool list.
 pub fn find_tool<'a>(tools: &'a [ToolSpec], name: &str) -> Option<&'a ToolSpec> {
     tools.iter().find(|t| t.name == name)
-}
-
-/// Execute a tool with the given parameters.
-/// This is a temporary stub that will be replaced by the full implementation in Unit 4.
-pub fn execute_tool(
-    tool: &ToolSpec,
-    params: Value,
-    _config: &crate::core::config::PlayFabConfig,
-    _client: &crate::http::client::PlayFabClient,
-    _auth: &crate::http::auth::AuthManager,
-) -> anyhow::Result<Value> {
-    Ok(serde_json::json!({
-        "tool": tool.name,
-        "status": "not_implemented",
-        "params": params,
-        "message": "Tool execution engine not yet implemented (Unit 4)"
-    }))
 }

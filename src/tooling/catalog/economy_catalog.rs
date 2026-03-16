@@ -8,7 +8,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "search_items".to_string(),
             description: "Search for catalog items using optional filter, search, and orderBy"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "SearchItems".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SearchItems parameters",
                 vec![
                     ("search", optional(string_prop("Search text to filter results"))),
@@ -38,7 +43,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_item".to_string(),
             description: "Retrieve a specific catalog item by its ID".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItem parameters",
                 vec![
                     ("id", string_prop("The unique ID of the catalog item")),
@@ -64,7 +74,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_draft_item".to_string(),
             description: "Create a new draft catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateDraftItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateDraftItem parameters",
                 vec![
                     (
@@ -84,7 +99,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_draft_item".to_string(),
             description: "Update an existing draft catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "UpdateDraftItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateDraftItem parameters",
                 vec![
                     (
@@ -104,7 +124,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "publish_draft_item".to_string(),
             description: "Publish a draft catalog item to make it live".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "PublishDraftItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "PublishDraftItem parameters",
                 vec![
                     ("id", string_prop("The unique ID of the draft item to publish")),
@@ -128,7 +153,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_item".to_string(),
             description: "Delete a catalog item by its ID".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "DeleteItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteItem parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item to delete")),
@@ -148,7 +178,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_catalog_config".to_string(),
             description: "Retrieve the current catalog configuration for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetCatalogConfig".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetCatalogConfig parameters",
                 vec![(
                     "customTags",
@@ -161,7 +196,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_catalog_config".to_string(),
             description: "Update the catalog configuration for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "UpdateCatalogConfig".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateCatalogConfig parameters",
                 vec![
                     (
@@ -181,7 +221,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "batch_create_draft_items".to_string(),
             description: "Create multiple draft catalog items in a single batch request"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "BatchCreateDraftItems".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateDraftItems parameters",
                 vec![
                     (
@@ -203,7 +248,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_entity_draft_items".to_string(),
             description: "Retrieve all draft items owned by a specific entity".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetEntityDraftItems".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetEntityDraftItems parameters",
                 vec![
                     (
@@ -234,7 +284,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_upload_urls".to_string(),
             description: "Create URLs for uploading content files to the catalog".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateUploadUrls".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateUploadUrls parameters",
                 vec![
                     (
@@ -260,7 +315,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_item_moderation_state".to_string(),
             description: "Get the moderation state of a catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItemModerationState".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItemModerationState parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item")),
@@ -280,7 +340,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "set_item_moderation_state".to_string(),
             description: "Set the moderation state of a catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "SetItemModerationState".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SetItemModerationState parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item")),
@@ -308,7 +373,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_draft_items".to_string(),
             description: "Retrieve multiple draft catalog items by their IDs".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetDraftItems".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetDraftItems parameters",
                 vec![
                     (
@@ -334,7 +404,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_items".to_string(),
             description: "Retrieve multiple published catalog items by their IDs".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItems".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItems parameters",
                 vec![
                     (
@@ -364,7 +439,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_item_publish_status".to_string(),
             description: "Get the publish status of a catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItemPublishStatus".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItemPublishStatus parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item")),
@@ -384,7 +464,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_item_reviews".to_string(),
             description: "Get reviews for a specific catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItemReviews".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItemReviews parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item")),
@@ -412,7 +497,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "submit_item_review_vote".to_string(),
             description: "Submit a vote on an item review (helpful or unhelpful)".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "SubmitItemReviewVote".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "SubmitItemReviewVote parameters",
                 vec![
                     ("reviewId", string_prop("The ID of the review to vote on")),
@@ -440,7 +530,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "takedown_item_reviews".to_string(),
             description: "Remove reviews from a catalog item (moderation action)".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "TakedownItemReviews".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "TakedownItemReviews parameters",
                 vec![
                     (
@@ -469,7 +564,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "report_item".to_string(),
             description: "Report a catalog item for policy violations".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "ReportItem".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "ReportItem parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item to report")),
@@ -513,7 +613,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_item_containers".to_string(),
             description: "Get containers that reference a specific catalog item".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetItemContainers".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetItemContainers parameters",
                 vec![
                     ("id", string_prop("The unique ID of the item")),
@@ -546,7 +651,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "create_bundle".to_string(),
             description: "Create a draft bundle item (a collection of items sold together)"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateBundle".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateBundle parameters",
                 vec![
                     (
@@ -568,7 +678,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_store".to_string(),
             description: "Create a draft store item (a storefront for selling items)".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateStore".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateStore parameters",
                 vec![
                     (
@@ -590,7 +705,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_subscription".to_string(),
             description: "Create a draft subscription item (recurring purchase)".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateSubscription".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateSubscription parameters",
                 vec![
                     (
@@ -612,7 +732,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_store_by_friendly_id".to_string(),
             description: "Retrieve a store item by its friendly ID".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "GetStoreByFriendlyId".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetStoreByFriendlyId parameters",
                 vec![
                     (
@@ -635,7 +760,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_recipe".to_string(),
             description: "Create a crafting recipe that defines item conversion rules".to_string(),
-            parameters: object_schema(
+            api_group: "Catalog".to_string(),
+            api_method: "CreateRecipe".to_string(),
+            category: super::ToolCategory::EconomyCatalog,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateRecipe parameters",
                 vec![
                     (

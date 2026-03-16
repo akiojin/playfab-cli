@@ -7,7 +7,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "create_experiment".to_string(),
             description: "Create a new experiment with variants and audience targeting".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "CreateExperiment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateExperiment parameters",
                 vec![
                     ("name", string_prop("The name of the experiment")),
@@ -91,7 +96,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_experiment".to_string(),
             description: "Delete an experiment by its ID".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "DeleteExperiment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteExperiment parameters",
                 vec![
                     (
@@ -110,7 +120,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_experiments".to_string(),
             description: "Get all experiments for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "GetExperiments".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetExperiments parameters",
                 vec![
                     (
@@ -125,7 +140,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_latest_scorecard".to_string(),
             description: "Get the latest scorecard results for an experiment".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "GetLatestScorecard".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetLatestScorecard parameters",
                 vec![
                     (
@@ -145,7 +165,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "get_treatment_assignment".to_string(),
             description: "Get the treatment assignment for an entity in active experiments"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "GetTreatmentAssignment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetTreatmentAssignment parameters",
                 vec![
                     (
@@ -166,7 +191,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "start_experiment".to_string(),
             description: "Start a previously created experiment".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "StartExperiment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "StartExperiment parameters",
                 vec![
                     (
@@ -185,7 +215,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "stop_experiment".to_string(),
             description: "Stop a running experiment".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "StopExperiment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "StopExperiment parameters",
                 vec![
                     (
@@ -204,7 +239,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_experiment".to_string(),
             description: "Update an existing experiment configuration".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "UpdateExperiment".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateExperiment parameters",
                 vec![
                     (
@@ -293,7 +333,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
             name: "create_exclusion_group".to_string(),
             description: "Create an exclusion group to prevent experiments from overlapping"
                 .to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "CreateExclusionGroup".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "CreateExclusionGroup parameters",
                 vec![
                     (
@@ -316,7 +361,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "delete_exclusion_group".to_string(),
             description: "Delete an exclusion group by its ID".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "DeleteExclusionGroup".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "DeleteExclusionGroup parameters",
                 vec![
                     (
@@ -335,7 +385,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_exclusion_groups".to_string(),
             description: "Get all exclusion groups for the title".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "GetExclusionGroups".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetExclusionGroups parameters",
                 vec![
                     (
@@ -350,7 +405,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "update_exclusion_group".to_string(),
             description: "Update an existing exclusion group".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "UpdateExclusionGroup".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "UpdateExclusionGroup parameters",
                 vec![
                     (
@@ -377,7 +437,12 @@ pub fn tools() -> Vec<super::ToolSpec> {
         super::ToolSpec {
             name: "get_exclusion_group_traffic".to_string(),
             description: "Get traffic allocation details for an exclusion group".to_string(),
-            parameters: object_schema(
+            api_group: "Experimentation".to_string(),
+            api_method: "GetExclusionGroupTraffic".to_string(),
+            category: super::ToolCategory::Experimentation,
+            auth_mode: super::AuthMode::EntityToken,
+            retry_mode: super::RetryMode::Standard,
+            input_schema: object_schema(
                 "GetExclusionGroupTraffic parameters",
                 vec![
                     (
