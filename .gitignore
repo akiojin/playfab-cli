@@ -8,3 +8,6 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# GWT spec local cache
+issue_*.md

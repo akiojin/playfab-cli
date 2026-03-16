@@ -1,0 +1,5 @@
+target/
+.git/
+AGENTS.md
+CHANGELOG.md
+CONTRIBUTING.md

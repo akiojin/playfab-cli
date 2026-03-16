@@ -1,0 +1,9 @@
+services:
+  playfab-cli:
+    build: .
+    environment:
+      - PLAYFAB_TITLE_ID=${PLAYFAB_TITLE_ID}
+      - PLAYFAB_DEV_SECRET_KEY=${PLAYFAB_DEV_SECRET_KEY}
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
