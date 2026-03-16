@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "EntityToken": "test-entity-token-123",
+    "TokenExpiration": "2026-03-17T00:00:00Z",
+    "Entity": {
+      "Id": "ABCDE",
+      "Type": "title"
+    }
+  }
+}

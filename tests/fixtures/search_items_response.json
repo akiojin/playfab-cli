@@ -1,0 +1,16 @@
+{
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "Items": [
+      {
+        "Id": "item-001",
+        "Type": "catalogItem",
+        "Title": {"NEUTRAL": "Iron Sword"},
+        "Description": {"NEUTRAL": "A basic iron sword"},
+        "ContentType": "weapon"
+      }
+    ],
+    "ContinuationToken": null
+  }
+}

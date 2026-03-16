@@ -1,0 +1,20 @@
+{
+  "name": "playfab-cli",
+  "displayName": "PlayFab CLI",
+  "description": "PlayFab service automation via playfab-cli",
+  "version": "0.1.0",
+  "skills": [
+    {"name": "usage", "path": "skills/usage.md", "description": "General CLI usage and help"},
+    {"name": "catalog", "path": "skills/catalog.md", "description": "Economy v2 Catalog operations"},
+    {"name": "inventory", "path": "skills/inventory.md", "description": "Economy v2 Inventory operations"},
+    {"name": "player", "path": "skills/player.md", "description": "Player management operations"},
+    {"name": "title", "path": "skills/title.md", "description": "Title configuration operations"},
+    {"name": "bulk", "path": "skills/bulk.md", "description": "Batch and bulk operations"},
+    {"name": "economy", "path": "skills/economy.md", "description": "Virtual currency and store operations"},
+    {"name": "leaderboards", "path": "skills/leaderboards.md", "description": "Leaderboard and statistics operations"},
+    {"name": "multiplayer", "path": "skills/multiplayer.md", "description": "Matchmaking, lobbies, and server hosting"},
+    {"name": "cloudscript", "path": "skills/cloudscript.md", "description": "CloudScript and Azure Functions"},
+    {"name": "events", "path": "skills/events.md", "description": "PlayStream events and telemetry"},
+    {"name": "groups", "path": "skills/groups.md", "description": "Entity group management"}
+  ]
+}

@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            rid: linux-x64
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            rid: win-x64
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            rid: osx-x64
+          - target: aarch64-apple-darwin
+            os: macos-latest
+            rid: osx-arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+      - name: Package (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cp target/${{ matrix.target }}/release/playfab-cli playfab-cli-${{ matrix.rid }}
+          sha256sum playfab-cli-${{ matrix.rid }} > playfab-cli-${{ matrix.rid }}.sha256
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Copy-Item "target/${{ matrix.target }}/release/playfab-cli.exe" "playfab-cli-${{ matrix.rid }}.exe"
+          (Get-FileHash "playfab-cli-${{ matrix.rid }}.exe" -Algorithm SHA256).Hash.ToLower() > "playfab-cli-${{ matrix.rid }}.exe.sha256"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.rid }}
+          path: playfab-cli-${{ matrix.rid }}*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - name: Generate manifest
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          cat > playfab-cli-manifest.json << EOF
+          {
+            "version": "$VERSION",
+            "assets": {
+              "linux-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-linux-x64", "sha256": "$(cat playfab-cli-linux-x64.sha256 | cut -d' ' -f1)" },
+              "win-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-win-x64.exe", "sha256": "$(cat playfab-cli-win-x64.exe.sha256 | tr -d '[:space:]')" },
+              "osx-x64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-osx-x64", "sha256": "$(cat playfab-cli-osx-x64.sha256 | cut -d' ' -f1)" },
+              "osx-arm64": { "url": "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/playfab-cli-osx-arm64", "sha256": "$(cat playfab-cli-osx-arm64.sha256 | cut -d' ' -f1)" }
+            }
+          }
+          EOF
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            playfab-cli-*
+            playfab-cli-manifest.json
+
+  publish:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Publish to crates.io
+        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
