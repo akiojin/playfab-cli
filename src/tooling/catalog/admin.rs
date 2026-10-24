@@ -60,6 +60,24 @@ pub fn tools() -> Vec<super::ToolSpec> {
     });
 
     t.push(super::ToolSpec {
+        name: "admin_revoke_all_bans_for_user".into(),
+        description: "Revokes all active bans for a user".into(),
+        api_group: "Admin".into(),
+        api_method: "RevokeAllBansForUser".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
+            "Revoke all bans for user parameters",
+            vec![(
+                "PlayFabId",
+                string_prop("PlayFab ID of the user whose bans will be revoked"),
+            )],
+            vec!["PlayFabId"],
+        ),
+    });
+
+    t.push(super::ToolSpec {
         name: "admin_get_user_bans".into(),
         description: "Gets all bans for a user".into(),
         api_group: "Admin".into(),
@@ -679,6 +697,77 @@ pub fn tools() -> Vec<super::ToolSpec> {
     // =========================================================================
     // Title Configuration
     // =========================================================================
+
+    t.push(super::ToolSpec {
+        name: "admin_add_news".into(),
+        description: "Adds a new news item to the title's news feed".into(),
+        api_group: "Admin".into(),
+        api_method: "AddNews".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
+            "Add news parameters",
+            vec![
+                ("Body", string_prop("Default body text of the news")),
+                (
+                    "Title",
+                    string_prop("Default title (headline) of the news item"),
+                ),
+                (
+                    "Status",
+                    optional(string_enum_prop(
+                        "Status of the news item; defaults to Published",
+                        &["None", "Unpublished", "Published", "Archived"],
+                    )),
+                ),
+                (
+                    "Timestamp",
+                    optional(string_prop(
+                        "Time this news was published (ISO 8601); defaults to now",
+                    )),
+                ),
+                (
+                    "CustomTags",
+                    optional(any_object_prop("Optional custom tags for the request")),
+                ),
+            ],
+            vec!["Body", "Title"],
+        ),
+    });
+
+    t.push(super::ToolSpec {
+        name: "admin_add_localized_news".into(),
+        description: "Adds a localized version of an existing news item".into(),
+        api_group: "Admin".into(),
+        api_method: "AddLocalizedNews".into(),
+        category: super::ToolCategory::Admin,
+        auth_mode: super::AuthMode::SecretKey,
+        retry_mode: super::RetryMode::Standard,
+        input_schema: object_schema(
+            "Add localized news parameters",
+            vec![
+                (
+                    "NewsId",
+                    string_prop("Unique ID of the news item to localize"),
+                ),
+                (
+                    "Language",
+                    string_prop("Language of the news item (e.g. ja)"),
+                ),
+                (
+                    "Title",
+                    string_prop("Localized title (headline) of the news item"),
+                ),
+                ("Body", string_prop("Localized body text of the news")),
+                (
+                    "CustomTags",
+                    optional(any_object_prop("Optional custom tags for the request")),
+                ),
+            ],
+            vec!["NewsId", "Language", "Title", "Body"],
+        ),
+    });
 
     t.push(super::ToolSpec {
         name: "admin_get_title_data".into(),

@@ -8,7 +8,7 @@
 - **コミットログはcommitlint形式で生成する** - `type(scope): description` の形式
 - **コミットログは日本語** - コミットメッセージの説明部分は日本語で記載
 - **コミットの際には、必ず承認を取ること** - ユーザーの明示的な許可なしにコミットしない
-- **PlayFab REST APIの追加・修正時には必ず公式サイトでパラメーターの整合性を取ること** - https://learn.microsoft.com/ja-jp/rest/api/playfab/?view=playfab-rest
+- **PlayFab REST APIの追加・修正時には必ず公式サイトでパラメーターの整合性を取ること** - <https://learn.microsoft.com/ja-jp/rest/api/playfab/?view=playfab-rest>
 - **CHANGELOG.mdは英語で記載する**
 - **ビルドエラーは必ず排除する** - コンパイルエラーを放置しない
 
@@ -89,7 +89,7 @@ src/
 ## スキルアーキテクチャ
 
 旧 `playfab-mcp-server` の 31 個の MCP ツールを **Claude Code Skill** に変換。
-playfab-cli の 413 ツールを 15 個のスキルでカバー。
+playfab-cli の 416 ツールを 15 個のスキルでカバー。
 スキルはオンデマンドで読み込まれ、LLM コンテキストを肥大化させない。
 内部的には `playfab-cli tool call <name>` コマンドを呼び出す。
 
@@ -102,7 +102,7 @@ playfab-cli の 413 ツールを 15 個のスキルでカバー。
 ### スキル一覧
 
 | スキル | カテゴリ | ツール数 | ソース |
-|--------|----------|---------|--------|
+| --- | --- | --- | --- |
 | usage | foundation | N/A | CLI インフラ |
 | catalog | economy | 26 | `economy_catalog.rs` |
 | inventory | economy | 20 | `economy_inventory.rs` |
@@ -115,7 +115,7 @@ playfab-cli の 413 ツールを 15 個のスキルでカバー。
 | cloudscript | scripting | 14 | `cloudscript.rs` |
 | events | analytics | 7 | `events.rs` |
 | groups | entity | 25 | `groups.rs` |
-| admin | admin | 84 | `admin.rs` |
+| admin | admin | 87 | `admin.rs` |
 | server | server | 113 | `server.rs` |
 | experimentation | analytics | 13 | `experimentation.rs` |
 

@@ -191,29 +191,33 @@ pub fn tools() -> Vec<super::ToolSpec> {
                 vec!["entity", "statements"],
             ),
         },
-        // 5. GetTitlePlayersAccount
+        // 5. GetTitlePlayersFromMasterPlayerAccountIds
         super::ToolSpec {
-            name: "get_title_players_account".to_string(),
-            description: "Get the title player account entity for a given title player ID"
+            name: "get_title_players_from_master_player_account_ids".to_string(),
+            description: "Get the title player accounts associated with the given master player account IDs (PlayFab IDs)"
                 .to_string(),
             api_group: "Profile".to_string(),
-            api_method: "GetTitlePlayersAccount".to_string(),
+            api_method: "GetTitlePlayersFromMasterPlayerAccountIds".to_string(),
             category: super::ToolCategory::Profiles,
             auth_mode: super::AuthMode::EntityToken,
             retry_mode: super::RetryMode::Standard,
             input_schema: object_schema(
-                "GetTitlePlayersAccount parameters",
+                "GetTitlePlayersFromMasterPlayerAccountIds parameters",
                 vec![
                     (
-                        "titlePlayerId",
-                        string_prop("The title player ID to look up"),
+                        "MasterPlayerAccountIds",
+                        string_array_prop("Master player account IDs (PlayFab IDs)"),
                     ),
                     (
-                        "customTags",
+                        "TitleId",
+                        optional(string_prop("ID of the title to get players from")),
+                    ),
+                    (
+                        "CustomTags",
                         optional(any_object_prop("Custom tags for the request")),
                     ),
                 ],
-                vec!["titlePlayerId"],
+                vec!["MasterPlayerAccountIds"],
             ),
         },
         // 6. SetDisplayName

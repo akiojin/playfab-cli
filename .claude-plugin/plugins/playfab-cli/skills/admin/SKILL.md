@@ -34,9 +34,10 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Player Account Management
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_ban_users` | Bans users by PlayFab ID with optional IP/MAC address bans |
 | `admin_revoke_bans` | Revokes one or more bans by ban ID |
+| `admin_revoke_all_bans_for_user` | Revokes all active bans for a user |
 | `admin_get_user_bans` | Gets all bans for a user |
 | `admin_update_bans` | Updates information of a list of existing bans |
 | `admin_get_user_account_info` | Retrieves the user's PlayFab account details |
@@ -52,14 +53,14 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Segments
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_players_in_segment` | Retrieves the list of players in a given segment |
 | `admin_get_all_segments` | Retrieves an array of player segment definitions |
 
 ### Player Data
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_user_data` | Retrieves the title-specific custom data for the user |
 | `admin_update_user_data` | Updates the title-specific custom data for the user |
 | `admin_get_user_internal_data` | Retrieves title-specific custom internal data |
@@ -76,18 +77,20 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Title Data & Policies
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_title_data` | Retrieves the key-value store of custom title settings |
 | `admin_set_title_data` | Updates the key-value store of custom title settings |
 | `admin_get_title_internal_data` | Retrieves internal title settings |
 | `admin_set_title_internal_data` | Updates internal title settings |
 | `admin_get_policy` | Gets the requested policy |
 | `admin_update_policy` | Changes a policy for a title |
+| `admin_add_news` | Adds a new news item to the title's news feed |
+| `admin_add_localized_news` | Adds a localized version of an existing news item |
 
 ### Legacy Economy v1
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_catalog_items` | Retrieves the title's catalog of virtual goods (legacy v1) |
 | `admin_set_catalog_items` | Creates/updates catalog configuration (legacy v1) |
 | `admin_get_store_items` | Retrieves store items (legacy v1) |
@@ -107,7 +110,7 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### CloudScript
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_update_cloud_script` | Creates a new CloudScript revision |
 | `admin_get_cloud_script_versions` | Lists all CloudScript versions |
 | `admin_get_cloud_script_revision` | Gets a specific CloudScript revision |
@@ -116,7 +119,7 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Content Delivery
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_content_list` | Retrieves the content list |
 | `admin_get_content_upload_url` | Gets a pre-authorized upload URL |
 | `admin_delete_content` | Deletes a content file |
@@ -124,7 +127,7 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Task Scheduling
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_create_actions_on_players_in_segment_task` | Creates a task for segment actions |
 | `admin_get_actions_on_players_in_segment_task_instance` | Gets task instance details |
 | `admin_get_tasks` | Lists configured tasks |
@@ -135,14 +138,14 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Random Result Tables
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_random_result_tables` | Retrieves random drop table configuration |
 | `admin_update_random_result_tables` | Updates random drop table configuration |
 
 ### Reports & Statistics
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_data_report` | Retrieves a download URL for a report |
 | `admin_get_player_statistics_definitions` | Gets all player statistic configurations |
 | `admin_create_player_statistic_definition` | Adds a new player statistic |
@@ -153,7 +156,7 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Push Notifications
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_send_push_notification` | Sends a push notification to a user |
 | `admin_send_push_notification_from_template` | Sends push notification from template |
 | `admin_set_push_notification` | Sets title push notification settings |
@@ -161,7 +164,7 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Player Shared Secrets
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_create_player_shared_secret` | Creates a new player shared secret key |
 | `admin_delete_player_shared_secret` | Deletes a player shared secret key |
 | `admin_get_player_shared_secrets` | Gets all player shared secret keys |
@@ -170,13 +173,13 @@ Use playfab-cli for administrative operations that require the developer secret 
 ### Identity
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_play_fab_id_from_facebook_instant_games_id` | Gets PlayFab ID from Facebook Instant Games ID |
 
 ### Legacy Matchmaker
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `admin_get_matchmaker_game_info` | Gets completed session details (legacy) |
 | `admin_get_matchmaker_game_modes` | Gets game modes for server executable (legacy) |
 | `admin_modify_matchmaker_game_modes` | Updates game server mode details (legacy) |
@@ -213,6 +216,23 @@ playfab-cli tool call admin_get_user_account_info --json '{"PlayFabId": "ABCD123
 playfab-cli tool call admin_set_title_data --json '{
   "key": "GameVersion",
   "value": "1.2.0"
+}'
+```
+
+### Publish localized news
+
+```bash
+# Add the default-language news item (returns NewsId)
+playfab-cli tool call admin_add_news --json '{
+  "Title": "Maintenance notice",
+  "Body": "Servers will be down for maintenance at 02:00 UTC."
+}'
+# Add a Japanese translation to the same news item
+playfab-cli tool call admin_add_localized_news --json '{
+  "NewsId": "NEWS_ID",
+  "Language": "ja",
+  "Title": "メンテナンスのお知らせ",
+  "Body": "02:00 UTC にサーバーメンテナンスを実施します。"
 }'
 ```
 
@@ -282,6 +302,8 @@ playfab-cli tool call admin_get_user_bans --json '{"PlayFabId": "ABCD1234"}'
 playfab-cli tool call admin_ban_users --json '{"bans": [{"PlayFabId": "ABCD1234", "reason": "Exploiting", "durationInHours": 720}]}'
 # Verify ban
 playfab-cli tool call admin_get_user_bans --json '{"PlayFabId": "ABCD1234"}'
+# Lift every active ban for the player
+playfab-cli tool call admin_revoke_all_bans_for_user --json '{"PlayFabId": "ABCD1234"}'
 ```
 
 ### 2. Title configuration update
@@ -313,3 +335,4 @@ playfab-cli tool call admin_set_published_revision --json '{"version": 5, "revis
 - `admin_delete_master_player_account` is irreversible — use with extreme caution.
 - Player data operations (get/update) support title-specific, publisher-specific, internal, and read-only variants.
 - Push notification settings must be configured per platform before sending notifications.
+- `admin_add_localized_news` requires the title's default language to be set and an existing `NewsId` from `admin_add_news`.
