@@ -12,7 +12,7 @@ metadata:
 
 Use playfab-cli to manage Economy v2 Inventory for players.
 
-### Use When
+## Use When
 
 - The user needs to add, subtract, delete, or transfer inventory items.
 - The user wants to process purchases or redeem platform store receipts.
@@ -20,7 +20,7 @@ Use playfab-cli to manage Economy v2 Inventory for players.
 - The task involves Economy v2 inventory operations.
 - The user needs to grant items to multiple users in batch.
 
-### Do Not Use When
+## Do Not Use When
 
 - The operation manages catalog items (use catalog skill).
 - The operation uses legacy v1 inventory APIs (use admin or server skill).
