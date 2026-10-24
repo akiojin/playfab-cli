@@ -12,7 +12,7 @@ metadata:
 
 Use playfab-cli to manage Economy v2 Catalog items.
 
-### Use When
+## Use When
 
 - The user needs to search, create, update, publish, or delete catalog items.
 - The user wants to manage bundles, stores, subscriptions, or crafting recipes.
@@ -20,7 +20,7 @@ Use playfab-cli to manage Economy v2 Catalog items.
 - The user wants to inspect catalog configuration or item publish status.
 - The task involves Economy v2 catalog management.
 
-### Do Not Use When
+## Do Not Use When
 
 - The operation targets player inventory (use inventory skill).
 - The operation uses legacy v1 economy APIs (use admin skill).
