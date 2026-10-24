@@ -44,3 +44,11 @@ Instead, please send a report to the repository maintainers via GitHub's private
 - Use environment variables for all secrets (`PLAYFAB_TITLE_ID`, `PLAYFAB_DEV_SECRET_KEY`)
 - Keep dependencies up to date (`cargo audit`)
 - Use server-side APIs only (never client APIs)
+
+## Supply Chain Protection
+
+Release binaries are distributed to users through the self-update mechanism, so unreviewed code must never reach a release.
+
+- Auto-merge is enabled only for same-repository pull requests authored by the maintainer (`akiojin`)
+- Pull requests from external contributors, forks, and bots (e.g. Dependabot) are never auto-merged; they are merged only after manual maintainer review
+- `pull_request_target` workflows that hold secrets must not check out or execute pull request head code

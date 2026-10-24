@@ -1,9 +1,18 @@
 name: Auto Merge PR
 
+# Security notes:
+# - Auto-merge is enabled ONLY for same-repository PRs authored by the
+#   maintainer (akiojin). PRs from forks, external contributors, or bots
+#   (Dependabot, etc.) are never auto-merged and require manual review.
+# - This workflow runs on `pull_request_target` with a PAT. It MUST NOT check
+#   out or execute the PR head code. It only calls `gh pr merge --auto` against
+#   the PR number; the required status checks on the base branch still gate
+#   the actual merge.
+
 on:
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
-    branches: [main]
+    branches: [main, develop]
 
 permissions:
   contents: write
@@ -15,9 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event.pull_request.draft == false &&
+      github.event.pull_request.user.login == 'akiojin' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.base.ref == 'main' &&
-      github.event.pull_request.head.ref == 'develop'
+      (
+        (github.event.pull_request.base.ref == 'main' &&
+         github.event.pull_request.head.ref == 'develop') ||
+        (github.event.pull_request.base.ref == 'develop' &&
+         github.event.pull_request.head.ref != 'main')
+      )
     steps:
       - name: Enable auto-merge (with retry)
         env:
