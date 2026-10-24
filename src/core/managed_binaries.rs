@@ -9,7 +9,7 @@ use anyhow::{anyhow, Context, Result};
 use serde::Deserialize;
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};
-use ureq::Agent;
+use ureq::{http, Agent, Body};
 
 const DOWNLOAD_TIMEOUT_SECS: u64 = 30;
 const HTTP_MAX_ATTEMPTS: usize = 3;
@@ -401,7 +401,7 @@ fn fetch_latest_release_for_repo(
 
 fn download_to(url: &str, dest: &Path) -> Result<()> {
     let response = get_response(url)?;
-    let mut reader = response.into_reader();
+    let mut reader = response.into_body().into_reader();
 
     let mut file = fs::File::create(dest)
         .with_context(|| format!("Failed to create temporary file: {}", dest.display()))?;
@@ -426,7 +426,11 @@ fn sha256_file(path: &Path) -> Result<String> {
         }
         hasher.update(&buffer[..read]);
     }
-    Ok(format!("{:x}", hasher.finalize()))
+    Ok(hasher
+        .finalize()
+        .iter()
+        .map(|byte| format!("{byte:02x}"))
+        .collect())
 }
 
 fn replace_file_atomic(tmp: &Path, dest: &Path) -> Result<()> {
@@ -473,27 +477,31 @@ fn replace_file_atomic(tmp: &Path, dest: &Path) -> Result<()> {
 }
 
 fn http_client() -> Result<Agent> {
-    Ok(ureq::AgentBuilder::new()
-        .timeout(Duration::from_secs(DOWNLOAD_TIMEOUT_SECS))
-        .build())
+    Ok(Agent::config_builder()
+        .timeout_global(Some(Duration::from_secs(DOWNLOAD_TIMEOUT_SECS)))
+        .http_status_as_error(false)
+        .build()
+        .into())
 }
 
-fn get_response(url: &str) -> Result<ureq::Response> {
+fn get_response(url: &str) -> Result<http::Response<Body>> {
     let client = http_client()?;
     let token = github_token_from_env();
     let mut last_error = None;
 
     for attempt in 1..=HTTP_MAX_ATTEMPTS {
-        let mut request = client.get(url).set("User-Agent", USER_AGENT_VALUE);
+        let mut request = client.get(url).header("User-Agent", USER_AGENT_VALUE);
         if let Some(token) = token.as_deref() {
-            request = request.set("Authorization", &format!("Bearer {token}"));
+            request = request.header("Authorization", &format!("Bearer {token}"));
         }
 
         match request.call() {
-            Ok(response) => return Ok(response),
-            Err(ureq::Error::Status(status, response)) => {
+            Ok(response) if response.status().is_success() => return Ok(response),
+            Ok(mut response) => {
+                let status = response.status().as_u16();
                 let body = response
-                    .into_string()
+                    .body_mut()
+                    .read_to_string()
                     .map(|body| format!(" body={body}"))
                     .unwrap_or_default();
                 let error = anyhow!("HTTP {status} for {url}{body}");
@@ -504,7 +512,7 @@ fn get_response(url: &str) -> Result<ureq::Response> {
                 }
                 return Err(error);
             }
-            Err(ureq::Error::Transport(error)) => {
+            Err(error) => {
                 let error = anyhow!("Failed to request {url}: {error}");
                 if attempt < HTTP_MAX_ATTEMPTS {
                     last_error = Some(error);
@@ -553,9 +561,10 @@ fn should_skip_remote_checks_for_tests() -> bool {
 }
 
 fn get_json<T: for<'de> Deserialize<'de>>(url: &str) -> Result<T> {
-    let response = get_response(url)?;
+    let mut response = get_response(url)?;
     response
-        .into_json::<T>()
+        .body_mut()
+        .read_json::<T>()
         .with_context(|| format!("Failed to parse JSON: {url}"))
 }
 
@@ -891,7 +900,9 @@ mod tests {
         let _ = get_response(&url).expect("authorized request should succeed");
         handle.join().expect("server thread should complete");
         let request = captured_request.lock().expect("request lock");
-        assert!(request.contains(&format!("Authorization: Bearer {token}")));
+        assert!(request
+            .to_ascii_lowercase()
+            .contains(&format!("authorization: bearer {token}")));
     }
 
     #[test]
