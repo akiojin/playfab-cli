@@ -46,6 +46,12 @@ cargo test
 - Default target branch: `develop`
 - `main` accepts only release PRs from `develop` or release automation branches
 
+## Auto-merge Policy
+
+- Auto-merge (`.github/workflows/auto-merge.yml`) is enabled only for same-repository PRs authored by the maintainer (`akiojin`)
+- PRs from external contributors, forks, and bots (e.g. Dependabot) are never auto-merged; they are merged after manual maintainer review
+- Even with auto-merge enabled, a PR is merged only after the base branch's required checks pass
+
 ## Commit Style
 
 Use Conventional Commits:
@@ -123,11 +129,17 @@ cargo test
 - 通常のPR先は `develop`
 - `main` へのPRはリリース系のみ
 
+## 自動マージ方針
+
+- 自動マージ（`.github/workflows/auto-merge.yml`）はメンテナー（`akiojin`）が作成した同一リポジトリの PR に限定します
+- 外部コントリビューター・フォーク・bot（Dependabot 等）の PR は自動マージされず、メンテナーの手動レビュー後にマージします
+- 自動マージが有効でも、ベースブランチの必須チェックが通過するまでマージされません
+
 ## コミット規約
 
 Conventional Commits を使用してください（`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`, `perf:` など）。
 
-## TDD
+## TDD（テスト駆動開発）
 
 RED -> GREEN -> REFACTOR を前提に進めてください。実装変更には対応テストを含めます。
 
