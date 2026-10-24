@@ -22,9 +22,11 @@ impl Default for PlayFabClient {
 
 impl PlayFabClient {
     pub fn new() -> Self {
-        let agent = ureq::AgentBuilder::new()
-            .timeout(Duration::from_secs(DEFAULT_TIMEOUT_SECS))
-            .build();
+        let agent: Agent = Agent::config_builder()
+            .timeout_global(Some(Duration::from_secs(DEFAULT_TIMEOUT_SECS)))
+            .http_status_as_error(false)
+            .build()
+            .into();
         Self { agent }
     }
 
@@ -43,19 +45,21 @@ impl PlayFabClient {
             let result = self
                 .agent
                 .post(url)
-                .set("Content-Type", "application/json")
-                .set("User-Agent", USER_AGENT_VALUE)
-                .set(auth_header.0, auth_header.1)
-                .send_string(&json_body);
+                .header("Content-Type", "application/json")
+                .header("User-Agent", USER_AGENT_VALUE)
+                .header(auth_header.0, auth_header.1)
+                .send(json_body.as_str());
 
             match result {
-                Ok(response) => {
+                Ok(mut response) if response.status().is_success() => {
                     return response
-                        .into_json::<R>()
+                        .body_mut()
+                        .read_json::<R>()
                         .context("Failed to parse PlayFab API response");
                 }
-                Err(ureq::Error::Status(status, response)) => {
-                    let body = response.into_string().unwrap_or_default();
+                Ok(mut response) => {
+                    let status = response.status().as_u16();
+                    let body = response.body_mut().read_to_string().unwrap_or_default();
                     let error =
                         anyhow!("PlayFab API error: HTTP {} for {} - {}", status, url, body);
                     if attempt < tier.max_attempts() && is_retryable_status(status) {
@@ -71,7 +75,7 @@ impl PlayFabClient {
                     }
                     return Err(error);
                 }
-                Err(ureq::Error::Transport(e)) => {
+                Err(e) => {
                     let error = anyhow!("PlayFab API transport error for {}: {}", url, e);
                     if attempt < tier.max_attempts() {
                         tracing::warn!(

@@ -90,11 +90,12 @@ impl AuthManager {
         let url = self.config.api_url("Authentication", "GetEntityToken");
 
         let response: GetEntityTokenResponse = ureq::post(&url)
-            .set("X-SecretKey", &self.config.dev_secret_key)
-            .set("Content-Type", "application/json")
+            .header("X-SecretKey", &self.config.dev_secret_key)
+            .header("Content-Type", "application/json")
             .send_json(serde_json::json!({}))
             .context("Failed to call Authentication/GetEntityToken")?
-            .into_json()
+            .body_mut()
+            .read_json()
             .context("Failed to parse GetEntityToken response")?;
 
         let data = response
