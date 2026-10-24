@@ -31,12 +31,12 @@ Use playfab-cli to manage player profiles, data, and authentication.
 ### Profile Tools
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `get_profile` | Get the profile of a specific entity |
 | `get_profiles` | Get profiles for multiple entities in a single request |
 | `set_profile_language` | Set the preferred language for an entity profile |
 | `set_profile_policy` | Set the policy statements for an entity profile |
-| `get_title_players_account` | Get the title player account entity for a given title player ID |
+| `get_title_players_from_master_player_account_ids` | Get the title player accounts associated with the given master player account IDs (PlayFab IDs) |
 | `set_display_name` | Set the display name for an entity profile |
 | `set_global_policy` | Set the global policy for all entities in the title |
 | `get_global_policy` | Get the global policy for all entities in the title |
@@ -46,7 +46,7 @@ Use playfab-cli to manage player profiles, data, and authentication.
 ### Data Tools
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `set_objects` | Set objects on an entity profile (key-value data) |
 | `get_objects` | Get objects from an entity profile |
 | `initiate_file_uploads` | Initiate file uploads for an entity |
@@ -58,7 +58,7 @@ Use playfab-cli to manage player profiles, data, and authentication.
 ### Authentication Tools
 
 | Tool | Description |
-|------|-------------|
+| --- | --- |
 | `get_entity_token` | Get an entity token for authentication |
 | `validate_entity_token` | Validate an entity token |
 
@@ -112,6 +112,16 @@ playfab-cli tool call get_objects --json '{
 }'
 ```
 
+### Resolve title player accounts from PlayFab IDs
+
+```bash
+# Converts master player account IDs (PlayFab IDs) into title_player_account entity keys,
+# which are required by Economy v2 inventory operations.
+playfab-cli tool call get_title_players_from_master_player_account_ids --json '{
+  "MasterPlayerAccountIds": ["ABCD1234", "EFGH5678"]
+}'
+```
+
 ### Get entity token
 
 ```bash
@@ -149,7 +159,15 @@ playfab-cli tool call set_display_name --json '{"entity": {"Id": "...", "Type": 
 playfab-cli tool call set_objects --json '{"entity": {"Id": "...", "Type": "title_player_account"}, "objects": [{"objectName": "Progress", "dataObject": {"level": 1, "xp": 0}}]}'
 ```
 
-### 2. Profile inspection
+### 2. Prepare an inventory operation from a PlayFab ID
+
+```bash
+# Resolve the title_player_account ID for the PlayFab ID
+playfab-cli tool call get_title_players_from_master_player_account_ids --json '{"MasterPlayerAccountIds": ["ABCD1234"]}'
+# Use TitlePlayerAccounts["ABCD1234"].Id as the entity for inventory tools (inventory skill)
+```
+
+### 3. Profile inspection
 
 ```bash
 playfab-cli tool call get_profile --json '{"entity": {"Id": "...", "Type": "title_player_account"}, "dataAsObject": true}'
@@ -163,3 +181,4 @@ playfab-cli tool call get_files --json '{"entity": {"Id": "...", "Type": "title_
 - Profile operations work on any entity type, not just players.
 - File uploads are a two-step process: initiate -> upload to URL -> finalize.
 - Entity tokens expire after 24 hours by default.
+- `get_title_players_from_master_player_account_ids` maps PlayFab IDs (master player accounts) to `title_player_account` entity keys; use it before inventory operations when only a PlayFab ID is known.
